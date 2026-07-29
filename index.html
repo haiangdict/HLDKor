@@ -123,25 +123,6 @@ input[type="text"] {
 input[type="text"]:focus { border-color: var(--accent); }
 input[type="text"]::placeholder { color: var(--muted); }
 
-.char-btns { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-.char-btn {
-  font-family: 'Space Mono', monospace; font-size: 0.85rem;
-  background: var(--surface2); border: 1px solid var(--border);
-  color: var(--text); padding: 4px 9px; border-radius: 6px;
-  cursor: pointer; transition: all 0.13s; line-height: 1;
-  min-width: 30px; text-align: center;
-}
-.char-btn:hover { border-color: var(--accent2); background: var(--surface); }
-.char-btn:active { transform: scale(0.93); }
-.case-btn {
-  font-family: 'Space Mono', monospace; font-size: 0.68rem;
-  background: var(--surface2); border: 1px solid var(--border);
-  color: var(--muted); padding: 4px 8px; border-radius: 6px;
-  cursor: pointer; transition: all 0.13s; letter-spacing: 0.05em;
-}
-.case-btn:hover { border-color: var(--accent); color: var(--accent); }
-.case-btn.upper { border-color: var(--accent2); color: var(--accent2); background: rgba(139,196,168,0.08); }
-
 .search-scope { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
 .scope-label {
   display: flex; align-items: center; gap: 5px;
@@ -321,7 +302,7 @@ input[type="text"]::placeholder { color: var(--muted); }
   letter-spacing: 0.01em;
 }
 .ne-tag { opacity: 0.25; font-weight: 400; }
-.pron-tag { color: var(--accent2); margin-left: 0.5em; font-size: 0.85em; font-weight: 400; }
+.pron-tag { color: var(--muted); margin-left: 0.5em; font-size: 0.85em; font-weight: 400; }
 .affix-dash { opacity: 0.25; }
 
 /* ── SENSES ── */
@@ -464,11 +445,6 @@ input[type="text"]::placeholder { color: var(--muted); }
     <span class="search-icon">🔍</span>
     <input type="text" id="searchInput" placeholder="搜尋…" oninput="onSearchInput()">
   </div>
-  <div class="char-btns">
-    <button class="char-btn" onclick="insertChar('é')" title="é (U+00E9)">é</button>
-    <button class="char-btn" onclick="insertChar('ɨ')" title="ɨ (U+0268)">ɨ</button>
-    <button class="case-btn" id="caseCycleBtn" onclick="cycleCase()" title="大小寫切換">abc</button>
-  </div>
   <div class="search-scope">
     <label class="scope-label" id="scope-exact" onclick="toggleExact()" title="僅顯示完全相符的結果">
       <span class="scope-chk" id="schk-exact" style="color:transparent;">✓</span> 精確
@@ -530,8 +506,6 @@ let categorySectionOpen = false;      // 選項很多，預設收合
 let searchQuery = '';
 let searchExact = false;
 let searchScope = { lemma: true, example: true }; // 兩者都開＝不限範圍
-const SPECIAL_CHARS = { 'é': 'É', 'ɨ': 'Ɨ' };
-let _charCase = 'lower'; // 'lower' | 'upper'
 
 const LEVEL_ICONS = { 'B': '★★★★', 'I': '★★★☆', 'S': '★★☆☆', 'U': '★☆☆☆' };
 
@@ -574,15 +548,28 @@ function splitAffixDashes(word) {
   return { lead, core, trail };
 }
 
+// 韓文的19個初聲子音，依字典排序順序
+const CHOSEONG = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+
 function firstLetter(word) {
   let w = (word || '').trim();
   if (w.startsWith('\u2019')) w = w.slice(1); // leading glottal-stop mark not used for indexing
   w = splitAffixDashes(w).core || w; // 詞綴 - 不列入排序依據
-  return w ? w[0].toLowerCase() : '#';
+  if (!w) return '#';
+  // 韓文是拼音組合文字：組合過的音節(如「가」)要拆開取「初聲子音」分組，
+  // 不能把整個組合完的音節當成一個獨立字母，否則會產生成千上萬種「字母」，
+  // 也違反韓文字典慣用的排序方式（依初聲子音分組，例如 가/거/고/구 都歸在 ㄱ）。
+  const code = w.codePointAt(0);
+  if (code >= 0xAC00 && code <= 0xD7A3) {
+    const choseongIndex = Math.floor((code - 0xAC00) / (21 * 28));
+    return CHOSEONG[choseongIndex];
+  }
+  if (CHOSEONG.includes(w[0])) return w[0]; // 本身就是單獨的子音字母(如 ㄹ 거예요)
+  return w[0].toLowerCase();
 }
 
-// 字母排序順序：é 排在 e 後方，ɨ 排在 i 後方（不是照萬國碼位置排序）
-const LETTER_ORDER = ['a','b','c','d','e','é','g','h','i','ɨ','k','l','m','n','o','p','r','s','t','u','v','w','y','z'];
+// 字母排序順序：依韓文初聲子音的字典順序排列
+const LETTER_ORDER = CHOSEONG;
 function compareLetters(a, b) {
   const ia = LETTER_ORDER.indexOf(a), ib = LETTER_ORDER.indexOf(b);
   if (ia === -1 && ib === -1) return a < b ? -1 : (a > b ? 1 : 0);
@@ -1013,31 +1000,6 @@ function toggleScope(which) {
   if (chk) chk.style.color = searchScope[which] ? '' : 'transparent';
   renderContent();
   layoutLetterGrids();
-}
-
-function insertChar(lowerChar) {
-  const ch = _charCase === 'upper' ? SPECIAL_CHARS[lowerChar] : lowerChar;
-  const input = document.getElementById('searchInput');
-  const start = input.selectionStart, end = input.selectionEnd;
-  const val = input.value;
-  input.value = val.slice(0, start) + ch + val.slice(end);
-  const pos = start + ch.length;
-  input.setSelectionRange(pos, pos);
-  input.focus();
-  onSearchInput();
-}
-
-function cycleCase() {
-  _charCase = _charCase === 'lower' ? 'upper' : 'lower';
-  const btn = document.getElementById('caseCycleBtn');
-  if (btn) {
-    btn.textContent = _charCase === 'upper' ? 'ABC' : 'abc';
-    btn.classList.toggle('upper', _charCase === 'upper');
-    document.querySelectorAll('.char-btn').forEach(b => {
-      const lower = b.title.split(' ')[0];
-      b.textContent = _charCase === 'upper' ? (SPECIAL_CHARS[lower] || lower) : lower;
-    });
-  }
 }
 
 function clearSearchFilters() {

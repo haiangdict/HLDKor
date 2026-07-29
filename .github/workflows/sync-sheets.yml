@@ -22,6 +22,20 @@ jobs:
       - name: Install dependencies
         run: pip install gspread google-auth
 
+      - name: Sanity-check secrets (only prints length, never the value)
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+          SPREADSHEET_ID_LEMMATA:   ${{ secrets.SPREADSHEET_ID_LEMMATA }}
+          SPREADSHEET_ID_SENSES:    ${{ secrets.SPREADSHEET_ID_SENSES }}
+          SPREADSHEET_ID_EXAMPLES:  ${{ secrets.SPREADSHEET_ID_EXAMPLES }}
+          SPREADSHEET_ID_ETYMOLOGY: ${{ secrets.SPREADSHEET_ID_ETYMOLOGY }}
+        run: |
+          echo "GOOGLE_CREDENTIALS 長度：${#GOOGLE_CREDENTIALS}"
+          echo "SPREADSHEET_ID_LEMMATA 長度：${#SPREADSHEET_ID_LEMMATA}"
+          echo "SPREADSHEET_ID_SENSES 長度：${#SPREADSHEET_ID_SENSES}"
+          echo "SPREADSHEET_ID_EXAMPLES 長度：${#SPREADSHEET_ID_EXAMPLES}"
+          echo "SPREADSHEET_ID_ETYMOLOGY 長度：${#SPREADSHEET_ID_ETYMOLOGY}"
+
       - name: Sync Sheets → CSV
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}

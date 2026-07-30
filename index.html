@@ -303,7 +303,7 @@ input[type="text"]::placeholder { color: var(--muted); }
 }
 .ne-tag { opacity: 0.25; font-weight: 400; }
 .pron-tag { color: var(--muted); margin-left: 0.5em; font-size: 0.85em; font-weight: 400; }
-.pron-tag .term-highlight { margin: 0; font-weight: 400; }
+.pron-tag .term-highlight { margin: 0; }
 .affix-dash { opacity: 0.25; }
 
 /* ── SENSES ── */
@@ -343,9 +343,6 @@ input[type="text"]::placeholder { color: var(--muted); }
   font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--muted);
 }
 .term-highlight { color: var(--accent); font-weight: 600; margin: 0 0.15em; }
-/* 韓文語句用 Noto Sans KR，該字體筆畫本身較粗，高亮再加粗會顯得擁擠，故這裡取消粗體；
-   翻譯行(中文/羅馬字，非Noto Sans KR)不受影響，維持粗體 */
-.example-sentence .term-highlight { font-weight: 400; }
 .search-hit { background: color-mix(in srgb, var(--accent) 28%, transparent); color: var(--accent); border-radius: 3px; padding: 0 2px; font-weight: 600; }
 
 /* ── ETYMOLOGY BLOCK ── */
@@ -364,7 +361,7 @@ input[type="text"]::placeholder { color: var(--muted); }
 .ety-word {
   color: var(--accent);
   font-family: 'Noto Sans KR', 'jf-openhuninn', sans-serif;
-  font-weight: 400; /* Noto Sans KR 筆畫本身較粗，套用粗體會顯得擁擠，這裡刻意不加粗 */
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
 }
@@ -1233,6 +1230,20 @@ function combineTransRom(transRaw, romRaw, order, transPieceRenderer, romPieceRe
   return result;
 }
 
+// 例句專用：跟義項不同，例句的翻譯/羅馬字是「一整句」，句子裡本來就可能自然出現逗號、分號
+// (單純標點符號，不是多重意義的分隔)，所以不能拆開比對，要整句當成一個單位組合。
+function combineTransRomWhole(transRaw, romRaw, order, transRenderer, romRenderer) {
+  transRaw = (transRaw || '').trim();
+  romRaw = (romRaw || '').trim();
+  if (!transRaw && !romRaw) return '';
+  const tHtml = transRaw ? (transRenderer ? transRenderer(transRaw) : escapeHtml(transRaw)) : '';
+  const rHtml = romRaw ? (romRenderer ? romRenderer(romRaw) : escapeHtml(romRaw)) : '';
+  if (transRaw && romRaw) {
+    return order === 'trans' ? `${tHtml}（${rHtml}）` : `${rHtml}（${tHtml}）`;
+  }
+  return tHtml || rHtml;
+}
+
 function renderSenseSection(lemmaId, dial) {
   let senses = sensesByLemma[lemmaKey(lemmaId, dial)];
   if (!senses || !senses.length) return '';
@@ -1357,20 +1368,21 @@ function renderExampleBlock(ex, searchTerm) {
     ? highlightSearchTerm(ex['語句'] || '', searchTerm)
     : highlightTerm(ex['語句'] || '', ex['詞語'] || '');
 
-  // 例句翻譯：跟義項一樣要組合中文翻譯跟TL/POJ，但這裡沒有逗號分號多值問題（單一例句只有一組）。
+  // 例句翻譯：跟義項不同，這裡是「一整句」翻譯配一整句羅馬字，句子本身的逗號、分號只是
+  // 標點符號、不是多重意義的分隔，所以不能像義項那樣拆開比對配對，要整句當一個單位組合。
   // 沒有搜尋時：中文部分比對該義項的中文關鍵字；羅馬字部分比對「同一套系統」自己的關鍵字
   // （顯示TL就比對TL關鍵字、顯示POJ就比對POJ關鍵字），不是兩套都比對。
   const romExampleField = romSystem === 'TL' ? '翻譯TL' : '翻譯POJ';
   const romSenseKeyword = ex[romSystem] || ''; // 該義項自己的 TL 或 POJ
-  const transPieceRenderer = searchTerm
+  const transRenderer = searchTerm
     ? (piece => highlightSearchTerm(piece, searchTerm))
     : (piece => highlightTerm(piece, ex['翻譯'] || ''));
-  const romPieceRenderer = searchTerm
+  const romRenderer = searchTerm
     ? (piece => highlightSearchTerm(piece, searchTerm))
     : (piece => highlightTerm(piece, romSenseKeyword));
-  const transHtml = combineTransRom(
+  const transHtml = combineTransRomWhole(
     ex['語句翻譯'] || '', ex[romExampleField] || '', transOrder,
-    transPieceRenderer, romPieceRenderer
+    transRenderer, romRenderer
   );
 
   const source = ex['出處'] || '';

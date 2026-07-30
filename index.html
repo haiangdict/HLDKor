@@ -303,7 +303,7 @@ input[type="text"]::placeholder { color: var(--muted); }
 }
 .ne-tag { opacity: 0.25; font-weight: 400; }
 .pron-tag { color: var(--muted); margin-left: 0.5em; font-size: 0.85em; font-weight: 400; }
-.pron-tag .term-highlight { margin: 0; }
+.pron-tag .term-highlight { margin: 0; font-weight: 400; }
 .affix-dash { opacity: 0.25; }
 
 /* ── SENSES ── */
@@ -343,6 +343,9 @@ input[type="text"]::placeholder { color: var(--muted); }
   font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--muted);
 }
 .term-highlight { color: var(--accent); font-weight: 600; margin: 0 0.15em; }
+/* 韓文語句用 Noto Sans KR，該字體筆畫本身較粗，高亮再加粗會顯得擁擠，故這裡取消粗體；
+   翻譯行(中文/羅馬字，非Noto Sans KR)不受影響，維持粗體 */
+.example-sentence .term-highlight { font-weight: 400; }
 .search-hit { background: color-mix(in srgb, var(--accent) 28%, transparent); color: var(--accent); border-radius: 3px; padding: 0 2px; font-weight: 600; }
 
 /* ── ETYMOLOGY BLOCK ── */

@@ -303,6 +303,7 @@ input[type="text"]::placeholder { color: var(--muted); }
 }
 .ne-tag { opacity: 0.25; font-weight: 400; }
 .pron-tag { color: var(--muted); margin-left: 0.5em; font-size: 0.85em; font-weight: 400; }
+.pron-tag .term-highlight { margin: 0; }
 .affix-dash { opacity: 0.25; }
 
 /* ── SENSES ── */
@@ -310,10 +311,11 @@ input[type="text"]::placeholder { color: var(--muted); }
 .sense-item { padding: 5px 0; }
 .sense-item + .sense-item { border-top: 1px solid var(--border); margin-top: 4px; padding-top: 8px; }
 .sense-head {
-  display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap;
+  /* 改用一般行內排版(非flex)：長翻譯超出時只在文字內部自然換行接續，
+     不會像flex子項目那樣整段被推去下一行整行重排 */
 }
-.sense-num { font-family: 'Space Mono', monospace; font-size: 0.78rem; color: var(--muted); }
-.level-icons { color: var(--accent2); letter-spacing: 1px; font-size: 0.85em; font-family: 'Space Mono', monospace; }
+.sense-num { font-family: 'Space Mono', monospace; font-size: 0.78rem; color: var(--muted); margin-right: 9px; }
+.level-icons { color: var(--accent2); letter-spacing: 1px; font-size: 0.85em; font-family: 'Space Mono', monospace; margin-right: 9px; }
 .sense-trans { font-size: 1em; color: var(--text); }
 
 /* ── REFERENCE FIELDS (近義詞/反義詞/相關詞/附註) ── */
@@ -358,7 +360,6 @@ input[type="text"]::placeholder { color: var(--muted); }
 .ety-lang { margin-right: 0.35em; }
 .ety-word {
   color: var(--accent);
-  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
 }
@@ -823,7 +824,7 @@ function buildSidebar() {
   let html = `<div class="toggle-group">
     <div class="toggle-label">顯示順序</div>
     <div class="toggle-switch">
-      <div class="toggle-option ${transOrder === 'trans' ? 'active' : ''}" onclick="setTransOrder('trans')">翻譯優先</div>
+      <div class="toggle-option ${transOrder === 'trans' ? 'active' : ''}" onclick="setTransOrder('trans')">漢字優先</div>
       <div class="toggle-option ${transOrder === 'rom' ? 'active' : ''}" onclick="setTransOrder('rom')">羅馬字優先</div>
     </div>
   </div>
@@ -1427,13 +1428,16 @@ function renderNumericRefLine(label, raw, dial) {
   return `<div class="ref-row"><span class="ref-label">${label}</span>${rendered.join('；')}</div>`;
 }
 
-// 附註：若有「韓文字{詞目編號}」的寫法，把該韓文字轉成超連結到對應詞目（不附中文翻譯）
+// 附註：若有「韓文字{詞目編號}」的寫法，把該韓文字轉成超連結到對應詞目，
+// 並依左側選單設定附上該詞目的翻譯／羅馬字組合（跟近/反義詞、相關詞一致）
 function renderNoteLine(raw) {
   raw = (raw || '').trim();
   if (!raw) return '';
   const escaped = escapeHtml(raw);
   const linked = escaped.replace(/([\uAC00-\uD7A3]+)\{(\d+(?:\.\d+)?)\}/g, (m, word, id) => {
-    return `<a href="#lemma-${id}-" class="ety-word" onclick="event.preventDefault();jumpToLemma('${id}','')">${word}</a>`;
+    const resolved = resolveEtymologyToken(id, '');
+    const transHtml = (resolved && resolved.trans) ? `「${resolved.trans}」` : '';
+    return `<a href="#lemma-${id}-" class="ety-word" onclick="event.preventDefault();jumpToLemma('${id}','')">${word}</a>${transHtml}`;
   });
   return `<div class="ref-row"><span class="ref-label">附註</span>${linked}</div>`;
 }
@@ -1488,10 +1492,13 @@ function resolveEtymologyToken(token, dial) {
       const targetSense = (sensesByLemma[lemmaKey(lemmaId, dial)] || [])
         .find(s => s['義項'] === senseId);
       if (!targetSense) return null; // 查無對應義項，略過此筆
-      trans = (targetSense['翻譯'] || '').trim();
+      trans = combineTransRom((targetSense['翻譯'] || '').trim(), (targetSense[romSystem] || '').trim(), transOrder);
     } else {
+      // 韓語版：跟義項本身的翻譯欄一樣，要組合漢字翻譯跟TL/POJ(依左側選單設定)，
+      // 每個義項先各自組合好，再用；串起多個義項
       trans = (sensesByLemma[lemmaKey(lemmaId, dial)] || [])
-        .map(s => (s['翻譯'] || '').trim()).filter(Boolean).join('；');
+        .map(s => combineTransRom((s['翻譯'] || '').trim(), (s[romSystem] || '').trim(), transOrder))
+        .filter(Boolean).join('；');
     }
     return { type: 'numeric', id: lemmaId, dial, word: targetLemma.word, trans };
   }
@@ -1527,7 +1534,7 @@ function resolveEtymologyToken(token, dial) {
 function renderEtymologyFragment(r) {
   if (r.type === 'numeric') {
     const wordHtml = `<a href="#lemma-${r.id}-${r.dial}" class="ety-word" onclick="event.preventDefault();jumpToLemma('${r.id}','${r.dial}')">${escapeHtml(r.word)}</a>`;
-    return wordHtml + (r.trans ? `「${escapeHtml(r.trans)}」` : '');
+    return wordHtml + (r.trans ? `「${r.trans}」` : '');
   }
   const langHtml = `<span class="ety-lang">${escapeHtml(r.lang)}</span>`;
   const wordHtml = r.url

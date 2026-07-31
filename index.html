@@ -242,14 +242,21 @@ input[type="text"]::placeholder { color: var(--muted); }
 .az-btn:hover { color:var(--accent); background:var(--surface); }
 .az-btn.active { color:#0e0e0e; background:var(--accent2); }
 
+/* 韓語無方言別，色條僅作為卡片邊界識別，統一單一顏色 */
+.entry-dial-tag {
+  display: flex; align-items: center; justify-content: space-between;
+  margin: -12px -14px 10px -14px;
+  padding: 6px 8px 6px 14px;
+  min-height: 14px;
+  background: var(--surface2);
+}
 .share-btn {
-  position: absolute; top: 10px; right: 10px;
-  background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
-  opacity: 0.85; cursor: pointer; font-size: 0.95rem; line-height: 1;
-  padding: 5px; border-radius: 6px; transition: all 0.15s;
+  background: none; border: none; color: var(--muted);
+  opacity: 0.75; cursor: pointer; font-size: 0.95rem; line-height: 1;
+  padding: 3px 5px; border-radius: 5px; transition: all 0.15s;
   display: inline-flex; align-items: center; justify-content: center;
 }
-.share-btn:hover { opacity: 1; color: var(--accent); border-color: var(--accent); }
+.share-btn:hover { opacity: 1; color: var(--accent); }
 .share-btn:disabled { opacity: 0.4; cursor: wait; }
 
 /* ── CONTENT ── */
@@ -1104,7 +1111,10 @@ function renderLemmaCard(e) {
   // 發音欄：有的話用[]包起來、跟詞語不同顏色、隔開一點距離；**...**的部分套用跟例句一樣的高亮
   const pronHtml = e.pron ? `<span class="pron-tag">[${highlightTerm(e.pron, '')}]</span>` : '';
   return `<div class="lemma-entry" id="${cardId}">
-      <button class="share-btn" onclick="shareEntryCard(event, '${cardId}')" title="截圖分享"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V6a2 2 0 0 1 2-2h2"/><path d="M4 16v2a2 2 0 0 0 2 2h2"/><path d="M20 8V6a2 2 0 0 0-2-2h-2"/><path d="M20 16v2a2 2 0 0 1-2 2h-2"/><rect x="7" y="8.5" width="10" height="7" rx="1.3"/><circle cx="12" cy="12" r="1.6"/></svg></button>
+      <div class="entry-dial-tag">
+        <span></span>
+        <button class="share-btn" onclick="shareEntryCard(event, '${cardId}')" title="截圖分享"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V6a2 2 0 0 1 2-2h2"/><path d="M4 16v2a2 2 0 0 0 2 2h2"/><path d="M20 8V6a2 2 0 0 0-2-2h-2"/><path d="M20 16v2a2 2 0 0 1-2 2h-2"/><rect x="7" y="8.5" width="10" height="7" rx="1.3"/><circle cx="12" cy="12" r="1.6"/></svg></button>
+      </div>
       <div class="word-row">
         <div class="word-main">${wordHtml}${e.ne ? '<span class="ne-tag">ne</span>' : ''}${pronHtml}</div>
         <button class="play-btn" ${hasAudio ? '' : 'disabled'}

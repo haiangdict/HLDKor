@@ -248,8 +248,10 @@ input[type="text"]::placeholder { color: var(--muted); }
   margin: -12px -14px 10px -14px;
   padding: 6px 8px 6px 14px;
   min-height: 14px;
-  background: var(--surface2);
+  background: #7c1c23; /* 主色調(#CD2E3A)的深色版本，跟另外兩個網站的色條邏輯一致 */
 }
+.entry-dial-tag .share-btn { color: #f0d8da; }
+.entry-dial-tag .share-btn:hover { color: #fff; }
 .share-btn {
   background: none; border: none; color: var(--muted);
   opacity: 0.75; cursor: pointer; font-size: 0.95rem; line-height: 1;
@@ -414,6 +416,23 @@ input[type="text"]::placeholder { color: var(--muted); }
 }
 #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+/* 附註圖片縮圖與放大浮現視窗 */
+.note-thumb {
+  width: 56px; height: 56px; object-fit: cover; border-radius: 6px;
+  cursor: zoom-in; vertical-align: middle; margin: 2px 4px;
+  border: 1px solid var(--border);
+}
+.img-modal {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+  z-index: 1000; align-items: center; justify-content: center; cursor: zoom-out;
+  padding: 24px;
+}
+.img-modal.show { display: flex; }
+.img-modal img {
+  max-width: 90vw; max-height: 90vh; border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
 /* ── MOBILE ── */
 @media (max-width: 640px) {
   body { height: auto; min-height: 100vh; overflow: visible; }
@@ -481,6 +500,7 @@ input[type="text"]::placeholder { color: var(--muted); }
 <button id="scrollTopBtn" onclick="scrollContentToTop()" title="跳至最上方">↑</button>
 
 <div id="toast"></div>
+<div id="imgModal" class="img-modal" onclick="closeImageModal()"><img id="imgModalImg" src="" alt="附註圖片放大"></div>
 
 <script>
 const LEMMATA_URL = './data/KOR-Lemmata.csv';
@@ -1457,11 +1477,15 @@ function renderNumericRefLine(label, raw, dial) {
 }
 
 // 附註：若有「韓文字{詞目編號}」的寫法，把該韓文字轉成超連結到對應詞目，
-// 並依左側選單設定附上該詞目的翻譯／羅馬字組合（跟近/反義詞、相關詞一致）
+// 並依左側選單設定附上該詞目的翻譯／羅馬字組合（跟近/反義詞、相關詞一致）；
+// 若文字裡直接貼了圖片網址(.jpg/.png/.gif/.webp)，換成可點擊的縮圖，點一下浮現原圖視窗。
 function renderNoteLine(raw) {
   raw = (raw || '').trim();
   if (!raw) return '';
-  const escaped = escapeHtml(raw);
+  let escaped = escapeHtml(raw);
+  escaped = escaped.replace(/(https?:\/\/\S+?\.(?:jpe?g|png|gif|webp))(?=[\s，。；！？]|$)/gi, (m, url) => {
+    return `<img src="${url}" class="note-thumb" onclick="openImageModal('${url.replace(/'/g, "\\'")}')" alt="附註圖片">`;
+  });
   const linked = escaped.replace(/([\uAC00-\uD7A3]+)\{(\d+(?:\.\d+)?)\}/g, (m, word, id) => {
     const resolved = resolveEtymologyToken(id, '');
     const transHtml = (resolved && resolved.trans) ? `「${resolved.trans}」` : '';
@@ -1650,6 +1674,16 @@ function showToast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// 附註裡的圖片縮圖：點一下用浮現視窗顯示原圖，再點一下(或點視窗任何地方)關閉
+function openImageModal(url) {
+  const modal = document.getElementById('imgModal');
+  document.getElementById('imgModalImg').src = url;
+  modal.classList.add('show');
+}
+function closeImageModal() {
+  document.getElementById('imgModal').classList.remove('show');
 }
 
 // 截圖分享：把指定的詞條方塊轉成圖片，手機上可直接叫出系統分享選單(郵件/訊息/社群)，

@@ -1,44 +1,87 @@
 編號,詞語,義項,翻譯,TL,POJ,語句編號,語句,音檔,語句翻譯,翻譯TL,翻譯POJ
-1,가,26900001,,,,269000011,물가가 점점 오르고 있다.,,物價漸漸咧起。,Bu̍t-kè tsiām-tsiām the khí.,Bu̍t-kè chiām-chiām the khí.
-1,가,26900002,,,,269000021,동생은 졸업 후에 변호사가 되었다.,,阮小弟出業了後去做律師。,Guán sió-tī tshut-gia̍p liáo-āu khì tsò lu̍t-su.,Goán sió-tī chhut-gia̍p liao2-āu khì chò lu̍t-su.
-1,가,26900002,,,,269000022,저는 민호가 좋다.,,我佮意珉豪。,Guá kah-ì Bîn-hô.,Góa kah-ì Bîn-hô.
-1,가,26900002,,,,269000023,저는 개가 한마리 있다.,,我有一隻狗仔。,Guá ū tsi̍t tsiah káu-á.,Góa ū chi̍t chiah káu-á.
-1,가,26900003,,,,269000031,윤아**가** 그노래가 좋다.,,佮意彼條歌的人是潤娥。,Kah-ì hit tiâu kua ê lâng sī Jūn-ngôo.,Kah-ì hit tiâu koa ê lâng sī Jūn-ngô͘.
-6,가게,26900004,店,tiàm,tiàm,269000041,꽃 가게,,花店,hue-tiàm,hoe-tiàm
-6,가게,26900004,店,tiàm,tiàm,269000042,가게 주인,,店頭家,tiàm-thâu-ke,tiàm-thâu-ke
-6,가게,26900004,彼間賣菜的,hit king bē-tshài--ê,hit keng bē-chhài--ê,269000043,집 근처의 **야채 가게**는 야채가 좋고 값이 싸서 손님이 매우 많다.,,阮兜四箍圍仔彼間賣菜的，菜有鮮閣俗，所以人客蓋濟。,"Guán tau sì-khoo-uî-á hit king bē-tshài--ê, tshài ū tshinn koh sio̍k, sóo-í lâng-kheh kài tsē.","Goán tau sì-kho͘-ûi-á hit keng bē-chhài--ê,  chhài ū chhiⁿ koh sio̍k,  só͘-í lâng-kheh kài chē."
-11,가격,26900005,價,kè,kè,269000051,오랜 장마 때문에 채소와 과일 가격이 올랐다.,,黃酸雨直直落，青菜佮果子煞起價。,"N̂g-sng-hōo ti̍t-ti̍t lo̍h, tshenn-tshài kah kué-tsí suah khí-kè.","N̂g-sng-hō͘ ti̍t-ti̍t lo̍h, chheⁿ-chhài kah kóe-chí soah khí-kè."
-16,가구,26900006,家具,ka-kù,ka-kù,269000061,"선생님 집 거실에는 장식장, 소파 같은 가구가 많이 놓여 있었다.",,老師𪜶兜囥足濟玻璃門櫥仔抑是膨椅彼款的家具。,Lāu-su in tau khǹg tsiok tsē po-lê-mn̂g-tû-á kah phòng-í hit khuán ê ka-kù.,Lāu-su in tau khǹg chiok chē po-lê-mn̂g-tû-á kah phòng-í hit khoán ê ka-kù.
-21,가깝다,26900007,近,kīn,kīn,269000071,집이 학교에서 **가까워요**.,,學校對阮厝裡過蓋近。,Ha̍k-hāu tuì guán tshù--lí kuè kài kīn.,Ha̍k-hāu tùi goán chhù--lí kòe kài kīn.
-21,가깝다,26900008,親,tshin,chhin,269000081,친형제처럼 가깝다,,像親兄弟仔遐**親**,tshiūnn tshin hiann-tī-á hiah **tshin**,chhiūⁿ chhin hiaⁿ-tī-á hiah **chhin**
-26,가꾸다,26900009,種,tsìng,chèng,269000091,화단을 가꾸다,,種花,tsìng hue,chèng hoe
-26,가꾸다,26900010,保養,pó-ióng,pó-ióng,269000101,몸매를 가꾸다,,保養身材,pó-ióng sin-tsâi,pó-ióng sin-châi
-31,가끔,26900011,有時,ū-sî,ū-sî,269000111,나는 술을 거의 마시지 않지만 힘든 일이 있을 때면 가끔 마시곤 한다.,,我平常真少食酒，毋過有時若較失志就會啉一杯。,"Guá pîng-siông tsin tsió tsia̍h tsiú, m̄-koh ū-sî nā khah sit-tsì tō ē lim--tsi̍t-pue.","Góa pêng-siông chin chió chia̍h chiú, m̄-koh ū-sî nā khah sit-chì tō ē lim--chi̍t-poe."
-36,갈,26900012,去,khì,khì,269000121,나는 친구에게 **갈** 때마다 책을 빌려 왔다.,,逐擺去朋友遐，我攏會共伊借冊。,"Ta̍k-pái khì pîng-iú hia, guá lóng ē kā i tsioh tsheh.","Ta̍k-pái khì pêng-iú hia, góa lóng ē kā i chioh chheh."
-41,가르쳤다,26900013,教,kà,kà,269000131,선생님은 아이들에게 컴퓨터를 켜는 방법을 **가르쳤다**.,,老師教彼寡囡仔按怎共電腦開開。,Lāu-su kà hit kuá gín-á án-tsuánn kā tiān-náu khui--khui.,Lāu-su kà hit kóa gín-á án-chóaⁿ kā tiān-náu khui--khui.
-46,가방,26900014,冊包,tsheh-pau,chheh-pau,269000141,수업 시간이 되자 학생들은 가방에서 교과서와 공책을 꺼냈다.,,上課時間到，學生仔就會共課本佮簿仔紙對冊包提出來。,"Siōng-khò sî-kan kàu, ha̍k-sing-á tō ē kā khò-pún kah phōo-á-tsuá tuì tsheh-pau the̍h--tshut-lâi.","Siōng-khò sî-kan kàu, ha̍k-seng-á tō ē kā khò-pún kah phō͘-á-chóa tùi chheh-pau the̍h--chhut-lâi."
-51,가볍다,26900015,輕,khin,khin,269000151,이 노트북은 아주 **가벼**워서 들고 다니기가 매우 편리하다.,,這台隨身電腦蓋輕，紮咧行誠利便。,"Tsit tâi suî-sin-tiān-náu kài khin, tsah teh kiânn tsiânn lī-piān.","Chit tâi sûi-sin-tiān-náu kài khin, chah teh kiâⁿ chiâⁿ lī-piān."
-56,가수,26900016,歌手,kua-tshiú,koa-chhiú,269000161,사회자의 소개에 이어 유명 가수가 나와 노래를 불렀다.,,主持人紹介了，彼个有名的歌手就行出來唱歌。,"Tsú-tshî-jîn siāu-kài-liáu, 	hit ê ū-miâ ê kua-tshiú tō kiânn tshut-lâi tshiùnn kua.","Chú-chhî-jîn siāu-kài-liáu, 	hit ê ū-miâ ê koa-chhiú tō kiâⁿ chhut-lâi chhiùⁿ koa."
-61,가슴,26900017,胸坎,hing-khám,heng-khám,269000171,어머니는 아이를 가슴에 꼭 안았다.,,阿母共紅嬰仔攬佇胸坎攬牢牢。,A-bú kā âng-enn-á lám tī hing-khám lám-tiâu-tiâu.,A-bú kā âng-eⁿ-á lám tī heng-khám lám-tiâu-tiâu.
-66,가요,26900018,歌,kua,koa,269000181,노래방에 가서 가요를 불렀다,,去KTV唱歌,khì KTV tshiùnn kua,khì KTV chhiùⁿ koa
-71,가운데,26900019,中央,tiong-ng,tiong-ng,269000191,길 가운데,,路中央,lōo tiong-ng,lō͘ tiong-ng
-71,가운데,26900019,中央,tiong-ng,tiong-ng,269000192,우체국은 꽃 가게와 은행 가운데에 있어요.,,郵局就佇花店佮銀行兩个中央。,Iû-kiok tō tī hue-tiàm kah gîn-hâng nn̄g ê tiong-ng.,Iû-kiok tō tī hoe-tiàm kah gîn-hâng nn̄g ê tiong-ng.
-76,가위,26900020,鉸刀,ka-to,ka-to,269000201,두꺼운 옷감을 자르려면 큰 가위가 필요하다.,,鉸較厚的布，著愛用大支鉸刀。,"Ka khah kāu ê pòo, tio̍h-ài iōng tuā ki ka-to.","Ka khah kāu ê pò͘, tio̍h-ài iōng tōa ki ka-to."
-86,가장,26900022,上,siōng,siōng,269000221,적도 지방은 지구에서 가장 더운 곳이다.,,赤道地區是專地球上熱的所在。,Tshik-tō tē-khu sī tsuan sè-kài siōng jua̍h ê sóo-tsāi.,Chhek-tō tē-khu sī choan sè-kài siōng joa̍h ê só͘-chāi.
-91,가져가다,26900023,,,,269000231,학생은 선생님에게 숙제를 **가져가** 검사를 받았다.,,學生仔**提**功課**去**請老師檢查。,Ha̍k-sing-á **the̍h** kong-kò **khì** tshiánn lāu-su kiám-tsa.,Ha̍k-seng-á **the̍h** kong-kò **khì** chhiáⁿ lāu-su kiám-cha.
-96,가져오다,26900024,,,,269000241,선생님은 학생들에게 만화책을 학교에 **가져오**지 말라고 주의를 주셨다.,,老師共學生提醒講莫**紮**尪仔冊**來**學校。,Lāu-su kā ha̍k-sing thê-tshénn kóng mài **tsah** ang-á-tsheh **lâi** ha̍k-hāu.,Lāu-su kā ha̍k-seng thê-chhéⁿ kóng mài **chah** ang-á-chheh **lâi** ha̍k-hāu.
-101,가족,26900025,兜,tau,tau,269000251,"우리 가족은 어머니, 아버지, 나, 여동생 모두 넷이에요.",,阮兜有阮爸阮媽、我、佮阮小妹，總共四个人。,"Guán tau ū guán pâ guán má, guá, kah guán sió-muē, tsóng-kiōng sì ê lâng.","Goán tau ū goán pâ goán má, góa, kah goán sió-mōe, chóng-kiōng sì ê lâng."
-106,가지,26900026,種,tsióng,chióng,269000261,이 사탕은 여러 가지 맛이 난다.,,這个糖仔有出幾若種口味。,Tsit ê thn̂g-á ū tshut kuí-nā tsióng kháu-bī.,Chit ê thn̂g-á ū chhut kúi-nā chióng kháu-bī.
-106,가지,26900027,樹枝,tshiū-ki,chhiū-ki,269000271, 가지를 꺾다,,共樹枝遏斷,kā tshiū-ki at-tn̄g,kā chhiū-ki at-tn̄g
-111,가지다,26900028,有,ū,ū,269000281,내가 **가진** 돈이라고는 천 원이 전부였다.,,我甘焦有一千韓票爾。,Guá kan-na ū tsi̍t-tshing Hân-phiò niā.,Góa kan-na ū chi̍t-chheng Hân-phiò niā.
-116,가짜,26900029,假,ké,ké,269000291,남자는 가짜 돈을 만들어 쓰다가 경찰에게 붙잡혔다.,,彼个查埔因為製造假錢來開，去予警方掠起來。,"Hit ê tsa-poo in-u ītsè-tsō ké-tsînn lâi khai, khì hōo kíng-hong  lia̍h--khí-lâi.","Hit ê cha-po͘ in-u itsè7-chō ké-chîⁿ lâi khai, khì hō͘ kéng-hong  lia̍h--khí-lâi."
-121,각,26900030,每,muí,muí,269000301,우리는 배낭 하나만 메고 세계 각 나라를 돌아다녔다.,,阮一个揹仔揹咧，就去世界每一个國家踅一輾轉來。,"Guán tsi̍t ê phāinn-á phāinn--leh, tō khì sè-kài muí tsi̍t ê kok-ka se̍h tsi̍t liàn tńg--lâi.","Goán chi̍t ê phāiⁿ-á phāiⁿ--leh, tō khì sè-kài múi chi̍t ê kok-ka se̍h chi̍t liàn tńg--lâi."
-1576,남동생,26900055,小弟,sió-tī,sió-tī,269000551,누나는 어린 남동생만 집에 두고 놀러 가는 것이 마음에 걸렸다.,,阿姊無放心放小弟佇厝裡，家己出去𨑨迌。,"A-tsí bô hòng-sim pàng sió-tī tī tshù--lí, ka-ki tshu-khì tshit-thô.","A-chí bô hòng-sim pàng sió-tī tī chhù--lí, ka-ki chhu-khì chhit-thô."
-1591,남자,26900056,查埔,tsa-poo,cha-po͘,269000561,미혼 남자,,十一哥,tsa̍p-it-ko,cha̍p-it-ko
-1591,남자,26900056,查埔,tsa-poo,cha-po͘,269000562,교실에서 남자 학생들이 무거운 책상을 옮겼다.,,教室內底，查埔學生仔搬重的冊桌仔。,"Kàu-sik lāi-té, tsa-poo ha̍k-sing-á puann tāng ê tsheh-toh-á.","Kàu-sek lāi-té, cha-po͘ ha̍k-seng-á poaⁿ tāng ê chheh-toh-á."
-1596,남쪽,26900057,南爿,lâm-pîng,lâm-pêng,269000571,하늘에는 몇 대의 비행기가 남쪽을 향해 날아가고 있었다.,,天頂幾若隻飛行機飛往南爿。,Thinn-tíng kuí-nā tsiah hue-lîng-ki pue-óng lâm-pîng.,Thiⁿ-téng kúi-nā chiah hoe-lêng-ki poe-óng lâm-pêng.
-1601,남편,26900058,翁,ang,ang,269000581,언니는 올해 결혼하여 멋진 남편을 얻었다.,,阮姊仔舊年結婚，嫁了一个好翁。,"Guán tsí--á kū-nî kiat-hun, kè liáu tsi̍t ê hó ang.","Goán chí--á kū-nî kiat-hun, kè liáu chi̍t ê hó ang."
-1611,낮,26900059,日時仔,ji̍t--sî-á,ji̍t--sî-á,269000591,여름은 낮이 길고 밤이 짧은 계절이다.,,熱天日時仔長、暗時仔短。,"Jua̍h-thinn ji̍t--sî-á tn̂g, àm-sî té.","Joa̍h-thiⁿ ji̍t--sî-á tn̂g, àm-sî té."
-1616,낮다,26900060,低,kē,kē,269000601,책상이 **낮**아서 오랫동안 공부를 하면 허리가 아프다.,,冊桌仔傷低，害我讀冊就尻脊骿痠疼。,"Tsheh-toh-á siunn kē, hāi guá tha̍k-tsheh tō kha-tsiah-phiann sng-thiànn.","Chheh-toh-á siuⁿ kē, hāi góa tha̍k-chheh tō kha-chiah-phiaⁿ sng-thiàⁿ."
-1656,내리다,26900061,落車,lo̍h-tshia,lo̍h-chhia,269000611,역에 내리다,,佇車站落車,tī tshia-tsām lo̍h-tshia,tī chhia-chām lo̍h-chhia
-1656,내려요,26900062,落,lo̍h,lo̍h,269000621,비가 많이 **내려요**.,,落大雨,lo̍h tuā-hōo,lo̍h tōa-hō͘
+1,가,1700001,,,,17000011,물가**가** 점점 오르고 있다.,,物價漸漸咧起。,Bu̍t-kè tsiām-tsiām the khí.,Bu̍t-kè chiām-chiām the khí.
+1,가,1700002,,,,17000021,동생은 졸업 후에 변호사가 되었다.,,阮小弟出業了後去做律師。,Guán sió-tī tshut-gia̍p liáo-āu khì tsò lu̍t-su.,Goán sió-tī chhut-gia̍p liao2-āu khì chò lu̍t-su.
+1,가,1700002,,,,17000022,저는 민호가 좋다.,,我佮意珉豪。,Guá kah-ì Bîn-hô.,Góa kah-ì Bîn-hô.
+1,가,1700002,,,,17000023,저는 개가 한 마리 있다.,,我有一隻狗仔。,Guá ū tsi̍t tsiah káu-á.,Góa ū chi̍t chiah káu-á.
+1,가,1700003,,,,17000031,윤아**가** 그노래가 좋다.,,佮意彼條歌的人是潤娥。,Kah-ì hit tiâu kua ê lâng sī Jūn-ngôo.,Kah-ì hit tiâu koa ê lâng sī Jūn-ngô͘.
+6,가게,1700004,店,tiàm,tiàm,17000041,꽃 가게,,花店,hue-tiàm,hoe-tiàm
+6,가게,1700004,店,tiàm,tiàm,17000042,가게 주인,,店頭家,tiàm-thâu-ke,tiàm-thâu-ke
+6,가게,1700004,彼間賣菜的,hit king bē-tshài--ê,hit keng bē-chhài--ê,17000043,집 근처의 **야채 가게**는 야채가 좋고 값이 싸서 손님이 매우 많다.,,阮兜四箍圍仔彼間賣菜的，菜有鮮閣俗，所以人客蓋濟。,"Guán tau sì-khoo-uî-á hit king bē-tshài--ê, tshài ū tshinn koh sio̍k, sóo-í lâng-kheh kài tsē.","Goán tau sì-kho͘-ûi-á hit keng bē-chhài--ê,  chhài ū chhiⁿ koh sio̍k,  só͘-í lâng-kheh kài chē."
+11,가격,1700005,價,kè,kè,17000051,오랜 장마 때문에 채소와 과일 가격이 올랐다.,,黃酸雨直直落，青菜佮果子煞起價。,"N̂g-sng-hōo ti̍t-ti̍t lo̍h, tshenn-tshài kah kué-tsí suah khí-kè.","N̂g-sng-hō͘ ti̍t-ti̍t lo̍h, chheⁿ-chhài kah kóe-chí soah khí-kè."
+16,가구,1700006,家具,ka-kù,ka-kù,17000061,"선생님 집 거실에는 장식장, 소파 같은 가구가 많이 놓여 있었다.",,老師𪜶兜客廳，囥足濟玻璃門櫥仔抑是膨椅彼款的家具。,"Lāu-su in tau kheh-thiann, khǹg tsiok tsē po-lê-mn̂g-tû-á kah phòng-í hit khuán ê ka-kù.","Lāu-su in tau kheh-thiaⁿ, khǹg chiok chē po-lê-mn̂g-tû-á kah phòng-í hit khoán ê ka-kù."
+21,가깝다,1700007,近,kīn,kīn,17000071,집이 학교에서 **가까워요**.,,學校對阮厝裡過蓋近。,Ha̍k-hāu tuì guán tshù--lí kuè kài kīn.,Ha̍k-hāu tùi goán chhù--lí kòe kài kīn.
+21,가깝다,1700008,親,tshin,chhin,17000081,친형제처럼 가깝다,,像親兄弟仔遐**親**,tshiūnn tshin hiann-tī-á hiah **tshin**,chhiūⁿ chhin hiaⁿ-tī-á hiah **chhin**
+26,가꾸다,1700009,種,tsìng,chèng,17000091,화단을 가꾸다,,種花,tsìng hue,chèng hoe
+26,가꾸다,1700010,保養,pó-ióng,pó-ióng,17000101,몸매를 가꾸다,,保養身材,pó-ióng sin-tsâi,pó-ióng sin-châi
+31,가끔,1700011,有時,ū-sî,ū-sî,17000111,나는 술을 거의 마시지 않지만 힘든 일이 있을 때면 가끔 마시곤 한다.,,我平常真少食酒，毋過有時若較失志就會啉一杯。,"Guá pîng-siông tsin tsió tsia̍h tsiú, m̄-koh ū-sî nā khah sit-tsì tō ē lim--tsi̍t-pue.","Góa pêng-siông chin chió chia̍h chiú, m̄-koh ū-sî nā khah sit-chì tō ē lim--chi̍t-poe."
+36,갈,1700012,去,khì,khì,17000121,나는 친구에게 **갈** 때마다 책을 빌려 왔다.,,逐擺去朋友遐，我攏會共伊借冊。,"Ta̍k-pái khì pîng-iú hia, guá lóng ē kā i tsioh tsheh.","Ta̍k-pái khì pêng-iú hia, góa lóng ē kā i chioh chheh."
+41,가르쳤다,1700013,教,kà,kà,17000131,선생님은 아이들에게 컴퓨터를 켜는 방법을 **가르쳤다**.,,老師教彼寡囡仔按怎共電腦開開。,Lāu-su kà hit kuá gín-á án-tsuánn kā tiān-náu khui--khui.,Lāu-su kà hit kóa gín-á án-chóaⁿ kā tiān-náu khui--khui.
+46,가방,1700014,冊包,tsheh-pau,chheh-pau,17000141,수업 시간이 되자 학생들은 가방에서 교과서와 공책을 꺼냈다.,,上課時間到，學生仔就會共課本佮簿仔紙對冊包提出來。,"Siōng-khò sî-kan kàu, ha̍k-sing-á tō ē kā khò-pún kah phōo-á-tsuá tuì tsheh-pau the̍h--tshut-lâi.","Siōng-khò sî-kan kàu, ha̍k-seng-á tō ē kā khò-pún kah phō͘-á-chóa tùi chheh-pau the̍h--chhut-lâi."
+51,가볍다,1700015,輕,khin,khin,17000151,이 노트북은 아주 **가벼**워서 들고 다니기가 매우 편리하다.,,這台隨身電腦蓋輕，紮咧行誠利便。,"Tsit tâi suî-sin-tiān-náu kài khin, tsah teh kiânn tsiânn lī-piān.","Chit tâi sûi-sin-tiān-náu kài khin, chah teh kiâⁿ chiâⁿ lī-piān."
+56,가수,1700016,歌手,kua-tshiú,koa-chhiú,17000161,사회자의 소개에 이어 유명 가수가 나와 노래를 불렀다.,,主持人紹介了，彼个有名的歌手就行出來唱歌。,"Tsú-tshî-jîn siāu-kài-liáu, 	hit ê ū-miâ ê kua-tshiú tō kiânn tshut-lâi tshiùnn kua.","Chú-chhî-jîn siāu-kài-liáu, 	hit ê ū-miâ ê koa-chhiú tō kiâⁿ chhut-lâi chhiùⁿ koa."
+61,가슴,1700017,胸坎,hing-khám,heng-khám,17000171,어머니는 아이를 가슴에 꼭 안았다.,,阿母共紅嬰仔攬佇胸坎攬牢牢。,A-bú kā âng-enn-á lám tī hing-khám lám-tiâu-tiâu.,A-bú kā âng-eⁿ-á lám tī heng-khám lám-tiâu-tiâu.
+66,가요,1700018,歌,kua,koa,17000181,노래방에 가서 가요를 불렀다,,去KTV唱歌,khì KTV tshiùnn kua,khì KTV chhiùⁿ koa
+71,가운데,1700019,中央,tiong-ng,tiong-ng,17000191,길 가운데,,路中央,lōo tiong-ng,lō͘ tiong-ng
+71,가운데,1700019,中央,tiong-ng,tiong-ng,17000192,우체국은 꽃 가게와 은행 가운데에 있어요.,,郵局就佇花店佮銀行兩个中央。,Iû-kiok tō tī hue-tiàm kah gîn-hâng nn̄g ê tiong-ng.,Iû-kiok tō tī hoe-tiàm kah gîn-hâng nn̄g ê tiong-ng.
+76,가위,1700020,鉸刀,ka-to,ka-to,17000201,두꺼운 옷감을 자르려면 큰 가위가 필요하다.,,鉸較厚的布，著愛用大支鉸刀。,"Ka khah kāu ê pòo, tio̍h-ài iōng tuā ki ka-to.","Ka khah kāu ê pò͘, tio̍h-ài iōng tōa ki ka-to."
+86,가장,1700022,上,siōng,siōng,17000221,적도 지방은 지구에서 가장 더운 곳이다.,,赤道地區是專地球上熱的所在。,Tshik-tō tē-khu sī tsuan sè-kài siōng jua̍h ê sóo-tsāi.,Chhek-tō tē-khu sī choan sè-kài siōng joa̍h ê só͘-chāi.
+91,가져가다,1700023,,,,17000231,학생은 선생님에게 숙제를 **가져가** 검사를 받았다.,,學生仔**提**功課**去**請老師檢查。,Ha̍k-sing-á **the̍h** kong-kò **khì** tshiánn lāu-su kiám-tsa.,Ha̍k-seng-á **the̍h** kong-kò **khì** chhiáⁿ lāu-su kiám-cha.
+96,가져오다,1700024,,,,17000241,선생님은 학생들에게 만화책을 학교에 **가져오**지 말라고 주의를 주셨다.,,老師共學生提醒講莫**紮**尪仔冊**來**學校。,Lāu-su kā ha̍k-sing thê-tshénn kóng mài **tsah** ang-á-tsheh **lâi** ha̍k-hāu.,Lāu-su kā ha̍k-seng thê-chhéⁿ kóng mài **chah** ang-á-chheh **lâi** ha̍k-hāu.
+101,가족,1700025,兜,tau,tau,17000251,"우리 가족은 어머니, 아버지, 나, 여동생 모두 넷이에요.",,阮兜有阮爸阮媽、我、佮阮小妹，總共四个人。,"Guán tau ū guán pâ guán má, guá, kah guán sió-muē, tsóng-kiōng sì ê lâng.","Goán tau ū goán pâ goán má, góa, kah goán sió-mōe, chóng-kiōng sì ê lâng."
+106,가지,1700026,種,tsióng,chióng,17000261,이 사탕은 여러 가지 맛이 난다.,,這个糖仔有出幾若種口味。,Tsit ê thn̂g-á ū tshut kuí-nā tsióng kháu-bī.,Chit ê thn̂g-á ū chhut kúi-nā chióng kháu-bī.
+106,가지,1700027,樹枝,tshiū-ki,chhiū-ki,17000271, 가지를 꺾다,,共樹枝遏斷,kā tshiū-ki at-tn̄g,kā chhiū-ki at-tn̄g
+111,가지다,1700028,有,ū,ū,17000281,내가 **가진** 돈이라고는 천 원이 전부였다.,,我甘焦有一千韓票爾。,Guá kan-na ū tsi̍t-tshing Hân-phiò niā.,Góa kan-na ū chi̍t-chheng Hân-phiò niā.
+116,가짜,1700029,假,ké,ké,17000291,남자는 가짜 돈을 만들어 쓰다가 경찰에게 붙잡혔다.,,彼个查埔因為製造假錢來開，去予警方掠起來。,"Hit ê tsa-poo in-u ītsè-tsō ké-tsînn lâi khai, khì hōo kíng-hong  lia̍h--khí-lâi.","Hit ê cha-po͘ in-u itsè7-chō ké-chîⁿ lâi khai, khì hō͘ kéng-hong  lia̍h--khí-lâi."
+121,각,1700030,每,muí,muí,17000301,우리는 배낭 하나만 메고 세계 각 나라를 돌아다녔다.,,阮一个揹仔揹咧，就去世界每一个國家踅一輾轉來。,"Guán tsi̍t ê phāinn-á phāinn--leh, tō khì sè-kài muí tsi̍t ê kok-ka se̍h tsi̍t liàn tńg--lâi.","Goán chi̍t ê phāiⁿ-á phāiⁿ--leh, tō khì sè-kài múi chi̍t ê kok-ka se̍h chi̍t liàn tńg--lâi."
+126,간,1700031,的時間,ê sî-kan,ê sî-kan,17000311,한 달간,,一個月(的時間),tsi̍t kò gue̍h (ê sî-kan),chi̍t kò goe̍h (ê sî-kan)
+131,간단하,1700032,簡單,kan-tan,kan-tan,17000321,수술이 간단하고 위험하지도 않아 생각보다 금방 끝났다.,,手術簡單閣袂危險，比我料想的閣較緊就完成矣。,"Tshiú-su̍t kan-tan koh bē guî-hiám, pí guá liāu-sióng--ê koh khah kín tō uân-sîng--ah.","Chhiú-su̍t kan-tan koh bē gûi-hiám, pí góa liāu-sióng--ê koh khah kín tō oân-sêng--ah."
+136,간단히,1700033,簡單,kan-tan,kan-tan,17000331,나는 바빠서 친구가 묻는 말에만 간단히 대답하고 전화를 끊었다.,,我咧無閒，朋友的問題我簡單回答了就掛電話矣。,"Guá teh bô-îng, pîng-iú ê būn-tê guá kan-tan huê-tap-liáu  tō kuà tiān-uē--ah.","Góa teh bô-êng, pêng-iú ê būn-tê góa kan-tan hôe-tap-liáu  tō kòa tiān-ōe--ah."
+141,간식,1700034,四秀仔,sì-siù-á,sì-siù-á,17000341,식사를 하기 전에 간식으로 단것을 많이 먹으면 식욕이 떨어질 수도 있다.,,食飯進前若食一堆四秀仔，飯會食袂落去。,"Tsia̍h-pn̄g tsìn-tsîng nā tsia̍h tsi̍t tui sì-siù-á, pn̄g ē tsia̍h bē lo̍h--khì.","Chia̍h-pn̄g chìn-chêng nā chia̍h chi̍t tui sì-siù-á, pn̄g ē chia̍h bē lo̍h--khì."
+146,간장,1700035,豆油,tāu-iû,tāu-iû,17000351,간장에 찍다,,搵豆油,ùn tāu-iû,ùn tāu-iû
+151,간호사,1700036,護理師,hōo-lí-su,hō͘-lí-su,17000361,간호사가 되어서 아픈 사람들을 돌봐 주고 싶어.,,我想欲做護理師照顧病人。,Guá siūnn-beh tsò hōo-lí-su tsiàu-kòo pēnn-lâng.,Góa siūⁿ-beh chò hō͘-lí-su chiàu-kò͘ pēⁿ-lâng.
+156,갈비,1700037,排骨,pâi-kut,pâi-kut,17000371,갈비는 손으로 들고 먹어야 제맛이 난다.,,排骨用手拆來食上好食。,Pâi-kut iōng tshiú thiah lâi tsia̍h siōng hó-tsia̍h.,Pâi-kut iōng chhiú thiah lâi chia̍h siōng hó-chia̍h.
+161,갈비탕,1700038,排骨湯,pâi-kut-thng,pâi-kut-thng,17000381,갈비탕 한 그릇,,一碗排骨湯,tsi̍t uánn pâi-kut-thng,chi̍t óaⁿ pâi-kut-thng
+166,갈색,1700039,咖啡色,ka-pi-sik,ka-pi-sek,17000391,커피를 쏟아 흰 치마가 갈색으로 얼룩이 졌다.,,咖啡捙倒，白色的裙去予染甲變咖啡色。,"Ka-pi tshia-tó, pe̍h-sik ê kûn khì hōo ní kah piàn ka-pi-sik.","Ka-pi chhia-tó, pe̍h-sek ê kûn khì hō͘ ní kah piàn ka-pi-sek."
+171,갈아타다,1700040,盤,puânn,pôaⁿ,17000401,나는 버스에서 지하철로 갈아탔다.,,我公車盤捷運。,Guá kong-tshia puânn tsia̍t-ūn.,Góa kong-chhia pôaⁿ chia̍t-ūn.
+176,감,1700041,柿仔,khī-á,khī-á,17000411,감이 떫다.,,柿仔會澀。,Khī-á ē siap.,Khī-á ē siap.
+181,감기,1700042,感冒,kám-mōo,kám-mō͘,17000421,나는 감기에 걸려 몸에서 열이 나고 자꾸 기침을 했다.,,我感冒矣，發燒閣呿呿嗽。,"Guá kám-mōo--ah, huat-sio koh khuh-khuh-sàu.","Góa kám-mō͘--ah, hoat-sio koh khuh-khuh-sàu."
+186,감기약,1700043,感冒藥仔,kám-mōo-io̍h-á,kám-mō͘-io̍h-á,17000431,지수는 기침이 너무 심해서 감기약을 사 먹었다.,,我嗽甲足嚴重，所以就去買感冒藥仔來食。,"Guá sàu kah tsiok giâm-tiōng, sóo-í tō khì bé kám-mōo-io̍h-á lâi tsia̍h.","Góa sàu kah chiok giâm-tiōng, só͘-í tō khì bé kám-mō͘-io̍h-á lâi chia̍h."
+191,감다,1700044,瞌,kheh,kheh,17000441,눈을 힘껏 감다,,大力瞌目睭,tuā-la̍t kheh ba̍k-tsiu,tōa-la̍t kheh ba̍k-chiu
+191,감다,1700045,洗,sé,sé,17000451,머리를 감다,,洗頭毛,sé thâu-mn̂g,sé thâu-mn̂g
+191,감다,1700045,洗,sé,sé,17000452,몸을 감다,,洗身軀/洗浴,sé sin-khu / sé-i̍k,sé sin-khu / sé-e̍k
+191,감다,1700045,洗,sé,sé,17000453,미역을 감다,,洗滸苔,sé hóo-thî,sé hó͘-thî
+191,감다,1700046,囷,khûn,khûn,17000461,아버지는 줄로 막대기를 감고 있었다.,,阿爸咧用索仔共棍仔囷起來。,A-pah teh iōng soh-á kā kùn-á khûn--khí-lâi.,A-pah teh iōng soh-á kā kùn-á khûn--khí-lâi.
+196,감동,1700047,感動,kám-tōng,kám-tōng,17000471,감동을 느끼다,,受著感動,siū-tio̍h kám-tōng,siū-tio̍h kám-tōng
+201,감동하다,1700048,感動,kám-tōng,kám-tōng,17000481,친절에 감동하다,,予伊的親切去感動著,hōo i ê tshin-tshiat khì kám-tōng--tio̍h,hō͘ i ê chhin-chhiat khì kám-tōng--tio̍h
+206,감사,1700049,感謝,kám-siā,kám-siā,17000491,심심한 감사,,真心的感謝,tsin-sim ê kám-siā,chin-sim ê kám-siā
+211,감사드립니다,1700050,說多謝,sueh-to-siā,soeh-to-siā,17000501,항상 저를 보살펴 주신 선생님께 감사의 말씀을 드립니다.,,向四常照顧我的老師**表達**我的**感謝**,Hiòng sù-siông tsiàu-kòo--guá ê lāu-su **piáu-ta̍t** guá ê **kám-siā**.,Hiòng sù-siông chiàu-kò͘--góa ê lāu-su **piáu-ta̍t** góa ê **kám-siā**.
+216,감사하다,1700051,感謝,kám-siā,kám-siā,17000511,아버지는 건강한 아들이 태어난 것을 하늘에 감사했다.,,做老爸的感謝天公伯賜予伊一个健康的囝,Tsò lāu-pē--ê kám-siā Thinn-kong-peh sù hōo i tsi̍t ê kiān-khong ê kiánn.,Chò lāu-pē--ê kám-siā Thiⁿ-kong-peh sù hō͘ i chi̍t ê kiān-khong ê kiáⁿ.
+221,감사합니다,1700052,多謝,to-siā,to-siā,17000521,이렇게 직접 찾아와 주심을 정말 감사합니다.,,多謝你刁工來看我。,To-siā lí thiau-kang lâi khuànn--guá.,To-siā lí thiau-kang lâi khòaⁿ--góa.
+226,감자,1700053,馬鈴薯,má-lîng-tsî,má-lêng-chî,17000531,찐 감자,,炊馬鈴薯,tshue-má-lîng-tsî,chhoe-má-lêng-chî
+231,감자탕,1700054,馬鈴薯𤉙湯,má-lîng-tsî kûn-thng,má-lêng-chî kûn-thng,17000541,얼큰한 감자탕,,薟馬鈴薯𤉙湯,hiam má-lîng-tsî kûn-thng,hiam má-lêng-chî kûn-thng
+236,갑자기,1700055,雄雄,hiông-hiông,hiông-hiông,17000551,갑자기 더워지다,,雄雄變熱,hiông-hiông piàn-jua̍h,hiông-hiông piàn-joa̍h
+241,값,1700056,價數,kè-siàu,kè-siàu,17000561,민준이는 비싼 값에 책을 팔았다.,,民俊共冊賣出一个好價數。,Bîn-tsùn kā tsheh bē-tshut tsi̍t ê hó kè-siàu.,Bîn-chùn kā chheh bē-chhut chi̍t ê hó kè-siàu.
+246,강,1700057,河,hô,hô,17000571,다리가 공사 중이라 강을 건너려면 배를 타야 했다.,,橋咧做工程，所以咱過河著愛坐船。,"Kiô leh tsò kang-tîng, sóo-í lán kuè hô tio̍h ài tsē tsûn.","Kiô leh chò kang-têng, só͘-í lán kòe hô tio̍h ài chē chûn."
+251,강아지,1700058,狗仔,káu-á,káu-á,17000581,강아지가 꼬리를 치다,,狗仔搖尾溜,Káu-á iô bué-liu,Káu-á iô bóe-liu
+256,강의,1700059,課,khò,khò,17000591,수학 선생님은 항상 강의를 10분씩 일찍 끝내신다.,,數學老師攏會提早十分鐘下課。,Sòo-ha̍k lāu-su lóng ē thê-tsá tsa̍p hun-tsing hā-khò.,Sò͘-ha̍k lāu-su lóng ē thê-chá cha̍p hun-cheng hā-khò.
+261,강좌,1700060,課,khò,khò,17000601,일본어 강좌에 등록하다,,報名日語課,pò-miâ Ji̍t-gí-khò,pò-miâ Ji̍t-gí-khò
+266,갖다,1700061,有,ū,ū,17000611,나는 지금 아까 도서관에서 주운 책을 갖고 있다.,,我有紮拄才圖書館借的冊。,Guá ū tsah tú-tsiah tôo-su-kuán tsioh ê tsheh.,Góa ū chah tú-chiah tô͘-su-koán chioh ê chheh.
+271,같다,1700062,仝,kāng,kāng,17000621,나는 여동생과 키가 같다.,,我佮阮小妹仝懸。,Guá kap guán sió-muē kāng kuân.,Góa kap goán sió-mōe kāng koân.
+276,같이,1700063,配,phuè,phòe,17000631,커피와 같이 먹다.,,配咖啡食,phuè ka-pi tsia̍h,phòe ka-pi chia̍h
+276,같이,1700063,做伙,tsò-hué,chò-hóe,17000632,지금 누구랑 같이 있니?,,你這馬佮啥人做伙？,Lí tsit-má kah siánn-lâng tsò-hué?,Lí chit-má kah siáⁿ-lâng chò-hóe?
+276,같이,1700064,親像,tshin-tshiūnn,chhin-chhiūⁿ,17000641,예전에 말씀 드린 것과 같이,,親像我進前講的,tshin-tshiūnn guá tsìn-tsîng kóng--ê,chhin-chhiūⁿ góa chìn-chêng kóng--ê
+281,개,1700065,狗仔,káu-á,káu-á,17000651,이웃집 개가 계속 짖어서 나는 어제 잠을 거의 잘 수 없었다.,,昨昏阮厝邊飼的狗仔吠袂煞，害我強欲睏袂落眠。,"Tsa-hng guán tshù-pinn tshī--ê káu-á puī bē-suah, hāi guá kiông-beh khùn bē lo̍h-bîn.","Cha-hng goán chhù-piⁿ chhī--ê káu-á pūi bē-soah, hāi góa kiông-beh khùn bē lo̍h-bîn."
+282,개,1700066,粒,lia̍p,lia̍p,17000661,귤 다섯 개,,五粒柑仔,gōo lia̍p kam-á,gō͘ lia̍p kam-á
+286,개나리,1700067,連翹,liân-khiâu,liân-khiâu,17000671,개나리가 흐드러지게 피다,,連翹開花開甲真豔旺,liân-khiâu khui-hue khui kah tsin iām-ōng,liân-khiâu khui-hoe khui kah chin iām-ōng
+291,개미,1700068,狗蟻,káu-hiā,káu-hiā,17000681,단 음식을 그냥 두니까 당연히 개미가 꼬이지.,,你甜路按呢四界掖，無怪會生狗蟻。,"Lí tinn-lōo án-ne sì-kè iā, bô-kuài ē senn káu-hiā.","Lí tiⁿ-lō͘ án-ne sì-kè iā, bô-koài ē seⁿ káu-hiā."
+296,개월,1700069,個月,kò gue̍h,kò goe̍h,17000691,이 개월 정도,,成兩個月,tsiânn nn̄g kò gue̍h,chiâⁿ nn̄g kò goe̍h
+301,개인,1700070,個人,kò-jîn,kò-jîn,17000701,개인의 자유,,個人的自由,kò-jîn ê tsū-iû,kò-jîn ê chū-iû
+1576,남동생,1700102,小弟,sió-tī,sió-tī,17001021,누나는 어린 남동생만 집에 두고 놀러 가는 것이 마음에 걸렸다.,,阿姊無放心放小弟佇厝裡，家己出去𨑨迌。,"A-tsí bô hòng-sim pàng sió-tī tī tshù--lí, ka-ki tshu-khì tshit-thô.","A-chí bô hòng-sim pàng sió-tī tī chhù--lí, ka-ki chhu-khì chhit-thô."
+1591,남자,1700103,查埔,tsa-poo,cha-po͘,17001031,미혼 남자,,十一哥,tsa̍p-it-ko,cha̍p-it-ko
+1591,남자,1700103,查埔,tsa-poo,cha-po͘,17001032,교실에서 남자 학생들이 무거운 책상을 옮겼다.,,教室內底，查埔學生仔搬重的冊桌仔。,"Kàu-sik lāi-té, tsa-poo ha̍k-sing-á puann tāng ê tsheh-toh-á.","Kàu-sek lāi-té, cha-po͘ ha̍k-seng-á poaⁿ tāng ê chheh-toh-á."
+1596,남쪽,1700104,南爿,lâm-pîng,lâm-pêng,17001041,하늘에는 몇 대의 비행기가 남쪽을 향해 날아가고 있었다.,,天頂幾若隻飛行機飛往南爿。,Thinn-tíng kuí-nā tsiah hue-lîng-ki pue-óng lâm-pîng.,Thiⁿ-téng kúi-nā chiah hoe-lêng-ki poe-óng lâm-pêng.
+1601,남편,1700105,翁,ang,ang,17001051,언니는 올해 결혼하여 멋진 남편을 얻었다.,,阮姊仔舊年結婚，嫁了一个好翁。,"Guán tsí--á kū-nî kiat-hun, kè liáu tsi̍t ê hó ang.","Goán chí--á kū-nî kiat-hun, kè liáu chi̍t ê hó ang."
+1611,낮,1700106,日時仔,ji̍t--sî-á,ji̍t--sî-á,17001061,여름은 낮이 길고 밤이 짧은 계절이다.,,熱天日時仔長、暗時仔短。,"Jua̍h-thinn ji̍t--sî-á tn̂g, àm-sî té.","Joa̍h-thiⁿ ji̍t--sî-á tn̂g, àm-sî té."
+1616,낮다,1700107,低,kē,kē,17001071,책상이 **낮**아서 오랫동안 공부를 하면 허리가 아프다.,,冊桌仔傷低，害我讀冊就尻脊骿痠疼。,"Tsheh-toh-á siunn kē, hāi guá tha̍k-tsheh tō kha-tsiah-phiann sng-thiànn.","Chheh-toh-á siuⁿ kē, hāi góa tha̍k-chheh tō kha-chiah-phiaⁿ sng-thiàⁿ."
+1656,내리다,1700108,落車,lo̍h-tshia,lo̍h-chhia,17001081,역에 내리다,,佇車站落車,tī tshia-tsām lo̍h-tshia piàn,tī chhia-chām lo̍h-chhia
+1656,내려요,1700109,落,lo̍h,lo̍h,17001091,비가 많이 **내려요**.,,落大雨,lo̍h tuā-hōo,lo̍h tōa-hō͘

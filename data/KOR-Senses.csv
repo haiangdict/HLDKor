@@ -52,7 +52,7 @@
 216,,감사하다,,1700051,動,B,,感謝,kám-siā,kám-siā,,,,,,,cold medicine
 221,,감사합니다,,1700052,片語,B,,多謝，勞力，感恩,to-siā，lóo-la̍t，kám-un,to-siā，ló͘-la̍t，kám-un,,,,,,,close ~ (eyes)
 226,,감자,,1700053,名,B,,馬鈴薯，油薯,má-lîng-tsî，iû-tsî,má-lêng-chî，iû-chî,,,,,,,sensation
-231,,감자탕,,1700054,名,B,,韓國馬鈴薯𤉙湯,Hân-kok má-lîng-tsî kûn-thng,Hân-kok má-lêng-chî kûn-thng,21食物(非植物),,,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120201/18974/PIC000105167_700X466.jpg National Institute of Korean Language (CC BY-SA),,be impressed
+231,,감자탕,,1700054,名,B,,韓國馬鈴薯𤉙湯,Hân-kok má-lîng-tsî kûn-thng,Hân-kok má-lêng-chî kûn-thng,21食物(非植物),,,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120201/18974/PIC000105167_700X466.jpg ©국립국어원 (CC BY-SA),,be impressed
 236,,갑자기,,1700055,副,B,,雄雄,hiông-hiông,hiông-hiông,,,,,,,thank
 241,,값,,1700056,名,B,,價數,kè-siàu,kè-siàu,,11,,,,,thank you
 246,,강,KOR019,1700057,名,B,,溪，河，江,khe，hô，kang,khe，hô，kang,,,,,,,"thank, appreciate"
@@ -65,9 +65,9 @@
 276,,같이,,1700064,副,B,,親像,tshin-tshiūnn,chhin-chhiūⁿ,,,,,,,
 281,,개,,1700065,名,B,,狗，狗仔,káu，káu-á,káu，káu-á,07動物(含昆蟲),,,,,,
 282,,개,KOR022,1700066,量,B,,粒,lia̍p,lia̍p,,,,,,,
-286,,개나리,,1700067,名,I,,連翹,liân-khiâu,liân-khiâu,08植物,,,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120101/503/IMG000095836_700X466.jpg National Institute of Korean Language (CC BY-SA),,
+286,,개나리,,1700067,名,I,,連翹,liân-khiâu,liân-khiâu,08植物,,,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120101/503/IMG000095836_700X466.jpg ©국립국어원 (CC BY-SA),,
 291,,개미,,1700068,名,B,,狗蟻,káu-hiā,káu-hiā,07動物(含昆蟲),,,,,,
-296,,개월,282+6221,1700069,量,B,,個月,kò gue̍h,kò goe̍h,,,,,,,
+296,,개월,282+6221,1700069,量,B,,個月,kò gue̍h,kò goe̍h,,,,,頭前加［漢語數字］。若用［韓語數字］，著愛改用달{2041}。,,
 301,,개인,KOR023,1700070,名,I,,個人,kò-jîn,kò-jîn,,,,,,,
 306,,거기,,1700071,代,B,,遐；彼位,hia；hit uī,hia；hit ūi,,,,,,,
 311,,거기서,,1700072,副,B,,對遐,tuì hia,tùi hia,,,,,,,
@@ -123,3 +123,5 @@
 7256,,제일,KOR007,1700122,副,B,,上,siōng,siōng,,86,,,,,
 8266,,타다,,1700123,動,B,,上車,tsiūnn-tshia,chiūⁿ-chhia,20交通,,1656#1700108,,,,
 8891,,형,KOR002,1700124,名,B,,阿兄，哥哥,a-hiann，ko--koh,a-hiaⁿ，ko--koh,04親屬稱謂,,,,小弟咧叫的。小妹愛叫오빠{5921}。,,
+1276,,기차,JPN110,1700125,名,B,,火車,hué-tshia,hóe-chhia,20交通,,,,1276=/6796,,
+6796,,자동차,JPN096,1700126,名,B,,汽車,khì-tshia,khì-chhia,20交通,,,,,,

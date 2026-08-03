@@ -423,17 +423,25 @@ input[type="text"]::placeholder { color: var(--muted); }
   border: 1px solid var(--border);
 }
 
-/* 假朋友(False friends)比較區塊：最上面深色警示列，下面兩列淺色列出各自正確對應 */
+/* 假朋友(False friends)比較區塊：最上面深色警示列，下面兩列淺色列出各自正確對應。
+   三列都用grid對齊，讓 ≠／= 開頭的內容從固定欄寬開始，不會緊貼前方文字。 */
 .false-friends-block {
   margin-top: 6px; border-radius: 8px; overflow: hidden;
   font-size: 0.88em; border: 1px solid var(--border);
 }
-.ff-warn-row { background: var(--accent); color: #fff; padding: 6px 10px; font-weight: 600; }
-.ff-warn-row .ff-word { color: #fff; text-decoration: underline; }
-.ff-row { background: var(--surface2); color: var(--text); padding: 5px 10px; }
+.ff-warn-row, .ff-row {
+  display: grid; grid-template-columns: minmax(0, 33%) 1fr; column-gap: 10px;
+  padding: 6px 10px;
+}
+.ff-warn-row { background: var(--accent); color: #fff; font-weight: 600; }
+.ff-row { background: var(--surface2); color: var(--text); }
 .ff-row + .ff-row { border-top: 1px solid var(--border); }
+.ff-left, .ff-right { min-width: 0; }
+.ff-warn-row .ff-word { color: #fff; }
 .ff-row .ff-word { color: var(--accent); font-weight: 600; }
-.ff-word { font-family: 'Noto Sans KR', 'jf-openhuninn', sans-serif; }
+.ff-word { font-family: 'Noto Sans KR', 'jf-openhuninn', sans-serif; text-decoration: none; cursor: default; }
+a.ff-word { cursor: pointer; }
+a.ff-word:hover { text-decoration: underline; }
 .img-modal {
   display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
   z-index: 1000; align-items: center; justify-content: center; cursor: zoom-out;
@@ -1349,7 +1357,7 @@ function renderSenseSection(lemmaId, dial) {
     html += renderNumericRefLine('反義詞', s['反義詞'], dial);
     html += renderNumericRefLine('相關詞', s['相關詞'], dial);
     html += renderDerivedWordsForSense(lemmaId, dial, s['義項']);
-    html += renderNoteLine(s['附註']);
+    html += renderNoteLine(s['附註'], lemmaId);
     html += `</div>`;
   });
   html += '</div>';
@@ -1491,7 +1499,9 @@ function renderNumericRefLine(label, raw, dial) {
 // 假朋友(False friends)比較：附註欄位若整欄就是「A編號(#義項編號)=/B編號(#義項編號)」的指令
 // （例如 1276=/6796，或帶義項的 1276#170012=/6796#170013），改渲染成獨立的警示比較區塊，
 // 不走一般附註的文字處理。右邊的翻譯呈現順序/邏輯跟近/反義詞、相關詞完全一樣(直接沿用resolveEtymologyToken)。
-function renderFalseFriendsBlock(raw) {
+// currentLemmaId：目前正在顯示的詞目編號——這個編號本身不用連結(已經在看這一頁)，
+// 另一邊(不是目前這個詞目)的詞語才需要建立跳轉連結。
+function renderFalseFriendsBlock(raw, currentLemmaId) {
   const m = raw.match(/^(\d+(?:\.\d+)?)(?:#(\d+(?:\.\d+)?))?=\/(\d+(?:\.\d+)?)(?:#(\d+(?:\.\d+)?))?$/);
   if (!m) return null;
   const [, aId, aSense, bId, bSense] = m;
@@ -1500,21 +1510,29 @@ function renderFalseFriendsBlock(raw) {
   const a = resolveEtymologyToken(aToken, '');
   const b = resolveEtymologyToken(bToken, '');
   if (!a || !b) return null; // 查無對應詞目/義項，略過此筆
-  const aWord = escapeHtml(a.word), bWord = escapeHtml(b.word);
+
+  const wordHtml = (r, id) => {
+    const word = escapeHtml(r.word);
+    if (String(id) === String(currentLemmaId)) return `<span class="ff-word">${word}</span>`;
+    return `<a href="#lemma-${id}-" class="ff-word" onclick="event.preventDefault();jumpToLemma('${id}','')">${word}</a>`;
+  };
+  const aWordHtml = wordHtml(a, aId);
+  const bWordHtml = wordHtml(b, bId);
+
   return `<div class="false-friends-block">
-    <div class="ff-warn-row">⚠ <span class="ff-word">${aWord}</span> ≠ ${b.trans || ''}</div>
-    <div class="ff-row"><span class="ff-word">${aWord}</span> = ${a.trans || ''}</div>
-    <div class="ff-row"><span class="ff-word">${bWord}</span> = ${b.trans || ''}</div>
+    <div class="ff-warn-row"><span class="ff-left">⚠ ${aWordHtml}</span><span class="ff-right">≠ ${b.trans || ''}</span></div>
+    <div class="ff-row"><span class="ff-left">${aWordHtml}</span><span class="ff-right">= ${a.trans || ''}</span></div>
+    <div class="ff-row"><span class="ff-left">${bWordHtml}</span><span class="ff-right">= ${b.trans || ''}</span></div>
   </div>`;
 }
 
 // 附註：若有「韓文字{詞目編號}」的寫法，把該韓文字轉成超連結到對應詞目，
 // 並依左側選單設定附上該詞目的翻譯／羅馬字組合（跟近/反義詞、相關詞一致）；
 // 若文字裡直接貼了圖片網址(.jpg/.png/.gif/.webp)，換成可點擊的縮圖，點一下浮現原圖視窗。
-function renderNoteLine(raw) {
+function renderNoteLine(raw, currentLemmaId) {
   raw = (raw || '').trim();
   if (!raw) return '';
-  const ffBlock = renderFalseFriendsBlock(raw);
+  const ffBlock = renderFalseFriendsBlock(raw, currentLemmaId);
   if (ffBlock) return ffBlock;
   let escaped = escapeHtml(raw);
   escaped = escaped.replace(/(https?:\/\/\S+?\.(?:jpe?g|png|gif|webp))(?=[\s，。；！？]|$)/gi, (m, url) => {

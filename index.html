@@ -330,6 +330,34 @@ input[type="text"]::placeholder { color: var(--muted); }
 
 /* ── REFERENCE FIELDS (近義詞/反義詞/相關詞/附註) ── */
 .ref-row { margin-top: 4px; font-size: 0.88em; color: var(--muted); line-height: 1.6; }
+
+/* 動詞變化：分組代碼小標籤 + 展開變化表 */
+.conj-badge {
+  font-family: 'Space Mono', monospace; font-size: 0.64rem;
+  background: var(--surface2); color: var(--accent); border: 1px solid var(--accent);
+  border-radius: 10px; padding: 1px 8px; cursor: pointer; transition: all 0.15s;
+}
+.conj-badge:hover { background: var(--accent); color: #fff; }
+.conj-table { margin-top: 6px; margin-bottom: 4px; }
+.conj-table-inner {
+  display: grid; grid-template-columns: minmax(0,45%) 1fr;
+  border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+  font-size: 0.85em;
+}
+.conj-row { display: contents; }
+.conj-label {
+  padding: 5px 10px; background: var(--surface2); color: var(--muted);
+  border-bottom: 1px solid var(--border); border-right: 1px solid var(--border);
+}
+.conj-value {
+  padding: 5px 10px; color: var(--text); border-bottom: 1px solid var(--border);
+  font-family: 'Noto Sans KR', 'jf-openhuninn', sans-serif;
+}
+.conj-note {
+  grid-column: 1 / -1; padding: 6px 10px; background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent); font-size: 0.9em; border-bottom: 1px solid var(--border);
+}
+.conj-empty { color: var(--muted); font-size: 0.85em; padding: 4px 0; }
 .ref-label {
   display: inline-block;
   font-family: 'Space Mono', monospace; font-size: 0.66rem;
@@ -531,6 +559,7 @@ const EXAMPLES_URL = './data/KOR-Examples.csv';
 let entries = [];          // Lemmata rows
 let lemmataById = {};       // "編號_語別" -> entry
 let sensesByLemma = {};     // "編號_語別" -> [sense objects]
+let conjugatedFormsIndex = {}; // 衍生變化形文字 -> Set(詞目編號)，供精確搜尋反查用
 let derivedWordsByLemma = {}; // "編號_語別"(來源詞目，無#義項編號的引用) -> Set(引用此詞目的詞目編號)
 let derivedWordsBySense = {}; // "編號_語別_義項編號"(來源義項，有#義項編號的引用) -> Set(引用此義項的詞目編號)
 let etymologyByCode = {};   // code -> etymology object
@@ -630,6 +659,242 @@ function compareLetters(a, b) {
 }
 function sortLetters(letters) { return letters.slice().sort(compareLetters); }
 
+// ══════════════════════════════════════════════════════════════════
+// 韓語動詞/形容詞變化引擎
+// 「動詞變化」欄位存的是「變化分組代碼」(規則/ㅂ불규칙/...)，不是完整變化表——
+// 規則本身寫死在這裡(封閉、固定的語言系統)，套用在詞目的實際詞幹上即時算出。
+// ══════════════════════════════════════════════════════════════════
+const JUNGSEONG_HARMONY_A = new Set([0, 8]); // ㅏ, ㅗ 屬於「陽性」母音，其餘為陰性(어)
+
+function hangulDecompose(ch) {
+  const code = ch.codePointAt(0);
+  if (code < 0xAC00 || code > 0xD7A3) return null;
+  const idx = code - 0xAC00;
+  return { cho: Math.floor(idx / (21 * 28)), jung: Math.floor((idx % (21 * 28)) / 28), jong: idx % 28 };
+}
+function hangulCompose(cho, jung, jong) {
+  return String.fromCodePoint(0xAC00 + (cho * 21 + jung) * 28 + (jong || 0));
+}
+function vowelHarmony(jung) { return JUNGSEONG_HARMONY_A.has(jung) ? 'a' : 'eo'; }
+
+// 어간 마지막 음절에 아/어를 결합(모음축약)：規則變化的核心
+function conjAttachAE(lastSyll) {
+  const d = hangulDecompose(lastSyll);
+  if (d.jong !== 0) return lastSyll + (vowelHarmony(d.jung) === 'a' ? '아' : '어');
+  switch (d.jung) {
+    case 0: case 4: case 1: case 5: return lastSyll; // 아/어/애/에 - 축약(변화없음)
+    case 8: return hangulCompose(d.cho, 9, 0);   // 오+아->와
+    case 13: return hangulCompose(d.cho, 14, 0); // 우+어->워
+    case 20: return hangulCompose(d.cho, 6, 0);  // 이+어->여
+    case 11: return hangulCompose(d.cho, 10, 0); // 되(ㅚ)+어->돼(ㅙ)
+    default: return lastSyll + (vowelHarmony(d.jung) === 'a' ? '아' : '어');
+  }
+}
+
+// 반말체 핵심형(현재/과거 공용) 계산 — 각 분류별 모음축약/불규칙 처리
+function conjCore(stem, cls) {
+  const syll = [...stem];
+  const last = syll[syll.length - 1];
+  const d = hangulDecompose(last);
+  const prefix = syll.slice(0, -1).join('');
+  switch (cls) {
+    case '규칙': case 'ㄹ탈락':
+      return prefix + conjAttachAE(last);
+    case 'ㅂ불규칙': {
+      const isException = (stem === '돕' || stem === '곱'); // 단음절 예외: 오
+      const base = hangulCompose(d.cho, d.jung, 0);
+      const added = hangulCompose(11, isException ? 8 : 13, 0); // 이응+오/우
+      return prefix + base + conjAttachAE(added);
+    }
+    case 'ㄷ불규칙':
+      return prefix + conjAttachAE(hangulCompose(d.cho, d.jung, 8)); // 받침 ㄷ->ㄹ
+    case 'ㅅ불규칙': {
+      const base = hangulCompose(d.cho, d.jung, 0); // 받침 ㅅ 제거, 축약 없이 그대로 붙임
+      return prefix + base + (vowelHarmony(d.jung) === 'a' ? '아' : '어');
+    }
+    case '르불규칙': {
+      const prevSyll = syll[syll.length - 2];
+      const pd = hangulDecompose(prevSyll);
+      const h = vowelHarmony(pd.jung);
+      const prevWithL = hangulCompose(pd.cho, pd.jung, 8);
+      const newSyll = hangulCompose(5, h === 'a' ? 0 : 4, 0); // 라/러
+      return syll.slice(0, -2).join('') + prevWithL + newSyll;
+    }
+    case 'ㅎ불규칙': {
+      const vowelMap = { 0: 1, 4: 1, 2: 3 }; // ㅏ/ㅓ->ㅐ, ㅑ->ㅒ
+      const newJung = vowelMap[d.jung] !== undefined ? vowelMap[d.jung] : 1;
+      return prefix + hangulCompose(d.cho, newJung, 0);
+    }
+    case '으탈락': {
+      const prevSyll = syll.length > 1 ? syll[syll.length - 2] : null;
+      const h = prevSyll ? vowelHarmony(hangulDecompose(prevSyll).jung) : 'eo';
+      return prefix + hangulCompose(d.cho, h === 'a' ? 0 : 4, 0);
+    }
+    case '우불규칙':
+      return prefix + hangulCompose(d.cho, 4, 0); // 푸다 전용: ㅜ->ㅓ
+    default:
+      return prefix + conjAttachAE(last);
+  }
+}
+
+// (으)계열 어미가 붙기 전의 어간 계산: { stem, needEu }
+// dropL: 이 어미가 ㄴ/ㅂ/ㅅ/ㄹ으로 시작해서 ㄹ탈락을 유발하는지
+function conjEuStem(stem, cls, dropL) {
+  const syll = [...stem];
+  const last = syll[syll.length - 1];
+  const d = hangulDecompose(last);
+  const prefix = syll.slice(0, -1).join('');
+
+  if (cls === 'ㄹ탈락') {
+    if (dropL) return { stem: prefix + hangulCompose(d.cho, d.jung, 0), needEu: false };
+    return { stem: prefix + last, needEu: false };
+  }
+  if (cls === 'ㅂ불규칙') {
+    // (으)앞에서는 항상 우 (오 예외는 아/어 모음축약에서만 적용)
+    const base = hangulCompose(d.cho, d.jung, 0);
+    const added = hangulCompose(11, 13, 0);
+    return { stem: prefix + base + added, needEu: false };
+  }
+  if (cls === 'ㄷ불규칙') {
+    return { stem: prefix + hangulCompose(d.cho, d.jung, 8), needEu: true };
+  }
+  if (cls === 'ㅅ불규칙') {
+    return { stem: prefix + hangulCompose(d.cho, d.jung, 0), needEu: true, forceEu: true };
+  }
+  if (cls === 'ㅎ불규칙') {
+    return { stem: prefix + hangulCompose(d.cho, d.jung, 0), needEu: false };
+  }
+  return { stem: prefix + last, needEu: d.jong !== 0 };
+}
+
+function conjAttachEu(stem, cls, endingNoEu, firstConsonantOfEnding) {
+  const dropL = ['ㄴ', 'ㅂ', 'ㅅ', 'ㄹ'].includes(firstConsonantOfEnding);
+  const { stem: s2, needEu, forceEu } = conjEuStem(stem, cls, dropL);
+  return s2 + ((forceEu || needEu) ? '으' : '') + endingNoEu;
+}
+
+// -(으)ㅂ시다: ㅂ이 모음어간엔 받침으로 합쳐짐(갑시다), 자음어간엔 새 음절(읍시다)
+function conjPropositive(stem, cls) {
+  const { stem: s2, needEu } = conjEuStem(stem, cls, true);
+  if (!needEu) {
+    const syll = [...s2];
+    const last = syll[syll.length - 1];
+    const d = hangulDecompose(last);
+    return syll.slice(0, -1).join('') + hangulCompose(d.cho, d.jung, 17) + '시다';
+  }
+  return s2 + '읍시다';
+}
+
+// -(으)ㄹ 거예요: ㄹ이 모음어간엔 받침으로 합쳐짐(갈 거예요), 자음어간엔 새 음절(을 거예요)
+function conjFuture(stem, cls) {
+  const { stem: s2, needEu } = conjEuStem(stem, cls, true);
+  if (needEu) return s2 + '을 거예요';
+  const syll = [...s2];
+  const last = syll[syll.length - 1];
+  const d = hangulDecompose(last);
+  if (d.jong === 0) {
+    return syll.slice(0, -1).join('') + hangulCompose(d.cho, d.jung, 8) + ' 거예요';
+  }
+  return s2 + ' 거예요'; // 이미 받침ㄹ(ㄹ탈락류가 탈락 안 한 경우)
+}
+
+// 替換型敬語(suppletive honorific) 例外清單：這些字的敬語不是規則的-(으)시-附加，
+// 而是整個換成不同的字(如 먹다->잡수시다/드시다)，引擎不自動產生，避免產生像
+// 「먹으시다」這種實際上不存在的字；改由字典編輯手動用相關詞連結處理。
+const CONJ_SUPPLETIVE_HONORIFIC = new Set(['자다', '먹다', '마시다', '죽다', '말하다', '있다', '아프다']);
+
+// 給定原形(word，含結尾다)和分類代碼，算出完整變化表
+function computeConjugationTable(word, cls, pos) {
+  if (!word.endsWith('다')) return null;
+  const stem = word.slice(0, -1);
+  if (!stem) return null;
+  try {
+    const core = conjCore(stem, cls);
+    const coreSyll = [...core];
+    const coreLast = coreSyll[coreSyll.length - 1];
+    const coreLastD = hangulDecompose(coreLast);
+    const pastCore = coreSyll.slice(0, -1).join('') + hangulCompose(coreLastD.cho, coreLastD.jung, 20); // ㅆ
+
+    let formalPresentBase;
+    if (cls === 'ㄹ탈락') {
+      const d0 = hangulDecompose(stem[stem.length - 1]);
+      const dropped = stem.slice(0, -1) + hangulCompose(d0.cho, d0.jung, 0);
+      const dsyll = [...dropped];
+      const dd = hangulDecompose(dsyll[dsyll.length - 1]);
+      formalPresentBase = dsyll.slice(0, -1).join('') + hangulCompose(dd.cho, dd.jung, 17);
+    } else {
+      const d0 = hangulDecompose(stem[stem.length - 1]);
+      if (d0.jong === 0) {
+        const ssyll = [...stem];
+        const sd = hangulDecompose(ssyll[ssyll.length - 1]);
+        formalPresentBase = ssyll.slice(0, -1).join('') + hangulCompose(sd.cho, sd.jung, 17);
+      } else {
+        formalPresentBase = stem + '습';
+      }
+    }
+
+    const table = {
+      dict: word,
+      present_informal: core + '요',
+      present_formal: formalPresentBase + '니다',
+      past_informal: pastCore + '어요',
+      past_formal: pastCore + '습니다',
+      future: conjFuture(stem, cls),
+      conn_go: stem + '고',
+      conn_jiman: stem + '지만',
+      conn_aseo: core + '서',
+      conn_myeon: conjAttachEu(stem, cls, '면', 'ㅁ'),
+      request: conjAttachEu(stem, cls, '세요', 'ㅅ'),
+    };
+    if (pos === '動') {
+      table.propositive = conjPropositive(stem, cls);
+    }
+    if (!CONJ_SUPPLETIVE_HONORIFIC.has(word)) {
+      table.honorific_dict = conjAttachEu(stem, cls, '시다', 'ㅅ');
+    }
+    return table;
+  } catch (e) {
+    console.error('활용 계산 실패:', word, cls, e);
+    return null;
+  }
+}
+
+// 動詞變化表的顯示標籤與對應欄位（依序呈現）
+const CONJ_TABLE_ROWS = [
+  ['敬語原形', 'honorific_dict'],
+  ['現在(해요체)', 'present_informal'],
+  ['現在(합쇼체)', 'present_formal'],
+  ['過去(해요체)', 'past_informal'],
+  ['過去(합쇼체)', 'past_formal'],
+  ['未來/推測', 'future'],
+  ['-고 (並列)', 'conn_go'],
+  ['-지만 (轉折)', 'conn_jiman'],
+  ['-아/어서 (原因)', 'conn_aseo'],
+  ['-(으)면 (假設)', 'conn_myeon'],
+  ['-(으)세요 (請求)', 'request'],
+  ['-(으)ㅂ시다 (提議)', 'propositive'],
+];
+
+function renderConjugationTable(word, cls, pos) {
+  const table = computeConjugationTable(word, cls, pos);
+  if (!table) return '<div class="conj-empty">無法計算變化表</div>';
+  let rows = CONJ_TABLE_ROWS.map(([label, key]) => {
+    const val = table[key];
+    if (val === undefined) return '';
+    return `<div class="conj-row"><span class="conj-label">${escapeHtml(label)}</span><span class="conj-value">${escapeHtml(val)}</span></div>`;
+  }).join('');
+  if (!table.honorific_dict) {
+    rows = `<div class="conj-note">⚠ 此字敬語為替換型（非規則變化），請參考相關詞連結。</div>` + rows;
+  }
+  return `<div class="conj-table-inner">${rows}</div>`;
+}
+
+function toggleConjTable(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+}
+
 function renderWordWithAffix(word) {
   const { lead, core, trail } = splitAffixDashes(word || '');
   const leadHtml = lead ? `<span class="affix-dash">${escapeHtml(lead)}</span>` : '';
@@ -691,6 +956,28 @@ async function loadData() {
     }
     ALL_CATEGORIES = [...categorySet].sort();
     selectedCategories = new Set(ALL_CATEGORIES); // 預設全部勾選
+
+    // ── 動詞變化反向索引 ── 詞類為動/形、且填了「動詞變化」分組代碼的義項，
+    // 算出完整變化表，把每一個衍生形都記進反查索引，供精確搜尋連回原詞根。
+    conjugatedFormsIndex = {};
+    Object.values(sensesByLemma).forEach(senseArr => {
+      senseArr.forEach(s => {
+        const pos = (s['詞類'] || '').trim();
+        const cls = (s['動詞變化'] || '').trim();
+        if (!cls || (pos !== '動' && pos !== '形')) return;
+        const lemma = lemmataById[lemmaKey(s['編號'], '')];
+        if (!lemma) return;
+        const table = computeConjugationTable(lemma.word, cls, pos);
+        if (!table) return;
+        Object.values(table).forEach(form => {
+          if (!form) return;
+          const clean = form.replace(/\s.*$/, ''); // "-(으)ㄹ 거예요" 등 뒤에 붙는 의존명사(거예요)는 검색 대상에서 제외, 어형 부분만
+          if (!clean) return;
+          if (!conjugatedFormsIndex[clean]) conjugatedFormsIndex[clean] = new Set();
+          conjugatedFormsIndex[clean].add(s['編號']);
+        });
+      });
+    });
 
     // ── 派生詞反向索引 ──（先只處理指向本詞典詞目的純數字語源，Etymology.csv 代碼先不處理）
     // 掃描每一個義項的[語源]欄位，把「A的語源是B」反過來記成「B的派生詞包含A」。
@@ -1126,6 +1413,10 @@ function matchesSearch(e) {
   if (useLemma) {
     if (textMatchesQuery(e.word)) return true;
     if (senses.some(s => textMatchesQuery(s['翻譯'], true))) return true;
+    // 精確搜尋時，動詞/形容詞的衍生變化形(如가요、가세요)也算命中原詞根
+    if (searchExact && conjugatedFormsIndex[searchQuery] && conjugatedFormsIndex[searchQuery].has(e.id)) {
+      return true;
+    }
   }
   if (useExample) {
     for (const s of senses) {
@@ -1345,8 +1636,16 @@ function renderSenseSection(lemmaId, dial) {
     const romRaw = (s[romSystem] || '').trim();
     const transPieceRenderer = inSearch ? (piece => highlightSearchTerm(piece, searchQuery)) : null;
     const transHtml = combineTransRom(transRaw, romRaw, transOrder, transPieceRenderer);
+    const conjCls = (s['動詞變化'] || '').trim();
+    const conjTableId = `conj-${lemmaId}-${s['義項']}`;
+    const conjBadge = (conjCls && (pos === '動' || pos === '形'))
+      ? `<button class="conj-badge" onclick="toggleConjTable('${conjTableId}')" title="動詞變化：點擊展開變化表">${escapeHtml(conjCls)}</button>`
+      : '';
     html += `<div class="sense-item">`;
-    html += `<div class="sense-head">${num}${lvl ? `<span class="level-icons">${lvl}</span>` : ''}${pos ? `<span class="ref-label">${escapeHtml(pos)}</span>` : ''}${transHtml ? `<span class="sense-trans">${transHtml}</span>` : ''}</div>`;
+    html += `<div class="sense-head">${num}${lvl ? `<span class="level-icons">${lvl}</span>` : ''}${pos ? `<span class="ref-label">${escapeHtml(pos)}</span>` : ''}${conjBadge}${transHtml ? `<span class="sense-trans">${transHtml}</span>` : ''}</div>`;
+    if (conjCls && (pos === '動' || pos === '形')) {
+      html += `<div id="${conjTableId}" class="conj-table" style="display:none">${renderConjugationTable((lemmataById[lemmaKey(lemmaId, dial)] || {}).word || '', conjCls, pos)}</div>`;
+    }
     if (!shared && senseEtyResolved[idx]) {
       html += `<div class="ety-block">${senseEtyResolved[idx].html}</div>`;
     }

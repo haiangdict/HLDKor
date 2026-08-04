@@ -732,6 +732,11 @@ function conjCore(stem, cls) {
     }
     case '우불규칙':
       return prefix + hangulCompose(d.cho, 4, 0); // 푸다 전용: ㅜ->ㅓ
+    case '여불규칙': {
+      // 하다 및 「~하다」複合動詞 전용: 아/어 대신 여가 붙어 하+여->해로 축약
+      // (공부하다, 운동하다, 사랑하다 등 수많은 한자어+하다 동사가 모두 이 규칙을 따름)
+      return prefix + hangulCompose(d.cho, 1, 0); // 하(ㅏ)->해(ㅐ)
+    }
     default:
       return prefix + conjAttachAE(last);
   }

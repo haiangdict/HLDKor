@@ -361,23 +361,33 @@ input[type="text"]::placeholder { color: var(--muted); }
 
 /* 04/10專用完整變化表：各區段欄位數不同(禮貌/親近=標籤+非正式+正式；連結/轉成=標籤+值)，
    改用 flex 讓標籤欄寬度全表一致、值欄視該列有幾個值自動平分 */
-.conj-table-detailed { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-size: 0.82em; }
+.conj-table-detailed {
+  border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-size: 1em;
+  display: flex; gap: 0; align-items: flex-start;
+}
+.conj-table-detailed .conj-col { flex: 1; min-width: 0; }
+.conj-table-detailed .conj-col + .conj-col { border-left: 1px solid var(--border); }
 .conj-section-title {
-  padding: 4px 10px; background: var(--accent); color: #fff;
-  font-weight: 700; font-size: 0.85em;
+  padding: 5px 10px; background: var(--accent); color: #fff;
+  font-weight: 700; font-size: 0.9em;
 }
 .conj-table-detailed .conj-row { display: flex; border-bottom: 1px solid var(--border); }
 .conj-table-detailed .conj-row:last-child { border-bottom: none; }
 .conj-table-detailed .conj-label {
-  flex: 0 0 92px; padding: 5px 8px; background: var(--surface2); color: var(--muted);
+  flex: 1; padding: 6px 8px; background: var(--surface2); color: var(--muted);
   border-right: 1px solid var(--border);
 }
 .conj-table-detailed .conj-value {
-  flex: 1; padding: 5px 8px; color: var(--text); border-right: 1px solid var(--border);
+  flex: 1; padding: 6px 8px; color: var(--text); border-right: 1px solid var(--border);
   font-family: 'Noto Sans KR', 'jf-openhuninn', sans-serif; min-width: 0;
 }
 .conj-table-detailed .conj-value:last-child { border-right: none; }
 .conj-table-detailed .conj-row-head .conj-value { font-weight: 700; color: var(--muted); text-align: center; background: var(--surface2); }
+/* 詞根底色：依詞根1/2/3給不同深淺的主色調透明底色，後方語尾不加底色 */
+.conj-root { border-radius: 3px; padding: 0 1px; }
+.conj-root-1 { background: color-mix(in srgb, var(--accent) 20%, transparent); }
+.conj-root-2 { background: color-mix(in srgb, var(--accent) 38%, transparent); }
+.conj-root-3 { background: color-mix(in srgb, var(--accent) 56%, transparent); }
 .ref-label {
   display: inline-block;
   font-family: 'Space Mono', monospace; font-size: 0.66rem;
@@ -954,62 +964,74 @@ function computeRoots10(stem) {
   return { root1: stem, root2: stem, root3: stem.slice(0, -1) + '해' };
 }
 
+// 把詞根部分用透明底色標示出來(依詞根1/2/3給不同色階)，後方語尾維持原狀不加底色
+function conjMark(root, rootNum, suffix) {
+  return `<span class="conj-root conj-root-${rootNum}">${escapeHtml(root)}</span>${escapeHtml(suffix || '')}`;
+}
+// 語尾會跟詞根最後一個音節合併(當收尾音)的情況：合併後的音節仍算詞根範圍
+function conjMarkMerge(root, rootNum, jongIdx, suffixAfter) {
+  return conjMark(mergeJongseong(root, jongIdx), rootNum, suffixAfter);
+}
+
 // 完整變化表：依詞類(動/形)決定要不要含請誘/命令/冠形詞過去/目的等欄位
 function buildDetailedConjugationTable(roots, pos) {
   const { root1, root2, root3 } = roots;
   const j1 = hangulDecompose(root1[root1.length - 1]).jong;
-  const past3 = mergeJongseong(root3, 20); // ㅆ
   const isVerb = pos === '動';
-  const gwanhyeongPresent = isVerb ? root1 + '는' : mergeJongseong(root2, 4);
+  // 冠形詞現在：動詞用「詞根1+는」，形容詞用「詞根2+ㄴ(合併)」——兩處(對比連結欄、轉成欄)共用
+  const gwanhyeongPresent = isVerb ? conjMark(root1, 1, '는') : conjMarkMerge(root2, 2, 4, '');
 
   const t = {};
-  t['禮貌_平敍_非過去_비'] = root3 + '요';
-  t['禮貌_平敍_非過去_정'] = j1 === 0 ? mergeJongseong(root1, 17) + '니다' : root1 + '습니다';
-  t['禮貌_平敍_過去_비'] = past3 + '어요';
-  t['禮貌_平敍_過去_정'] = past3 + '습니다';
-  t['禮貌_疑問_非過去_비'] = root3 + '요';
-  t['禮貌_疑問_非過去_정'] = j1 === 0 ? mergeJongseong(root1, 17) + '니까' : root1 + '습니까';
-  t['禮貌_疑問_過去_비'] = past3 + '어요';
-  t['禮貌_疑問_過去_정'] = past3 + '습니까';
-  t['禮貌_推測_비'] = root1 + '겠어요';
-  t['禮貌_推測_정'] = root1 + '겠습니다';
+  t['禮貌_平敍_非過去_비'] = conjMark(root3, 3, '요');
+  t['禮貌_平敍_非過去_정'] = j1 === 0 ? conjMarkMerge(root1, 1, 17, '니다') : conjMark(root1, 1, '습니다');
+  t['禮貌_平敍_過去_비'] = conjMarkMerge(root3, 3, 20, '어요');
+  t['禮貌_平敍_過去_정'] = conjMarkMerge(root3, 3, 20, '습니다');
+  t['禮貌_疑問_非過去_비'] = conjMark(root3, 3, '요');
+  t['禮貌_疑問_非過去_정'] = j1 === 0 ? conjMarkMerge(root1, 1, 17, '니까') : conjMark(root1, 1, '습니까');
+  t['禮貌_疑問_過去_비'] = conjMarkMerge(root3, 3, 20, '어요');
+  t['禮貌_疑問_過去_정'] = conjMarkMerge(root3, 3, 20, '습니까');
+  t['禮貌_推測_비'] = conjMark(root1, 1, '겠어요');
+  t['禮貌_推測_정'] = conjMark(root1, 1, '겠습니다');
   if (isVerb) {
-    t['禮貌_請誘_비'] = root3 + '요';
-    t['禮貌_請誘_정'] = root2 + '십시다';
-    t['禮貌_命令_비'] = root3 + '요';
-    t['禮貌_命令_정'] = mergeJongseong(root2, 17) + '시오';
+    t['禮貌_請誘_비'] = conjMark(root3, 3, '요');
+    t['禮貌_請誘_정'] = conjMark(root2, 2, '십시다');
+    t['禮貌_命令_비'] = conjMark(root3, 3, '요');
+    t['禮貌_命令_정'] = conjMarkMerge(root2, 2, 17, '시오');
   }
-  t['親近_平敍_非過去_비'] = root3;
-  t['親近_平敍_非過去_정'] = isVerb ? (j1 === 0 ? mergeJongseong(root1, 4) + '다' : root1 + '는다') : root1 + '다';
-  t['親近_平敍_過去_비'] = past3 + '어';
-  t['親近_平敍_過去_정'] = past3 + '다';
-  t['親近_疑問_非過去_비'] = root3;
-  t['親近_疑問_非過去_정'] = isVerb ? root2 + '느냐' : root1 + '냐';
-  t['親近_疑問_過去_비'] = past3 + '어';
-  t['親近_疑問_過去_정'] = past3 + '느냐';
-  t['親近_推測_비'] = root1 + '겠어';
-  t['親近_推測_정'] = root1 + '겠다';
+  t['親近_平敍_非過去_비'] = conjMark(root3, 3, '');
+  t['親近_平敍_非過去_정'] = isVerb ? (j1 === 0 ? conjMarkMerge(root1, 1, 4, '다') : conjMark(root1, 1, '는다')) : conjMark(root1, 1, '다');
+  t['親近_平敍_過去_비'] = conjMarkMerge(root3, 3, 20, '어');
+  t['親近_平敍_過去_정'] = conjMarkMerge(root3, 3, 20, '다');
+  t['親近_疑問_非過去_비'] = conjMark(root3, 3, '');
+  // 詞根1+느냐(動詞) / 詞根1+냐(形容詞)——느냐是子音開頭語尾，不觸發ㄷ->ㄹ的變化，直接接詞根1
+  t['親近_疑問_非過去_정'] = isVerb ? conjMark(root1, 1, '느냐') : conjMark(root1, 1, '냐');
+  t['親近_疑問_過去_비'] = conjMarkMerge(root3, 3, 20, '어');
+  t['親近_疑問_過去_정'] = conjMarkMerge(root3, 3, 20, '느냐');
+  t['親近_推測_비'] = conjMark(root1, 1, '겠어');
+  t['親近_推測_정'] = conjMark(root1, 1, '겠다');
   if (isVerb) {
-    t['親近_請誘_비'] = root3;
-    t['親近_請誘_정'] = root1 + '자';
-    t['親近_命令_비'] = root3;
-    t['親近_命令_정'] = root3 + '라';
+    t['親近_請誘_비'] = conjMark(root3, 3, '');
+    t['親近_請誘_정'] = conjMark(root1, 1, '자');
+    t['親近_命令_비'] = conjMark(root3, 3, '');
+    t['親近_命令_정'] = conjMark(root3, 3, '라');
   }
-  t['連結_對等補助'] = root1 + '고';
-  t['連結_從屬_原因'] = [root3, root3 + '서', root2 + '니', root2 + '니까'].join('／');
-  t['連結_從屬_對比'] = [root1 + '지만', gwanhyeongPresent + '데', root1 + '더니'].join('／');
-  t['連結_從屬_條件'] = [root2 + '면', root3 + '야'].join('／');
-  if (isVerb) t['連結_從屬_目的'] = root2 + '려고';
-  t['轉成_名詞_非過去'] = [mergeJongseong(root2, 16), root1 + '기'].join('／');
-  t['轉成_名詞_過去'] = [past3 + '음', past3 + '기'].join('／');
-  if (isVerb) t['轉成_冠形詞_過去'] = mergeJongseong(root2, 4);
+  t['連結_對等補助'] = conjMark(root1, 1, '고');
+  t['連結_從屬_原因'] = [conjMark(root3, 3, ''), conjMark(root3, 3, '서'), conjMark(root2, 2, '니'), conjMark(root2, 2, '니까')];
+  t['連結_從屬_對比'] = [conjMark(root1, 1, '지만'), gwanhyeongPresent + '데', conjMark(root1, 1, '더니')];
+  t['連結_從屬_條件'] = [conjMark(root2, 2, '면'), conjMark(root3, 3, '야')];
+  if (isVerb) t['連結_從屬_目的'] = conjMark(root2, 2, '려고');
+  t['轉成_名詞_非過去'] = [conjMarkMerge(root2, 2, 16, ''), conjMark(root1, 1, '기')];
+  t['轉成_名詞_過去'] = [conjMarkMerge(root3, 3, 20, '음'), conjMarkMerge(root3, 3, 20, '기')];
+  if (isVerb) t['轉成_冠形詞_過去'] = conjMarkMerge(root2, 2, 4, '');
   t['轉成_冠形詞_現在'] = gwanhyeongPresent;
-  t['轉成_冠形詞_未來'] = mergeJongseong(root2, 8);
+  t['轉成_冠形詞_未來'] = conjMarkMerge(root2, 2, 8, '');
   return t;
 }
 
-const CONJ_DETAILED_SECTIONS = [
-  { title: '終結·禮貌(하십시오체/해요체)', rows: [
+// 左欄放「終結」(內容最多)，右欄放「連結」+「轉成」(內容較少)——
+// 這樣兩欄各自獨立由上往下讀完，不會有「往右移又要往上找對應分類」的閱讀問題。
+const CONJ_LEFT_SECTIONS = [
+  { title: '終結·禮貌', rows: [
     ['平敍·非過去', '禮貌_平敍_非過去_비', '禮貌_平敍_非過去_정'],
     ['平敍·過去', '禮貌_平敍_過去_비', '禮貌_平敍_過去_정'],
     ['疑問·非過去', '禮貌_疑問_非過去_비', '禮貌_疑問_非過去_정'],
@@ -1018,7 +1040,7 @@ const CONJ_DETAILED_SECTIONS = [
     ['請誘', '禮貌_請誘_비', '禮貌_請誘_정'],
     ['命令', '禮貌_命令_비', '禮貌_命令_정'],
   ]},
-  { title: '終結·親近(해체/해라체)', rows: [
+  { title: '終結·親近', rows: [
     ['平敍·非過去', '親近_平敍_非過去_비', '親近_平敍_非過去_정'],
     ['平敍·過去', '親近_平敍_過去_비', '親近_平敍_過去_정'],
     ['疑問·非過去', '親近_疑問_非過去_비', '親近_疑問_非過去_정'],
@@ -1027,6 +1049,8 @@ const CONJ_DETAILED_SECTIONS = [
     ['請誘', '親近_請誘_비', '親近_請誘_정'],
     ['命令', '親近_命令_비', '親近_命令_정'],
   ]},
+];
+const CONJ_RIGHT_SECTIONS = [
   { title: '連結', single: true, rows: [
     ['對等/補助', '連結_對等補助'],
     ['從屬·原因', '連結_從屬_原因'],
@@ -1043,28 +1067,38 @@ const CONJ_DETAILED_SECTIONS = [
   ]},
 ];
 
-function renderDetailedConjugationTable(word, cls, pos) {
-  if (!word.endsWith('다')) return '<div class="conj-empty">無法計算變化表</div>';
-  const stem = word.slice(0, -1);
-  const roots = cls === '04' ? computeRoots04(stem) : computeRoots10(stem);
-  const t = buildDetailedConjugationTable(roots, pos);
+function renderConjSections(sections, t) {
   let html = '';
-  CONJ_DETAILED_SECTIONS.forEach(section => {
+  sections.forEach(section => {
     const rows = section.rows.filter(r => t[r[1]] !== undefined);
     if (!rows.length) return;
     html += `<div class="conj-section-title">${escapeHtml(section.title)}</div>`;
     if (section.single) {
       rows.forEach(([label, key]) => {
-        html += `<div class="conj-row"><span class="conj-label">${escapeHtml(label)}</span><span class="conj-value">${escapeHtml(t[key])}</span></div>`;
+        const val = Array.isArray(t[key]) ? t[key].join('／') : t[key];
+        html += `<div class="conj-row"><span class="conj-label">${escapeHtml(label)}</span><span class="conj-value">${val}</span></div>`;
       });
     } else {
       html += `<div class="conj-row conj-row-head"><span class="conj-label"></span><span class="conj-value">非正式</span><span class="conj-value">正式</span></div>`;
       rows.forEach(([label, kInf, kForm]) => {
-        html += `<div class="conj-row"><span class="conj-label">${escapeHtml(label)}</span><span class="conj-value">${escapeHtml(t[kInf])}</span><span class="conj-value">${escapeHtml(t[kForm])}</span></div>`;
+        html += `<div class="conj-row"><span class="conj-label">${escapeHtml(label)}</span><span class="conj-value">${t[kInf]}</span><span class="conj-value">${t[kForm]}</span></div>`;
       });
     }
   });
-  return `<div class="conj-table-inner conj-table-detailed">${html}</div>`;
+  return html;
+}
+
+function renderDetailedConjugationTable(word, cls, pos) {
+  if (!word.endsWith('다')) return '<div class="conj-empty">無法計算變化表</div>';
+  const stem = word.slice(0, -1);
+  const roots = cls === '04' ? computeRoots04(stem) : computeRoots10(stem);
+  const t = buildDetailedConjugationTable(roots, pos);
+  const leftHtml = renderConjSections(CONJ_LEFT_SECTIONS, t);
+  const rightHtml = renderConjSections(CONJ_RIGHT_SECTIONS, t);
+  return `<div class="conj-table-inner conj-table-detailed">
+    <div class="conj-col">${leftHtml}</div>
+    <div class="conj-col">${rightHtml}</div>
+  </div>`;
 }
 
 function renderConjugationTable(word, cls, pos) {

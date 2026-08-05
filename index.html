@@ -358,11 +358,36 @@ input[type="text"]::placeholder { color: var(--muted); }
   color: var(--accent); font-size: 0.9em; border-bottom: 1px solid var(--border);
 }
 .conj-empty { color: var(--muted); font-size: 0.85em; padding: 4px 0; }
+
+/* 04/10專用完整變化表：各區段欄位數不同(禮貌/親近=標籤+非正式+正式；連結/轉成=標籤+值)，
+   改用 flex 讓標籤欄寬度全表一致、值欄視該列有幾個值自動平分 */
+.conj-table-detailed { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-size: 0.82em; }
+.conj-section-title {
+  padding: 4px 10px; background: var(--accent); color: #fff;
+  font-weight: 700; font-size: 0.85em;
+}
+.conj-table-detailed .conj-row { display: flex; border-bottom: 1px solid var(--border); }
+.conj-table-detailed .conj-row:last-child { border-bottom: none; }
+.conj-table-detailed .conj-label {
+  flex: 0 0 92px; padding: 5px 8px; background: var(--surface2); color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.conj-table-detailed .conj-value {
+  flex: 1; padding: 5px 8px; color: var(--text); border-right: 1px solid var(--border);
+  font-family: 'Noto Sans KR', 'jf-openhuninn', sans-serif; min-width: 0;
+}
+.conj-table-detailed .conj-value:last-child { border-right: none; }
+.conj-table-detailed .conj-row-head .conj-value { font-weight: 700; color: var(--muted); text-align: center; background: var(--surface2); }
 .ref-label {
   display: inline-block;
   font-family: 'Space Mono', monospace; font-size: 0.66rem;
   color: var(--muted); background: var(--surface2); border: 1px solid var(--border);
   border-radius: 10px; padding: 1px 8px; margin-right: 6px;
+}
+.derived-more-btn {
+  font-family: 'Space Mono', monospace; font-size: 0.7rem;
+  background: none; border: none; color: var(--accent);
+  cursor: pointer; padding: 0 0 0 4px; text-decoration: underline;
 }
 
 /* ── EXAMPLE SENTENCES ── */
@@ -698,21 +723,21 @@ function conjCore(stem, cls) {
   const d = hangulDecompose(last);
   const prefix = syll.slice(0, -1).join('');
   switch (cls) {
-    case '규칙': case 'ㄹ탈락':
+    case '01': case '07':
       return prefix + conjAttachAE(last);
-    case 'ㅂ불규칙': {
+    case '03': {
       const isException = (stem === '돕' || stem === '곱'); // 단음절 예외: 오
       const base = hangulCompose(d.cho, d.jung, 0);
       const added = hangulCompose(11, isException ? 8 : 13, 0); // 이응+오/우
       return prefix + base + conjAttachAE(added);
     }
-    case 'ㄷ불규칙':
+    case '04':
       return prefix + conjAttachAE(hangulCompose(d.cho, d.jung, 8)); // 받침 ㄷ->ㄹ
-    case 'ㅅ불규칙': {
+    case '05': {
       const base = hangulCompose(d.cho, d.jung, 0); // 받침 ㅅ 제거, 축약 없이 그대로 붙임
       return prefix + base + (vowelHarmony(d.jung) === 'a' ? '아' : '어');
     }
-    case '르불규칙': {
+    case '06': {
       const prevSyll = syll[syll.length - 2];
       const pd = hangulDecompose(prevSyll);
       const h = vowelHarmony(pd.jung);
@@ -720,19 +745,19 @@ function conjCore(stem, cls) {
       const newSyll = hangulCompose(5, h === 'a' ? 0 : 4, 0); // 라/러
       return syll.slice(0, -2).join('') + prevWithL + newSyll;
     }
-    case 'ㅎ불규칙': {
+    case '08': {
       const vowelMap = { 0: 1, 4: 1, 2: 3 }; // ㅏ/ㅓ->ㅐ, ㅑ->ㅒ
       const newJung = vowelMap[d.jung] !== undefined ? vowelMap[d.jung] : 1;
       return prefix + hangulCompose(d.cho, newJung, 0);
     }
-    case '으탈락': {
+    case '02': {
       const prevSyll = syll.length > 1 ? syll[syll.length - 2] : null;
       const h = prevSyll ? vowelHarmony(hangulDecompose(prevSyll).jung) : 'eo';
       return prefix + hangulCompose(d.cho, h === 'a' ? 0 : 4, 0);
     }
-    case '우불규칙':
+    case '09':
       return prefix + hangulCompose(d.cho, 4, 0); // 푸다 전용: ㅜ->ㅓ
-    case '여불규칙': {
+    case '10': {
       // 하다 및 「~하다」複合動詞 전용: 아/어 대신 여가 붙어 하+여->해로 축약
       // (공부하다, 운동하다, 사랑하다 등 수많은 한자어+하다 동사가 모두 이 규칙을 따름)
       return prefix + hangulCompose(d.cho, 1, 0); // 하(ㅏ)->해(ㅐ)
@@ -750,23 +775,23 @@ function conjEuStem(stem, cls, dropL) {
   const d = hangulDecompose(last);
   const prefix = syll.slice(0, -1).join('');
 
-  if (cls === 'ㄹ탈락') {
+  if (cls === '07') {
     if (dropL) return { stem: prefix + hangulCompose(d.cho, d.jung, 0), needEu: false };
     return { stem: prefix + last, needEu: false };
   }
-  if (cls === 'ㅂ불규칙') {
+  if (cls === '03') {
     // (으)앞에서는 항상 우 (오 예외는 아/어 모음축약에서만 적용)
     const base = hangulCompose(d.cho, d.jung, 0);
     const added = hangulCompose(11, 13, 0);
     return { stem: prefix + base + added, needEu: false };
   }
-  if (cls === 'ㄷ불규칙') {
+  if (cls === '04') {
     return { stem: prefix + hangulCompose(d.cho, d.jung, 8), needEu: true };
   }
-  if (cls === 'ㅅ불규칙') {
+  if (cls === '05') {
     return { stem: prefix + hangulCompose(d.cho, d.jung, 0), needEu: true, forceEu: true };
   }
-  if (cls === 'ㅎ불규칙') {
+  if (cls === '08') {
     return { stem: prefix + hangulCompose(d.cho, d.jung, 0), needEu: false };
   }
   return { stem: prefix + last, needEu: d.jong !== 0 };
@@ -808,6 +833,27 @@ function conjFuture(stem, cls) {
 // 「먹으시다」這種實際上不存在的字；改由字典編輯手動用相關詞連結處理。
 const CONJ_SUPPLETIVE_HONORIFIC = new Set(['자다', '먹다', '마시다', '죽다', '말하다', '있다', '아프다']);
 
+// 試算表「動詞變化」欄位實際存的代碼，跟網站顯示的分類代碼(01~10)不是同一套——
+// 有些分類在試算表裡依母音陰陽等細節再拆成好幾個子代碼(例如01規則拆成1C+/1C1V+/...)，
+// 這裡統一轉換成顯示代碼再往後處理。09(푸다)目前改分類進[敬語]，因為푸다不在收錄詞彙內。
+const CONJ_RAW_CODE_MAP = {
+  '1C+': '01', '1C1V+': '01', '1V1V2': '01', '1V3+': '01', '1V3-': '01', '1V4-': '01',
+  '2+': '02', '2-': '02',
+  '3+': '03', '3-': '03',
+  '4': '04',
+  '5': '05',
+  '6+': '06', '6-': '06',
+  '7+': '07', '7-': '07',
+  '8+': '08', '8-': '08',
+  '9': '09',
+  '10': '10',
+};
+function normalizeConjClass(raw) {
+  raw = (raw || '').trim();
+  if (!raw) return '';
+  return CONJ_RAW_CODE_MAP[raw] || raw; // 對照不到的先原樣返回，避免資料格式微調時整個消失
+}
+
 // 給定原形(word，含結尾다)和分類代碼，算出完整變化表
 function computeConjugationTable(word, cls, pos) {
   if (!word.endsWith('다')) return null;
@@ -821,7 +867,7 @@ function computeConjugationTable(word, cls, pos) {
     const pastCore = coreSyll.slice(0, -1).join('') + hangulCompose(coreLastD.cho, coreLastD.jung, 20); // ㅆ
 
     let formalPresentBase;
-    if (cls === 'ㄹ탈락') {
+    if (cls === '07') {
       const d0 = hangulDecompose(stem[stem.length - 1]);
       const dropped = stem.slice(0, -1) + hangulCompose(d0.cho, d0.jung, 0);
       const dsyll = [...dropped];
@@ -864,7 +910,14 @@ function computeConjugationTable(word, cls, pos) {
   }
 }
 
-// 動詞變化表的顯示標籤與對應欄位（依序呈現）
+// ══════════════════════════════════════════════════════════════════
+// 04(ㄷ換ㄹ)、10(하다) 專用的完整變化表 —— 唯二已經跟使用者逐格核對過的類別。
+// 其餘分類代碼(01/02/03/05/06/07/08/09)先不提供變化表顯示，只維持基本的
+// 精確搜尋反查索引(見 computeConjugationTable)，等後續規格確認後再擴充。
+// ══════════════════════════════════════════════════════════════════
+const CONJ_DETAILED_CLASSES = new Set(['04', '10']);
+
+// 04/10以外的分類代碼，先只用這份簡化清單（未正式對照過，不對外顯示按鈕，但保留供未來擴充）
 const CONJ_TABLE_ROWS = [
   ['敬語原形', 'honorific_dict'],
   ['現在(해요체)', 'present_informal'],
@@ -880,7 +933,144 @@ const CONJ_TABLE_ROWS = [
   ['-(으)ㅂ시다 (提議)', 'propositive'],
 ];
 
+function mergeJongseong(root, jongIdx) {
+  const syll = [...root];
+  const last = syll[syll.length - 1];
+  const d = hangulDecompose(last);
+  return syll.slice(0, -1).join('') + hangulCompose(d.cho, d.jung, jongIdx);
+}
+
+// 04류(ㄷ換ㄹ) 어근 계산：詞根1=원형, 詞根2=ㄷ->ㄹ+으, 詞根3=ㄷ->ㄹ+아/어(핵심형)
+function computeRoots04(stem) {
+  const d = hangulDecompose(stem[stem.length - 1]);
+  const prefix = stem.slice(0, -1);
+  const transformed = prefix + hangulCompose(d.cho, d.jung, 8);
+  const root2 = transformed + '으';
+  const root3 = transformed + (vowelHarmony(d.jung) === 'a' ? '아' : '어');
+  return { root1: stem, root2, root3 };
+}
+// 10류(하다) 어근 계산：詞根1=詞根2=원형(하), 詞根3=핵심형(해)
+function computeRoots10(stem) {
+  return { root1: stem, root2: stem, root3: stem.slice(0, -1) + '해' };
+}
+
+// 完整變化表：依詞類(動/形)決定要不要含請誘/命令/冠形詞過去/目的等欄位
+function buildDetailedConjugationTable(roots, pos) {
+  const { root1, root2, root3 } = roots;
+  const j1 = hangulDecompose(root1[root1.length - 1]).jong;
+  const past3 = mergeJongseong(root3, 20); // ㅆ
+  const isVerb = pos === '動';
+  const gwanhyeongPresent = isVerb ? root1 + '는' : mergeJongseong(root2, 4);
+
+  const t = {};
+  t['禮貌_平敍_非過去_비'] = root3 + '요';
+  t['禮貌_平敍_非過去_정'] = j1 === 0 ? mergeJongseong(root1, 17) + '니다' : root1 + '습니다';
+  t['禮貌_平敍_過去_비'] = past3 + '어요';
+  t['禮貌_平敍_過去_정'] = past3 + '습니다';
+  t['禮貌_疑問_非過去_비'] = root3 + '요';
+  t['禮貌_疑問_非過去_정'] = j1 === 0 ? mergeJongseong(root1, 17) + '니까' : root1 + '습니까';
+  t['禮貌_疑問_過去_비'] = past3 + '어요';
+  t['禮貌_疑問_過去_정'] = past3 + '습니까';
+  t['禮貌_推測_비'] = root1 + '겠어요';
+  t['禮貌_推測_정'] = root1 + '겠습니다';
+  if (isVerb) {
+    t['禮貌_請誘_비'] = root3 + '요';
+    t['禮貌_請誘_정'] = root2 + '십시다';
+    t['禮貌_命令_비'] = root3 + '요';
+    t['禮貌_命令_정'] = mergeJongseong(root2, 17) + '시오';
+  }
+  t['親近_平敍_非過去_비'] = root3;
+  t['親近_平敍_非過去_정'] = isVerb ? (j1 === 0 ? mergeJongseong(root1, 4) + '다' : root1 + '는다') : root1 + '다';
+  t['親近_平敍_過去_비'] = past3 + '어';
+  t['親近_平敍_過去_정'] = past3 + '다';
+  t['親近_疑問_非過去_비'] = root3;
+  t['親近_疑問_非過去_정'] = isVerb ? root2 + '느냐' : root1 + '냐';
+  t['親近_疑問_過去_비'] = past3 + '어';
+  t['親近_疑問_過去_정'] = past3 + '느냐';
+  t['親近_推測_비'] = root1 + '겠어';
+  t['親近_推測_정'] = root1 + '겠다';
+  if (isVerb) {
+    t['親近_請誘_비'] = root3;
+    t['親近_請誘_정'] = root1 + '자';
+    t['親近_命令_비'] = root3;
+    t['親近_命令_정'] = root3 + '라';
+  }
+  t['連結_對等補助'] = root1 + '고';
+  t['連結_從屬_原因'] = [root3, root3 + '서', root2 + '니', root2 + '니까'].join('／');
+  t['連結_從屬_對比'] = [root1 + '지만', gwanhyeongPresent + '데', root1 + '더니'].join('／');
+  t['連結_從屬_條件'] = [root2 + '면', root3 + '야'].join('／');
+  if (isVerb) t['連結_從屬_目的'] = root2 + '려고';
+  t['轉成_名詞_非過去'] = [mergeJongseong(root2, 16), root1 + '기'].join('／');
+  t['轉成_名詞_過去'] = [past3 + '음', past3 + '기'].join('／');
+  if (isVerb) t['轉成_冠形詞_過去'] = mergeJongseong(root2, 4);
+  t['轉成_冠形詞_現在'] = gwanhyeongPresent;
+  t['轉成_冠形詞_未來'] = mergeJongseong(root2, 8);
+  return t;
+}
+
+const CONJ_DETAILED_SECTIONS = [
+  { title: '終結·禮貌(하십시오체/해요체)', rows: [
+    ['平敍·非過去', '禮貌_平敍_非過去_비', '禮貌_平敍_非過去_정'],
+    ['平敍·過去', '禮貌_平敍_過去_비', '禮貌_平敍_過去_정'],
+    ['疑問·非過去', '禮貌_疑問_非過去_비', '禮貌_疑問_非過去_정'],
+    ['疑問·過去', '禮貌_疑問_過去_비', '禮貌_疑問_過去_정'],
+    ['推測', '禮貌_推測_비', '禮貌_推測_정'],
+    ['請誘', '禮貌_請誘_비', '禮貌_請誘_정'],
+    ['命令', '禮貌_命令_비', '禮貌_命令_정'],
+  ]},
+  { title: '終結·親近(해체/해라체)', rows: [
+    ['平敍·非過去', '親近_平敍_非過去_비', '親近_平敍_非過去_정'],
+    ['平敍·過去', '親近_平敍_過去_비', '親近_平敍_過去_정'],
+    ['疑問·非過去', '親近_疑問_非過去_비', '親近_疑問_非過去_정'],
+    ['疑問·過去', '親近_疑問_過去_비', '親近_疑問_過去_정'],
+    ['推測', '親近_推測_비', '親近_推測_정'],
+    ['請誘', '親近_請誘_비', '親近_請誘_정'],
+    ['命令', '親近_命令_비', '親近_命令_정'],
+  ]},
+  { title: '連結', single: true, rows: [
+    ['對等/補助', '連結_對等補助'],
+    ['從屬·原因', '連結_從屬_原因'],
+    ['從屬·對比', '連結_從屬_對比'],
+    ['從屬·條件', '連結_從屬_條件'],
+    ['從屬·目的', '連結_從屬_目的'],
+  ]},
+  { title: '轉成', single: true, rows: [
+    ['名詞·非過去', '轉成_名詞_非過去'],
+    ['名詞·過去', '轉成_名詞_過去'],
+    ['冠形詞·過去', '轉成_冠形詞_過去'],
+    ['冠形詞·現在', '轉成_冠形詞_現在'],
+    ['冠形詞·未來', '轉成_冠形詞_未來'],
+  ]},
+];
+
+function renderDetailedConjugationTable(word, cls, pos) {
+  if (!word.endsWith('다')) return '<div class="conj-empty">無法計算變化表</div>';
+  const stem = word.slice(0, -1);
+  const roots = cls === '04' ? computeRoots04(stem) : computeRoots10(stem);
+  const t = buildDetailedConjugationTable(roots, pos);
+  let html = '';
+  CONJ_DETAILED_SECTIONS.forEach(section => {
+    const rows = section.rows.filter(r => t[r[1]] !== undefined);
+    if (!rows.length) return;
+    html += `<div class="conj-section-title">${escapeHtml(section.title)}</div>`;
+    if (section.single) {
+      rows.forEach(([label, key]) => {
+        html += `<div class="conj-row"><span class="conj-label">${escapeHtml(label)}</span><span class="conj-value">${escapeHtml(t[key])}</span></div>`;
+      });
+    } else {
+      html += `<div class="conj-row conj-row-head"><span class="conj-label"></span><span class="conj-value">非正式</span><span class="conj-value">正式</span></div>`;
+      rows.forEach(([label, kInf, kForm]) => {
+        html += `<div class="conj-row"><span class="conj-label">${escapeHtml(label)}</span><span class="conj-value">${escapeHtml(t[kInf])}</span><span class="conj-value">${escapeHtml(t[kForm])}</span></div>`;
+      });
+    }
+  });
+  return `<div class="conj-table-inner conj-table-detailed">${html}</div>`;
+}
+
 function renderConjugationTable(word, cls, pos) {
+  if (CONJ_DETAILED_CLASSES.has(cls)) {
+    return renderDetailedConjugationTable(word, cls, pos);
+  }
   const table = computeConjugationTable(word, cls, pos);
   if (!table) return '<div class="conj-empty">無法計算變化表</div>';
   let rows = CONJ_TABLE_ROWS.map(([label, key]) => {
@@ -968,7 +1158,7 @@ async function loadData() {
     Object.values(sensesByLemma).forEach(senseArr => {
       senseArr.forEach(s => {
         const pos = (s['詞類'] || '').trim();
-        const cls = (s['動詞變化'] || '').trim();
+        const cls = normalizeConjClass(s['動詞變化']);
         if (!cls || (pos !== '動' && pos !== '形')) return;
         const lemma = lemmataById[lemmaKey(s['編號'], '')];
         if (!lemma) return;
@@ -1641,14 +1831,15 @@ function renderSenseSection(lemmaId, dial) {
     const romRaw = (s[romSystem] || '').trim();
     const transPieceRenderer = inSearch ? (piece => highlightSearchTerm(piece, searchQuery)) : null;
     const transHtml = combineTransRom(transRaw, romRaw, transOrder, transPieceRenderer);
-    const conjCls = (s['動詞變化'] || '').trim();
+    const conjCls = normalizeConjClass(s['動詞變化']);
+    const conjShowable = conjCls && CONJ_DETAILED_CLASSES.has(conjCls) && (pos === '動' || pos === '形');
     const conjTableId = `conj-${lemmaId}-${s['義項']}`;
-    const conjBadge = (conjCls && (pos === '動' || pos === '形'))
+    const conjBadge = conjShowable
       ? `<button class="conj-badge" onclick="toggleConjTable('${conjTableId}')" title="動詞變化：點擊展開變化表">${escapeHtml(conjCls)}</button>`
       : '';
     html += `<div class="sense-item">`;
     html += `<div class="sense-head">${num}${lvl ? `<span class="level-icons">${lvl}</span>` : ''}${pos ? `<span class="ref-label">${escapeHtml(pos)}</span>` : ''}${conjBadge}${transHtml ? `<span class="sense-trans">${transHtml}</span>` : ''}</div>`;
-    if (conjCls && (pos === '動' || pos === '形')) {
+    if (conjShowable) {
       html += `<div id="${conjTableId}" class="conj-table" style="display:none">${renderConjugationTable((lemmataById[lemmaKey(lemmaId, dial)] || {}).word || '', conjCls, pos)}</div>`;
     }
     if (!shared && senseEtyResolved[idx]) {
@@ -1671,7 +1862,7 @@ function renderSenseSection(lemmaId, dial) {
 
 // 共用：把一組「引用詞目#引用義項」的集合，依引用詞目分組，
 // 每個詞目只取真正引用到的那些義項的翻譯（不是該詞目全部義項），組成派生詞的顯示內容。
-function renderDerivedWordsFromSet(citingSet, dial) {
+function renderDerivedWordsFromSet(citingSet, dial, uid) {
   if (!citingSet || !citingSet.size) return '';
   const byLemma = {};
   citingSet.forEach(entry => {
@@ -1692,14 +1883,30 @@ function renderDerivedWordsFromSet(citingSet, dial) {
     const wordHtml = `<a href="#lemma-${lid}-${dial}" class="ety-word" onclick="event.preventDefault();jumpToLemma('${lid}','${dial}')">${escapeHtml(lemma.word)}</a>`;
     fragments.push(wordHtml + (trans ? `「${escapeHtml(trans)}」` : ''));
   });
-  return fragments.join('；');
+  if (!fragments.length) return '';
+  const LIMIT = 5;
+  if (fragments.length <= LIMIT) return fragments.join('；');
+  const shown = fragments.slice(0, LIMIT).join('；');
+  const restCount = fragments.length - LIMIT;
+  const moreId = 'derived-more-' + (uid || Math.random().toString(36).slice(2));
+  const rest = fragments.slice(LIMIT).join('；');
+  return `${shown}；<span id="${moreId}" class="derived-more" style="display:none">${rest}</span>`
+    + `<button class="derived-more-btn" onclick="toggleDerivedMore('${moreId}', this)" data-more="顯示全部(+${restCount})" data-less="收起">顯示全部(+${restCount})</button>`;
+}
+
+function toggleDerivedMore(id, btn) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const showing = el.style.display !== 'none';
+  el.style.display = showing ? 'none' : 'inline';
+  btn.textContent = showing ? btn.dataset.more : btn.dataset.less;
 }
 
 // 派生詞（義項層級）：語源引用有 #義項編號 時，對齊顯示在該義項底下
 function renderDerivedWordsForSense(lemmaId, dial, senseId) {
   if (!senseId) return '';
   const citingSet = derivedWordsBySense[lemmaKey(lemmaId, dial) + '_' + senseId];
-  const inner = renderDerivedWordsFromSet(citingSet, dial);
+  const inner = renderDerivedWordsFromSet(citingSet, dial, lemmaId + '-' + dial + '-' + senseId);
   if (!inner) return '';
   return `<div class="ref-row"><span class="ref-label">派生詞</span>${inner}</div>`;
 }
@@ -1707,7 +1914,7 @@ function renderDerivedWordsForSense(lemmaId, dial, senseId) {
 // 派生詞：反向列出「哪些詞目的語源指向這個詞目」，呈現方式跟近/反義詞一致
 function renderDerivedWordsLine(lemmaId, dial) {
   const citingSet = derivedWordsByLemma[lemmaKey(lemmaId, dial)];
-  const inner = renderDerivedWordsFromSet(citingSet, dial);
+  const inner = renderDerivedWordsFromSet(citingSet, dial, lemmaId + '-' + dial);
   if (!inner) return '';
   return `<div class="ref-row"><span class="ref-label">派生詞</span>${inner}</div>`;
 }

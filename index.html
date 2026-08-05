@@ -384,10 +384,10 @@ input[type="text"]::placeholder { color: var(--muted); }
 .conj-table-detailed .conj-value:last-child { border-right: none; }
 .conj-table-detailed .conj-row-head .conj-value { font-weight: 700; color: var(--muted); text-align: center; background: var(--surface2); }
 /* 詞根底色：依詞根1/2/3給不同深淺的主色調透明底色，後方語尾不加底色 */
-.conj-root { border-radius: 3px; padding: 0 1px; }
-.conj-root-1 { background: color-mix(in srgb, var(--accent) 20%, transparent); }
-.conj-root-2 { background: color-mix(in srgb, var(--accent) 38%, transparent); }
-.conj-root-3 { background: color-mix(in srgb, var(--accent) 56%, transparent); }
+.conj-root { border-radius: 3px; padding: 1px 2px; }
+.conj-root-1 { background: rgba(205,46,58,0.16); }
+.conj-root-2 { background: rgba(205,46,58,0.40); }
+.conj-root-3 { background: rgba(205,46,58,0.70); color: #fff; }
 .ref-label {
   display: inline-block;
   font-family: 'Space Mono', monospace; font-size: 0.66rem;
@@ -516,6 +516,31 @@ a.ff-word:hover { text-decoration: underline; }
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
+/* 動詞變化：獨立浮動於畫面右側的面板，不佔用詞條方塊本身的空間 */
+.conj-panel-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1099;
+}
+.conj-panel-overlay.show { display: block; }
+.conj-panel {
+  display: none; position: fixed; top: 0; right: 0; bottom: 0; width: min(560px, 92vw);
+  background: var(--surface); border-left: 1px solid var(--border);
+  box-shadow: -8px 0 30px rgba(0,0,0,0.4); z-index: 1100; overflow-y: auto;
+}
+.conj-panel.show { display: block; }
+.conj-panel-header {
+  position: sticky; top: 0; display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; background: var(--accent); color: #fff; font-weight: 700;
+  font-family: 'Noto Sans KR', 'jf-openhuninn', sans-serif; z-index: 1;
+}
+.conj-panel-close {
+  background: none; border: none; color: #fff; font-size: 1.1rem; cursor: pointer;
+  opacity: 0.85; padding: 2px 6px;
+}
+.conj-panel-close:hover { opacity: 1; }
+.conj-panel-body { padding: 14px; }
+.conj-value-line { padding: 2px 0; }
+.conj-value-line + .conj-value-line { border-top: 1px dashed var(--border); }
+
 /* ── MOBILE ── */
 @media (max-width: 640px) {
   body { height: auto; min-height: 100vh; overflow: visible; }
@@ -584,6 +609,8 @@ a.ff-word:hover { text-decoration: underline; }
 
 <div id="toast"></div>
 <div id="imgModal" class="img-modal" onclick="closeImageModal()"><img id="imgModalImg" src="" alt="附註圖片放大"></div>
+<div id="conjPanelOverlay" class="conj-panel-overlay" onclick="closeConjPanel()"></div>
+<div id="conjPanel" class="conj-panel"></div>
 
 <script>
 const LEMMATA_URL = './data/KOR-Lemmata.csv';
@@ -1075,7 +1102,9 @@ function renderConjSections(sections, t) {
     html += `<div class="conj-section-title">${escapeHtml(section.title)}</div>`;
     if (section.single) {
       rows.forEach(([label, key]) => {
-        const val = Array.isArray(t[key]) ? t[key].join('／') : t[key];
+        const val = Array.isArray(t[key])
+          ? t[key].map(v => `<div class="conj-value-line">${v}</div>`).join('')
+          : t[key];
         html += `<div class="conj-row"><span class="conj-label">${escapeHtml(label)}</span><span class="conj-value">${val}</span></div>`;
       });
     } else {
@@ -1093,12 +1122,8 @@ function renderDetailedConjugationTable(word, cls, pos) {
   const stem = word.slice(0, -1);
   const roots = cls === '04' ? computeRoots04(stem) : computeRoots10(stem);
   const t = buildDetailedConjugationTable(roots, pos);
-  const leftHtml = renderConjSections(CONJ_LEFT_SECTIONS, t);
-  const rightHtml = renderConjSections(CONJ_RIGHT_SECTIONS, t);
-  return `<div class="conj-table-inner conj-table-detailed">
-    <div class="conj-col">${leftHtml}</div>
-    <div class="conj-col">${rightHtml}</div>
-  </div>`;
+  const html = renderConjSections([...CONJ_LEFT_SECTIONS, ...CONJ_RIGHT_SECTIONS], t);
+  return `<div class="conj-table-inner conj-table-detailed"><div class="conj-col">${html}</div></div>`;
 }
 
 function renderConjugationTable(word, cls, pos) {
@@ -1118,10 +1143,25 @@ function renderConjugationTable(word, cls, pos) {
   return `<div class="conj-table-inner">${rows}</div>`;
 }
 
-function toggleConjTable(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+let _conjPanelOpenKey = null;
+function toggleConjPanel(key, word, cls, pos) {
+  const panel = document.getElementById('conjPanel');
+  const overlay = document.getElementById('conjPanelOverlay');
+  if (_conjPanelOpenKey === key) {
+    closeConjPanel();
+    return;
+  }
+  panel.innerHTML = `<div class="conj-panel-header"><span>${escapeHtml(word)}（${escapeHtml(cls)}）動詞變化</span>`
+    + `<button class="conj-panel-close" onclick="closeConjPanel()">✕</button></div>`
+    + `<div class="conj-panel-body">${renderConjugationTable(word, cls, pos)}</div>`;
+  panel.classList.add('show');
+  overlay.classList.add('show');
+  _conjPanelOpenKey = key;
+}
+function closeConjPanel() {
+  document.getElementById('conjPanel').classList.remove('show');
+  document.getElementById('conjPanelOverlay').classList.remove('show');
+  _conjPanelOpenKey = null;
 }
 
 function renderWordWithAffix(word) {
@@ -1867,15 +1907,13 @@ function renderSenseSection(lemmaId, dial) {
     const transHtml = combineTransRom(transRaw, romRaw, transOrder, transPieceRenderer);
     const conjCls = normalizeConjClass(s['動詞變化']);
     const conjShowable = conjCls && CONJ_DETAILED_CLASSES.has(conjCls) && (pos === '動' || pos === '形');
-    const conjTableId = `conj-${lemmaId}-${s['義項']}`;
+    const conjWord = (lemmataById[lemmaKey(lemmaId, dial)] || {}).word || '';
+    const conjKey = `${lemmaId}-${s['義項']}`;
     const conjBadge = conjShowable
-      ? `<button class="conj-badge" onclick="toggleConjTable('${conjTableId}')" title="動詞變化：點擊展開變化表">${escapeHtml(conjCls)}</button>`
+      ? `<button class="conj-badge" onclick="toggleConjPanel('${conjKey}', '${conjWord.replace(/'/g, "\\'")}', '${conjCls}', '${pos}')" title="動詞變化：點擊在右側開啟變化表">${escapeHtml(conjCls)}</button>`
       : '';
     html += `<div class="sense-item">`;
     html += `<div class="sense-head">${num}${lvl ? `<span class="level-icons">${lvl}</span>` : ''}${pos ? `<span class="ref-label">${escapeHtml(pos)}</span>` : ''}${conjBadge}${transHtml ? `<span class="sense-trans">${transHtml}</span>` : ''}</div>`;
-    if (conjShowable) {
-      html += `<div id="${conjTableId}" class="conj-table" style="display:none">${renderConjugationTable((lemmataById[lemmaKey(lemmaId, dial)] || {}).word || '', conjCls, pos)}</div>`;
-    }
     if (!shared && senseEtyResolved[idx]) {
       html += `<div class="ety-block">${senseEtyResolved[idx].html}</div>`;
     }

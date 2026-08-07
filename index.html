@@ -744,7 +744,7 @@ function conjAttachAE(lastSyll) {
   const d = hangulDecompose(lastSyll);
   if (d.jong !== 0) return lastSyll + (vowelHarmony(d.jung) === 'a' ? '아' : '어');
   switch (d.jung) {
-    case 0: case 4: case 1: case 5: return lastSyll; // 아/어/애/에 - 축약(변화없음)
+    case 0: case 4: case 1: case 5: case 2: case 6: case 3: case 7: return lastSyll; // 아/어/애/에/야/여/얘/예 - 축約(변화없음)
     case 8: return hangulCompose(d.cho, 9, 0);   // 오+아->와
     case 13: return hangulCompose(d.cho, 14, 0); // 우+어->워
     case 20: return hangulCompose(d.cho, 6, 0);  // 이+어->여
@@ -874,7 +874,8 @@ const CONJ_SUPPLETIVE_HONORIFIC = new Set(['자다', '먹다', '마시다', '죽
 // 有些分類在試算表裡依母音陰陽等細節再拆成好幾個子代碼(例如01規則拆成1C+/1C1V+/...)，
 // 這裡統一轉換成顯示代碼再往後處理。09(푸다)目前改分類進[敬語]，因為푸다不在收錄詞彙內。
 const CONJ_RAW_CODE_MAP = {
-  '1C+': '01', '1C1V+': '01', '1V1V2': '01', '1V3+': '01', '1V3-': '01', '1V4-': '01',
+  '1C+': '01', '1C-': '01',
+  '1V+': '01', '1V-': '01', '1V2': '01', '1V3+': '01', '1V3-': '01', '1V4-': '01',
   '2+': '02', '2-': '02',
   '3+': '03', '3-': '03',
   '4': '04',
@@ -1921,6 +1922,7 @@ function renderSenseSection(lemmaId, dial) {
     const num = multi ? `<span class="sense-num">${idx + 1}.</span>` : '';
     const lvl = LEVEL_ICONS[(s['等級'] || '').trim()] || '';
     const pos = (s['詞類'] || '').trim();
+    const tag = (s['標籤'] || '').trim();
     const transRaw = (s['翻譯'] || '').trim();
     const romRaw = (s[romSystem] || '').trim();
     const transPieceRenderer = inSearch ? (piece => highlightSearchTerm(piece, searchQuery)) : null;
@@ -1933,7 +1935,7 @@ function renderSenseSection(lemmaId, dial) {
       ? `<button class="conj-badge" onclick="toggleConjPanel('${conjKey}', '${conjWord.replace(/'/g, "\\'")}', '${conjCls}', '${pos}')" title="動詞變化：點擊在右側開啟變化表">${escapeHtml(conjCls)}</button>`
       : '';
     html += `<div class="sense-item">`;
-    html += `<div class="sense-head">${num}${lvl ? `<span class="level-icons">${lvl}</span>` : ''}${pos ? `<span class="ref-label">${escapeHtml(pos)}</span>` : ''}${conjBadge}${transHtml ? `<span class="sense-trans">${transHtml}</span>` : ''}</div>`;
+    html += `<div class="sense-head">${num}${lvl ? `<span class="level-icons">${lvl}</span>` : ''}${pos ? `<span class="ref-label">${escapeHtml(pos)}</span>` : ''}${conjBadge}${tag ? `<span class="ref-label">${escapeHtml(tag)}</span>` : ''}${transHtml ? `<span class="sense-trans">${transHtml}</span>` : ''}</div>`;
     if (!shared && senseEtyResolved[idx]) {
       html += `<div class="ety-block">${senseEtyResolved[idx].html}</div>`;
     }
@@ -2391,7 +2393,6 @@ async function shareEntryCard(event, elementId) {
     if (shareBtnEl) shareBtnEl.style.visibility = '';
   }
 }
-
 
 // ── Theme & Font Size ──
 const FS_SIZES = ['sm', 'md', 'lg', 'xl'];

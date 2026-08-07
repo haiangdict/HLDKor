@@ -336,6 +336,7 @@ input[type="text"]::placeholder { color: var(--muted); }
   font-family: 'Space Mono', monospace; font-size: 0.64rem;
   background: var(--surface2); color: var(--accent); border: 1px solid var(--accent);
   border-radius: 10px; padding: 1px 8px; cursor: pointer; transition: all 0.15s;
+  margin-right: 6px;
 }
 .conj-badge:hover { background: var(--accent); color: #fff; }
 .conj-table { margin-top: 6px; margin-bottom: 4px; }
@@ -374,7 +375,7 @@ input[type="text"]::placeholder { color: var(--muted); }
 .conj-table-detailed .conj-row { display: flex; border-bottom: 1px solid var(--border); }
 .conj-table-detailed .conj-row:last-child { border-bottom: none; }
 .conj-table-detailed .conj-label {
-  flex: 1; padding: 6px 8px; background: var(--surface2); color: var(--muted);
+  flex: 0 0 108px; padding: 6px 8px; background: var(--surface2); color: var(--muted);
   border-right: 1px solid var(--border);
 }
 .conj-table-detailed .conj-value {
@@ -540,6 +541,8 @@ a.ff-word:hover { text-decoration: underline; }
 .conj-panel-body { padding: 14px; }
 .conj-value-line { padding: 2px 0; }
 .conj-value-line + .conj-value-line { border-top: 1px dashed var(--border); }
+.conj-value-pair { display: flex; }
+.conj-pair-item { flex: 1; min-width: 0; text-align: left; }
 
 /* ── MOBILE ── */
 @media (max-width: 640px) {
@@ -953,7 +956,7 @@ function computeConjugationTable(word, cls, pos) {
 // 其餘分類代碼(01/02/03/05/06/07/08/09)先不提供變化表顯示，只維持基本的
 // 精確搜尋反查索引(見 computeConjugationTable)，等後續規格確認後再擴充。
 // ══════════════════════════════════════════════════════════════════
-const CONJ_DETAILED_CLASSES = new Set(['01', '04', '09', '10']);
+const CONJ_DETAILED_CLASSES = new Set(['01', '02', '03', '04', '09', '10']);
 
 function mergeJongseong(root, jongIdx) {
   const syll = [...root];
@@ -967,6 +970,32 @@ function computeRoots01(stem) {
   const d = hangulDecompose(stem[stem.length - 1]);
   const root2 = stem + (d.jong !== 0 ? '으' : '');
   const root3 = stem.slice(0, -1) + conjAttachAE(stem[stem.length - 1]);
+  return { root1: stem, root2, root3 };
+}
+// 02류(으탈락) 어근 계산：詞根1=詞根2=원형, 詞根3=으탈락+아/어
+// (앞 음절이 陽/母音이면 아, 陰/母音이거나 앞에 음절이 없으면 어——由詞根本身自動判斷，不需另外分+/-)
+function computeRoots02(stem) {
+  const syll = [...stem];
+  const last = syll[syll.length - 1];
+  const d = hangulDecompose(last);
+  const prefix = syll.slice(0, -1).join('');
+  const prevSyll = syll.length > 1 ? syll[syll.length - 2] : null;
+  const h = prevSyll ? vowelHarmony(hangulDecompose(prevSyll).jung) : 'eo';
+  const root3 = prefix + hangulCompose(d.cho, h === 'a' ? 0 : 4, 0);
+  return { root1: stem, root2: stem, root3 };
+}
+// 03류(ㅂ換ㅜ) 어근 계산：詞根2固定用우；詞根3依「單音節+陽性調」自動判斷用오(돕다/곱다例外)或우(一般)，
+// 不需要額外傳入+/-代碼——規則本身(單音節且陽性調)已經能唯一決定，跟class code的+/-標記結果一致
+function computeRoots03(stem) {
+  const d = hangulDecompose(stem[stem.length - 1]);
+  const prefix = stem.slice(0, -1);
+  const base = hangulCompose(d.cho, d.jung, 0);
+  const root2 = prefix + base + hangulCompose(11, 13, 0);
+  const isMonosyllable = [...stem].length === 1;
+  const isPositiveHarmony = (d.jung === 0 || d.jung === 8);
+  const useOException = isMonosyllable && isPositiveHarmony;
+  const root3Syll = hangulCompose(11, useOException ? 8 : 13, 0);
+  const root3 = prefix + base + conjAttachAE(root3Syll);
   return { root1: stem, root2, root3 };
 }
 // 04류(ㄷ換ㄹ) 어근 계산：詞根1=원형, 詞根2=ㄷ->ㄹ+으, 詞根3=ㄷ->ㄹ+아/어(핵심형)
@@ -987,11 +1016,16 @@ function computeRoots09(stem) {
 function computeRoots10(stem) {
   return { root1: stem, root2: stem, root3: stem.slice(0, -1) + '해' };
 }
-const CONJ_ROOT_COMPUTERS = { '01': computeRoots01, '04': computeRoots04, '09': computeRoots09, '10': computeRoots10 };
+const CONJ_ROOT_COMPUTERS = {
+  '01': computeRoots01, '02': computeRoots02, '03': computeRoots03,
+  '04': computeRoots04, '09': computeRoots09, '10': computeRoots10,
+};
 
 // 各分類的例外設定：請誘/命令有無、以及(僅09)非過去禮貌形改用세요
 const CONJ_CLASS_CONFIG = {
   '01': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動' },
+  '02': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動' },
+  '03': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動' },
   '04': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動' },
   '10': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動' },
   // 09：動詞也沒有請誘；命令只有禮貌有、親近沒有；非過去的禮貌형用「詞根1去掉最後一字+세요」，不是詞根3+요
@@ -1120,8 +1154,11 @@ const CONJ_RIGHT_SECTIONS = [
 function renderConjValue(val) {
   if (!Array.isArray(val)) return val;
   return val.map(v => {
-    const line = Array.isArray(v) ? v.join('　') : v; // 同一行的兩個值中間留一點間距
-    return `<div class="conj-value-line">${line}</div>`;
+    if (Array.isArray(v)) {
+      // 配對值(如「從屬·原因」)：兩欄等寬並排、左對齊，讓不同行的第二欄內容彼此對齊
+      return `<div class="conj-value-line conj-value-pair"><span class="conj-pair-item">${v[0]}</span><span class="conj-pair-item">${v[1]}</span></div>`;
+    }
+    return `<div class="conj-value-line">${v}</div>`;
   }).join('');
 }
 

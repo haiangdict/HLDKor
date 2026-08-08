@@ -118,8 +118,8 @@
 466,결과,1700429,結果,kiat-kó,kiat-kó,17004291,연구 결과,,研究結果,gián-kiù kiat-kó,gián-kiù kiat-kó
 471,결석하다,1700433,無來,bô-lâi,bô-lâi,17004331,유민이는 심한 감기 때문에 이틀을 결석했다.,,柳敏因為感冒甲足嚴重，兩工無來。,"Liú Bín in-uī kám-mōo kah tsiok giâm-tiōng, nn̄g kang bô lâi.","Liú Bín in-ūi kám-mō͘ kah chiok giâm-tiōng, nn̄g kang bô lâi."
 476,결정,1700437,決定,kuat-tīng,koat-tēng,17004371,나는 오랫동안 생각하여 유학을 가기로 결정을 내렸다.,,我考慮真久了後，做出去留學的決定。,"Guá khó-lī tsin kú liáu-āu, tsò-tshut khì liû-ha̍k ê kuat-tīng.","Góa khó-lī chin kú liáu-āu, chò-chhut khì liû-ha̍k ê koat-tēng."
-481,결정하다,1700441,決定,kuat-tīng,koat-tēng,17004411,나는 중요한 일을 결정할 때마다 부모님과 꼭 상의한다.,,我見若有重要代誌攏會揣爸母參詳。,Guá kiàn-nāū tiōng-iàu tāi-tsì lóng ē tshuē pē-bú tsham-siông.,Góa kiàn-naū7 tiōng-iàu tāi-chì lóng ē chhōe pē-bú chham-siông.
-481,결정하다,1700441,決定,kuat-tīng,koat-tēng,17004412,오랫동안 만나온 두 남녀는 내년에 결혼하기로 결정하였다.,,彼兩个交往一段時間的男女朋友，決定明年欲結婚矣。,"H it nn̄g ê kau-óng tsi̍t tuānn sî-kan ê lâm-lú-pîng-iú, kuat-tīng mê-nî beh kiat-hun--ah.","H it nn̄g ê kau-óng chi̍t tōaⁿ sî-kan ê lâm-lú-pêng-iú, koat-tēng mê-nî beh kiat-hun--ah."
+481,결정하다,1700441,決定,kuat-tīng,koat-tēng,17004411,나는 중요한 일을 **결정할** 때마다 부모님과 꼭 상의한다.,,我見若有重要代誌攏會揣爸母參詳。,Guá kiàn-nāū tiōng-iàu tāi-tsì lóng ē tshuē pē-bú tsham-siông.,Góa kiàn-naū7 tiōng-iàu tāi-chì lóng ē chhōe pē-bú chham-siông.
+481,결정하다,1700441,決定,kuat-tīng,koat-tēng,17004412,오랫동안 만나온 두 남녀는 내년에 결혼하기로 **결정하였다**.,,彼兩个交往一段時間的男女朋友，決定明年欲結婚矣。,"H it nn̄g ê kau-óng tsi̍t tuānn sî-kan ê lâm-lú-pîng-iú, kuat-tīng mê-nî beh kiat-hun--ah.","H it nn̄g ê kau-óng chi̍t tōaⁿ sî-kan ê lâm-lú-pêng-iú, koat-tēng mê-nî beh kiat-hun--ah."
 486,결혼,1700445,結婚,kiat-hun,kiat-hun,17004451,결혼 1주년,,結婚1週年,kiat-hun 1 tsiu-nî,kiat-hun 1 chiu-nî
 486,결혼,1700445,婚姻,hun-in,hun-in,17004452,결혼 문제,,婚姻問題,hun-in būn-tê,hun-in būn-tê
 491,결혼식,1700449,婚禮,hun-lé,hun-lé,17004491,결혼식을 올리다,,舉辦婚禮,kí-pān hun-lé,kí-pān hun-lé
@@ -153,6 +153,16 @@
 601,고등학생,1700557,高中生,ko-tiong-sing,ko-tiong-seng,17005571,대학 입시로 바쁜 고등학생들,,咧無閒大學考試的高中生,teh bô-îng tāi-ha̍k-khó-tshì ê ko-tiong-sing,teh bô-êng tāi-ha̍k-khó-chhì ê ko-tiong-seng
 606,고르다,1700561,揀,kíng,kéng,17005611,책이 모두 재미있어 보여서 딱 한 권만 고르기가 어려웠다.,,冊看起來攏誠趣味，真歹揀一本爾爾。,"Tsheh khuànn--khí-lâi lóng tsiânn tshù-bī, tsin pháinn kíng tsi̍t pún niā-niā.","Chheh khòaⁿ--khí-lâi lóng chiâⁿ chhù-bī, chin pháiⁿ kéng chi̍t pún niā-niā."
 616,고맙다,1700569,感謝,kám-siā,kám-siā,17005691,나는 숙제를 도와준 동생이 고마워서 선물을 사 주었다.,,我買一个禮物來感謝阮小妹教我功課。,Guá bé tsi̍t ê lé-bu̍t lâi kám-siā guán sió-muē kà guá kong-khò.,Góa bé chi̍t ê lé-bu̍t lâi kám-siā goán sió-mōe kà góa kong-khò.
+626,고모,1700581,阿姑,a-koo,a-ko͘,17005811,나에게는 작은아버지 두 분과 고모 한 분이 계시다.,,我有兩个阿叔佮一个阿姑。,Guá ū nn̄g ê a-tsik kah tsı̍t ê a-koo.,Góa ū nn̄g ê a-chek kah tsıt8 ê a-ko͘.
+631,고모부,1700585,姑丈,koo-tiūnn,ko͘-tiūⁿ,17005851,고모부는 장인인 할아버지를 나는 우리 고모부를 고모와 결혼하기 전부터 알고 있었다. 어려워하셨다.,,姑丈猶未佮阿姑結婚進前，我就熟似伊矣。,"Koo-tiūnn iáu buē kap a-koo kiat-hun tsìn-tsîng, guá tō sı̍k-sāi i--ah.","Ko͘-tiūⁿ iáu bōe kap a-ko͘ kiat-hun chìn-chêng, góa tō sık8-sāi i--ah."
+636,고속버스,1700589,,,,17005891,지수는 부모님을 마중하러 고속버스 터미널로 나갔다.,,智秀出門去轉運站接爸母。,Tì-siù tshut-mn̂g khì tsuán-ūn-tsām tsiah pē-bú.,Tì-siù chhut-mn̂g khì choán-ūn-chām chiah pē-bú.
+641,고양이,1700593,貓仔,niau-á,niau-á,17005931,지수는 기르는 새끼 고양이가 야옹거리자 밥을 줬다.,,智秀若聽著伊飼的貓仔囝咧叫，就會去共伊飼。,"Tì-siù nā thiann-tio̍h i tshī ê niau-á-kiánn teh kiò, tō ē khì kā i tshī.","Tì-siù nā thiaⁿ-tio̍h i chhī ê niau-á-kiáⁿ teh kiò, tō ē khì kā i chhī."
+646,고장,1700597,歹去,phái---khì,phái---khì,17005971,엘리베이터 고장으로 우리는 십 층까지 계단으로 올라가야 했다.,,電梯歹去，害阮愛𬦰樓梯到十樓。,"Tiān-thui phái--khì, hāi guán ài peh lâu-thui kàu tsa̍p lâu.","Tiān-thui phái--khì, hāi goán ài peh lâu-thui kàu cha̍p lâu."
+651,고추,1700601,番薑仔,huan-kiunn-á,hoan-kiuⁿ-á,17006011,한국 음식에는 고추가 들어가는 음식이 많아서 매운 편이다.,,韓國菜會薟，是因為會加足濟番薑仔。,"Hân-kok-tshài ē hiam, sī in-uī ē ka tsiok tsē huan-kiunn-á.","Hân-kok-chhài ē hiam, sī in-ūi ē ka chiok chē hoan-kiuⁿ-á."
+656,고추장,1700605,番薑仔醬,huan-kiunn-á-tsiùnn,hoan-kiuⁿ-á-chiùⁿ,17006051,집에서 직접 담근 고추장에 오이를 찍어 먹으니 더 맛있는 것 같다.,,瓜仔哖若搵家己做的番薑仔醬，敢若會愈較好食。,"Kue-á-nî nā ùn ka-kī tsò ê huan-kiunn-á-tsiùnn, kánn-ná ē jú khah hó-tsia̍h.","Koe-á-nî nā ùn ka-kī chò ê hoan-kiuⁿ-á-chiùⁿ, káⁿ-ná ē jú khah hó-chia̍h."
+661,고치다,1700609,修理,siu-lí,siu-lí,17006091,이 차를 고치려면 돈이 얼마나 들까요?,,修理這台車愛偌濟錢？,Siu-lí tsit tâi tshia ài guā-tsē tsînn?,Siu-lí chit tâi chhia ài gōa-chē chîⁿ?
+666,고프다,1700613,枵,iau,iau,17006131,나는 너무 배가 고파서 눈앞에 보이는 음식점에 무작정 들어갔다.,,我因為腹肚傷枵，看著有賣食的我就入去矣。,"Guá in-uī pak-tóo siunn iau, khuànn-tio̍h ū bē tsia̍h--ê guá tō jı̍p-khì--ah.","Góa in-ūi pak-tó͘ siuⁿ iau, khòaⁿ-tio̍h ū bē chia̍h--ê góa tō jıp8-khì--ah."
+671,고향,1700617,故鄉,kòo-hiong,kò͘-hiong,17006171,할머니는 고향을 떠나고 오십 년이 지난 지금까지 한 번도 고향을 잊은 적이 없다고 하신다.,,阿媽講雖罔離開故鄉已經五十冬矣，到今伊毋捌共放袂記得。,"A-má kóng suī-bóng lî-khui kòo-hiong í-king gōo-tsa̍p tang--ah, kàu-tann i m̄-bat kā pàng-bē kì-tit.","A-má kóng sūi-bóng lî-khui kò͘-hiong í-keng gō͘-cha̍p tang--ah, kàu-taⁿ i m̄-bat kā pàng-bē kì-tit."
 1276,기차,1701173,火車,hué-tshia,hóe-chhia,17011731,폭설로 인해 서울행 기차가 연착되었다는 안내 방송이 나왔다.,,車頭放送通知講：因為落大雪，往首爾的火車會慢分。,"Tshia-thâu hòng-sàng thong-ti kóng: In-uī lo̍h tuā-seh, óng Sóo-ut ê hué-tshia ē bān-hun.","Chhia-thâu hòng-sàng thong-ti kóng: In-ūi lo̍h tōa-seh, óng Só͘-ut ê hóe-chhia ē bān-hun."
 1576,남동생,1701489,小弟,sió-tī,sió-tī,17014891,누나는 어린 남동생만 집에 두고 놀러 가는 것이 마음에 걸렸다.,,阿姊無放心放小弟佇厝裡，家己出去𨑨迌。,"A-tsí bô hòng-sim pàng sió-tī tī tshù--lí, ka-ki tshu-khì tshit-thô.","A-chí bô hòng-sim pàng sió-tī tī chhù--lí, ka-ki chhu-khì chhit-thô."
 1591,남자,1701501,查埔,tsa-poo,cha-po͘,17015011,미혼 남자,,十一哥,tsa̍p-it-ko,cha̍p-it-ko

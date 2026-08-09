@@ -383,7 +383,7 @@ input[type="text"]::placeholder { color: var(--muted); }
   font-family: 'Noto Sans KR', 'jf-openhuninn', sans-serif; min-width: 0;
 }
 .conj-table-detailed .conj-value:last-child { border-right: none; }
-.conj-table-detailed .conj-row-head .conj-value { font-weight: 700; color: var(--muted); text-align: center; background: var(--surface2); }
+.conj-table-detailed .conj-row-head .conj-value { font-weight: 700; font-size: 0.85em; color: var(--muted); text-align: center; background: var(--surface2); }
 /* 詞根底色：依詞根1/2/3給不同深淺的主色調透明底色，後方語尾不加底色 */
 .conj-root { border-radius: 3px; padding: 1px 2px; }
 .conj-root-1 { background: rgba(205,46,58,0.16); }
@@ -542,7 +542,8 @@ a.ff-word:hover { text-decoration: underline; }
 .conj-value-line { padding: 2px 0; }
 .conj-value-line + .conj-value-line { border-top: 1px dashed var(--border); }
 .conj-value-pair { display: flex; }
-.conj-pair-item { flex: 1; min-width: 0; text-align: left; }
+.conj-pair-item { flex: 1; min-width: 0; text-align: left; padding-left: 4px; }
+.conj-pair-item:first-child { border-right: 1px dashed var(--border); padding-left: 0; }
 
 /* ── MOBILE ── */
 @media (max-width: 640px) {
@@ -956,7 +957,7 @@ function computeConjugationTable(word, cls, pos) {
 // 其餘分類代碼(01/02/03/05/06/07/08/09)先不提供變化表顯示，只維持基本的
 // 精確搜尋反查索引(見 computeConjugationTable)，等後續規格確認後再擴充。
 // ══════════════════════════════════════════════════════════════════
-const CONJ_DETAILED_CLASSES = new Set(['01', '02', '03', '04', '09', '10']);
+const CONJ_DETAILED_CLASSES = new Set(['01', '02', '03', '04', '05', '07', '08', '09', '10']);
 
 function mergeJongseong(root, jongIdx) {
   const syll = [...root];
@@ -1007,6 +1008,35 @@ function computeRoots04(stem) {
   const root3 = transformed + (vowelHarmony(d.jung) === 'a' ? '아' : '어');
   return { root1: stem, root2, root3 };
 }
+// 05류(ㅅ落鈎) 어근 계산：詞根1=원형, 詞根2=ㅅ제거+으, 詞根3=ㅅ제거+아/어(단순접속，不經過母音縮寫)
+function computeRoots05(stem) {
+  const d = hangulDecompose(stem[stem.length - 1]);
+  const prefix = stem.slice(0, -1);
+  const base = prefix + hangulCompose(d.cho, d.jung, 0);
+  const root2 = base + '으';
+  const root3 = base + (vowelHarmony(d.jung) === 'a' ? '아' : '어');
+  return { root1: stem, root2, root3 };
+}
+// 07류(ㄹ落鈎) 어근 계산：詞根1=원형(保留ㄹ), 詞根2=ㄹ去掉, 詞根3=원형+아/어(保留ㄹ)。
+// 這一類需要額外的例外規則(見下方 lTalrak 標記處理)，因為ㄴ/ㅂ/ㅅ開頭語尾會觸發ㄹ탈락(用詞根2)，
+// 名詞化-ㅁ更會跟既有的ㄹ合併成겹받침(ㄻ)，不是單純換掉收尾音。
+function computeRoots07(stem) {
+  const d = hangulDecompose(stem[stem.length - 1]);
+  const prefix = stem.slice(0, -1);
+  const root2 = prefix + hangulCompose(d.cho, d.jung, 0);
+  const root3 = stem + (vowelHarmony(d.jung) === 'a' ? '아' : '어');
+  return { root1: stem, root2, root3 };
+}
+// 08류(ㅎ落鈎) 어근 계산：詞根1=원형, 詞根2=ㅎ去掉, 詞根3=ㅎ去掉+母音改為ㅐ/ㅒ(ㅏ/ㅓ->ㅐ, ㅑ->ㅒ)
+function computeRoots08(stem) {
+  const d = hangulDecompose(stem[stem.length - 1]);
+  const prefix = stem.slice(0, -1);
+  const root2 = prefix + hangulCompose(d.cho, d.jung, 0);
+  const vowelMap = { 0: 1, 4: 1, 2: 3 };
+  const newJung = vowelMap[d.jung] !== undefined ? vowelMap[d.jung] : 1;
+  const root3 = prefix + hangulCompose(d.cho, newJung, 0);
+  return { root1: stem, root2, root3 };
+}
 // 09류(敬語 -시다 어간) 어근 계산：詞根1=詞根2=원형(-시), 詞根3=핵심형(-셔, 이+어->여 축약)
 function computeRoots09(stem) {
   const root3 = stem.slice(0, -1) + conjAttachAE(stem[stem.length - 1]);
@@ -1018,21 +1048,27 @@ function computeRoots10(stem) {
 }
 const CONJ_ROOT_COMPUTERS = {
   '01': computeRoots01, '02': computeRoots02, '03': computeRoots03,
-  '04': computeRoots04, '09': computeRoots09, '10': computeRoots10,
+  '04': computeRoots04, '05': computeRoots05, '07': computeRoots07,
+  '08': computeRoots08, '09': computeRoots09, '10': computeRoots10,
 };
 
-// 各分類的例外設定：請誘/命令有無、以及(僅09)非過去禮貌形改用세요
+// 各分類的例外設定：請誘/命令有無、以及(僅09)非過去禮貌형改用세요、(僅07)ㄹ탈락觸發規則
 const CONJ_CLASS_CONFIG = {
   '01': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動' },
   '02': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動' },
   '03': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動' },
   '04': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動' },
+  '05': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動' },
+  '08': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動' },
   '10': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動' },
   // 09：動詞也沒有請誘；命令只有禮貌有、親近沒有；非過去的禮貌형用「詞根1去掉最後一字+세요」，不是詞根3+요
   '09': {
     hasProp: () => false, hasCmdFormal: pos => pos === '動', hasCmdIntimate: () => false,
     politeNonPastOverride: (root1) => [...root1].slice(0, -1).join('') + '세요',
   },
+  // 07：詞根1固定帶ㄹ收尾，但ㄴ/ㅂ/ㅅ開頭語尾會觸發ㄹ탈락——凡是原本該用詞根1的「子音開頭語尾」，
+  // 只要該語尾第一個字母是ㄴ/ㅂ/ㅅ，就要改用詞根2；名詞化-ㅁ更要跟既有ㄹ合成겹받침(ㄻ)。
+  '07': { hasProp: pos => pos === '動', hasCmdFormal: pos => pos === '動', hasCmdIntimate: pos => pos === '動', lTalrak: true },
 };
 
 // 把詞根部分用透明底色標示出來(依詞根1/2/3給不同色階)，後方語尾維持原狀不加底色
@@ -1050,18 +1086,28 @@ function buildDetailedConjugationTable(roots, pos, cfg) {
   const j1 = hangulDecompose(root1[root1.length - 1]).jong;
   const isVerb = pos === '動';
   const hasProp = cfg.hasProp(pos), hasCmdFormal = cfg.hasCmdFormal(pos), hasCmdIntimate = cfg.hasCmdIntimate(pos);
-  // 冠形詞現在：動詞用「詞根1+는」，形容詞用「詞根2+ㄴ(合併)」——兩處(對比連結欄、轉成欄)共用
-  const gwanhyeongPresent = isVerb ? conjMark(root1, 1, '는') : conjMarkMerge(root2, 2, 4, '');
+  const lTalrak = !!cfg.lTalrak; // 07類：詞根1固定帶ㄹ，但ㄴ/ㅂ/ㅅ開頭語尾要改用詞根2(ㄹ已脫落)
+  // 冠形詞現在：動詞用「詞根1+는」(07類例外改用詞根2，因為-는以ㄴ開頭觸發ㄹ탈락)，形容詞用「詞根2+ㄴ(合併)」
+  const gwanhyeongPresent = isVerb
+    ? (lTalrak ? conjMark(root2, 2, '는') : conjMark(root1, 1, '는'))
+    : conjMarkMerge(root2, 2, 4, '');
   // 禮貌·非過去(平敍/疑問/命令共用同一個해요체形)：一般情況是詞根3+요，09類例外改用세요
   const politeNonPast = cfg.politeNonPastOverride ? cfg.politeNonPastOverride(root1) : conjMark(root3, 3, '요');
+  // ㅂ니다/습니다：一般看詞根1有沒有收尾音；07類固定用詞根2+ㅂ니다(因為니다以ㄴ開頭，ㄹ탈락)
+  const formalNida = lTalrak
+    ? conjMarkMerge(root2, 2, 17, '니다')
+    : (j1 === 0 ? conjMarkMerge(root1, 1, 17, '니다') : conjMark(root1, 1, '습니다'));
+  const formalNikka = lTalrak
+    ? conjMarkMerge(root2, 2, 17, '니까')
+    : (j1 === 0 ? conjMarkMerge(root1, 1, 17, '니까') : conjMark(root1, 1, '습니까'));
 
   const t = {};
   t['禮貌_平敍_非過去_비'] = politeNonPast;
-  t['禮貌_平敍_非過去_정'] = j1 === 0 ? conjMarkMerge(root1, 1, 17, '니다') : conjMark(root1, 1, '습니다');
+  t['禮貌_平敍_非過去_정'] = formalNida;
   t['禮貌_平敍_過去_비'] = conjMarkMerge(root3, 3, 20, '어요');
   t['禮貌_平敍_過去_정'] = conjMarkMerge(root3, 3, 20, '습니다');
   t['禮貌_疑問_非過去_비'] = politeNonPast;
-  t['禮貌_疑問_非過去_정'] = j1 === 0 ? conjMarkMerge(root1, 1, 17, '니까') : conjMark(root1, 1, '습니까');
+  t['禮貌_疑問_非過去_정'] = formalNikka;
   t['禮貌_疑問_過去_비'] = conjMarkMerge(root3, 3, 20, '어요');
   t['禮貌_疑問_過去_정'] = conjMarkMerge(root3, 3, 20, '습니까');
   t['禮貌_推測_비'] = conjMark(root1, 1, '겠어요');
@@ -1075,12 +1121,17 @@ function buildDetailedConjugationTable(roots, pos, cfg) {
     t['禮貌_請誘_정'] = conjMark(root2, 2, '십시다');
   }
   t['親近_平敍_非過去_비'] = conjMark(root3, 3, '');
-  t['親近_平敍_非過去_정'] = isVerb ? (j1 === 0 ? conjMarkMerge(root1, 1, 4, '다') : conjMark(root1, 1, '는다')) : conjMark(root1, 1, '다');
+  // 는다：以ㄴ開頭，07類動詞觸發ㄹ탈락改用詞根2；其餘依詞根1收尾音決定用哪種合併方式
+  t['親近_平敍_非過去_정'] = isVerb
+    ? (lTalrak ? conjMarkMerge(root2, 2, 4, '다') : (j1 === 0 ? conjMarkMerge(root1, 1, 4, '다') : conjMark(root1, 1, '는다')))
+    : conjMark(root1, 1, '다');
   t['親近_平敍_過去_비'] = conjMarkMerge(root3, 3, 20, '어');
   t['親近_平敍_過去_정'] = conjMarkMerge(root3, 3, 20, '다');
   t['親近_疑問_非過去_비'] = conjMark(root3, 3, '');
-  // 詞根1+느냐(動詞) / 詞根1+냐(形容詞)——느냐是子音開頭語尾，不觸發ㄷ->ㄹ的變化，直接接詞根1
-  t['親近_疑問_非過去_정'] = isVerb ? conjMark(root1, 1, '느냐') : conjMark(root2, 2, '냐');
+  // 詞根1+느냐(動詞) / 詞根2+냐(形容詞)——느냐是子音開頭語尾，07類動詞例外要用詞根2(ㄹ탈락)
+  t['親近_疑問_非過去_정'] = isVerb
+    ? (lTalrak ? conjMark(root2, 2, '느냐') : conjMark(root1, 1, '느냐'))
+    : conjMark(root2, 2, '냐');
   t['親近_疑問_過去_비'] = conjMarkMerge(root3, 3, 20, '어');
   t['親近_疑問_過去_정'] = conjMarkMerge(root3, 3, 20, '느냐');
   t['親近_推測_비'] = conjMark(root1, 1, '겠어');
@@ -1100,10 +1151,13 @@ function buildDetailedConjugationTable(roots, pos, cfg) {
     [conjMark(root2, 2, '니'), conjMark(root2, 2, '니까')],
   ];
   t['連結_從屬_對比'] = [conjMark(root1, 1, '지만'), gwanhyeongPresent + '데', conjMark(root1, 1, '더니')];
-  t['連結_從屬_條件'] = [conjMark(root2, 2, '면'), conjMark(root3, 3, '야')];
-  if (isVerb) t['連結_從屬_目的'] = conjMark(root2, 2, '려고');
-  t['轉成_名詞_非過去'] = [conjMarkMerge(root2, 2, 16, ''), conjMark(root1, 1, '기')];
-  t['轉成_名詞_過去'] = [conjMarkMerge(root3, 3, 20, '음'), conjMarkMerge(root3, 3, 20, '기')];
+  // 면(ㅁ開頭)、려고(ㄹ開頭) 都不是ㄴ/ㅂ/ㅅ開頭，不會觸發07類的ㄹ탈락，所以07類要用詞根1(保留ㄹ)
+  t['連結_從屬_條件'] = [lTalrak ? conjMark(root1, 1, '면') : conjMark(root2, 2, '면'), conjMark(root3, 3, '야')];
+  if (isVerb) t['連結_從屬_目的'] = lTalrak ? conjMark(root1, 1, '려고') : conjMark(root2, 2, '려고');
+  // 名詞化非過去第一項：一般是詞根2+ㅁ合併；07類要用詞根1既有的ㄹ跟ㅁ合成겹받침(ㄻ)，不是詞根2
+  const myeongsaBiUngeo = lTalrak ? conjMarkMerge(root1, 1, 10, '') : conjMarkMerge(root2, 2, 16, '');
+  t['轉成_名詞_非過去'] = [[myeongsaBiUngeo, conjMark(root1, 1, '기')]];
+  t['轉成_名詞_過去'] = [[conjMarkMerge(root3, 3, 20, '음'), conjMarkMerge(root3, 3, 20, '기')]];
   if (isVerb) t['轉成_冠形詞_過去'] = conjMarkMerge(root2, 2, 4, '');
   t['轉成_冠形詞_現在'] = gwanhyeongPresent;
   t['轉成_冠形詞_未來'] = conjMarkMerge(root2, 2, 8, '');

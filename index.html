@@ -1837,7 +1837,10 @@ function combineTransRomWhole(transRaw, romRaw, order, transRenderer, romRendere
   const tHtml = transRaw ? (transRenderer ? transRenderer(transRaw) : escapeHtml(transRaw)) : '';
   const rHtml = romRaw ? (romRenderer ? romRenderer(romRaw) : escapeHtml(romRaw)) : '';
   if (transRaw && romRaw) {
-    return order === 'trans' ? `${tHtml}（${rHtml}）` : `${rHtml}（${tHtml}）`;
+    // 對話式例句(語句翻譯或TL/POJ任一有分行)：括號那段自動換行開始，不緊接在最後一句對話後面
+    const hasMultiline = transRaw.includes('\n') || romRaw.includes('\n');
+    const sep = hasMultiline ? '\n（' : '（';
+    return order === 'trans' ? `${tHtml}${sep}${rHtml}）` : `${rHtml}${sep}${tHtml}）`;
   }
   return tHtml || rHtml;
 }

@@ -372,6 +372,13 @@ input[type="text"]::placeholder { color: var(--muted); }
   padding: 5px 10px; background: var(--accent); color: #fff;
   font-weight: 700; font-size: 0.9em;
 }
+.conj-honorific-title {
+  margin-top: 16px; padding: 8px 12px; background: var(--surface2);
+  border: 1px solid var(--accent); border-radius: 8px 8px 0 0; border-bottom: none;
+  color: var(--accent); font-weight: 700; font-size: 0.95em;
+  font-family: 'Noto Sans KR', 'jf-openhuninn', sans-serif;
+}
+.conj-honorific-title + .conj-table-inner { border-radius: 0 0 8px 8px; }
 .conj-table-detailed .conj-row { display: flex; border-bottom: 1px solid var(--border); }
 .conj-table-detailed .conj-row:last-child { border-bottom: none; }
 .conj-table-detailed .conj-label {
@@ -908,6 +915,31 @@ function computeRoots06(stem) {
 function computeRoots10(stem) {
   return { root1: stem, root2: stem, root3: stem.slice(0, -1) + '해' };
 }
+// 敬語形計算：預設規則是「該詞本身的詞根2」+시다，再用09類規則跑出完整表格。
+// 例外1：附註寫「敬語為X{id}。」——不用預設規則，改用X這個詞(查id)當敬語詞幹。
+// 例外2：附註寫「為X{id}之敬語。」——代表這個詞本身就已經是敬語，不再產生第二層敬語表格。
+function isAlreadyHonorific(note) {
+  return /為[^{]*\{\d+\}之敬語/.test(note || '');
+}
+function getHonorificOverrideId(note) {
+  const m = (note || '').match(/敬語為[^{]*\{(\d+)\}/);
+  return m ? m[1] : null;
+}
+function computeHonorificRoots(word, cls, note) {
+  if (isAlreadyHonorific(note)) return null; // 本身已是敬語，不再往下產生
+  const overrideId = getHonorificOverrideId(note);
+  if (overrideId) {
+    const target = lemmataById[lemmaKey(overrideId, '')];
+    if (!target || !target.word.endsWith('다')) return null; // 查無對應詞目，放棄顯示
+    return computeRoots09(target.word.slice(0, -1));
+  }
+  const rootFn = CONJ_ROOT_COMPUTERS[cls];
+  if (!rootFn || !word.endsWith('다')) return null;
+  const roots = rootFn(word.slice(0, -1));
+  return computeRoots09(roots.root2 + '시');
+}
+
+
 const CONJ_ROOT_COMPUTERS = {
   '01': computeRoots01, '02': computeRoots02, '03': computeRoots03,
   '04': computeRoots04, '05': computeRoots05, '06': computeRoots06,
@@ -1119,16 +1151,26 @@ function renderConjugationTable(word, cls, pos) {
 }
 
 let _conjPanelOpenKey = null;
-function toggleConjPanel(key, word, cls, pos) {
+function toggleConjPanel(key, word, cls, pos, note) {
   const panel = document.getElementById('conjPanel');
   const overlay = document.getElementById('conjPanelOverlay');
   if (_conjPanelOpenKey === key) {
     closeConjPanel();
     return;
   }
+  let bodyHtml = renderConjugationTable(word, cls, pos);
+  const honorificRoots = computeHonorificRoots(word, cls, note);
+  if (honorificRoots) {
+    const honorificTableHtml = renderConjSections(
+      [...CONJ_LEFT_SECTIONS, ...CONJ_RIGHT_SECTIONS],
+      buildDetailedConjugationTable(honorificRoots, pos, CONJ_CLASS_CONFIG['09'])
+    );
+    bodyHtml += `<div class="conj-honorific-title">敬語形（${escapeHtml(honorificRoots.root1)}다）</div>`
+      + `<div class="conj-table-inner conj-table-detailed"><div class="conj-col">${honorificTableHtml}</div></div>`;
+  }
   panel.innerHTML = `<div class="conj-panel-header"><span>${escapeHtml(word)}（${escapeHtml(cls)}）動詞變化</span>`
     + `<button class="conj-panel-close" onclick="closeConjPanel()">✕</button></div>`
-    + `<div class="conj-panel-body">${renderConjugationTable(word, cls, pos)}</div>`;
+    + `<div class="conj-panel-body">${bodyHtml}</div>`;
   panel.classList.add('show');
   overlay.classList.add('show');
   _conjPanelOpenKey = key;
@@ -1900,8 +1942,9 @@ function renderSenseSection(lemmaId, dial) {
     const conjShowable = conjCls && CONJ_DETAILED_CLASSES.has(conjCls) && (pos === '動' || pos === '形');
     const conjWord = (lemmataById[lemmaKey(lemmaId, dial)] || {}).word || '';
     const conjKey = `${lemmaId}-${s['義項']}`;
+    const conjNote = (s['附註'] || '').replace(/'/g, "\\'").replace(/\n/g, ' ');
     const conjBadge = conjShowable
-      ? `<button class="conj-badge" onclick="toggleConjPanel('${conjKey}', '${conjWord.replace(/'/g, "\\'")}', '${conjCls}', '${pos}')" title="動詞變化：點擊在右側開啟變化表">${escapeHtml(conjCls)}</button>`
+      ? `<button class="conj-badge" onclick="toggleConjPanel('${conjKey}', '${conjWord.replace(/'/g, "\\'")}', '${conjCls}', '${pos}', '${conjNote}')" title="動詞變化：點擊在右側開啟變化表">${escapeHtml(conjCls)}</button>`
       : '';
     html += `<div class="sense-item">`;
     html += `<div class="sense-head">${num}${lvl ? `<span class="level-icons">${lvl}</span>` : ''}${pos ? `<span class="ref-label">${escapeHtml(pos)}</span>` : ''}${conjBadge}${tag ? `<span class="ref-label">${escapeHtml(tag)}</span>` : ''}${transHtml ? `<span class="sense-trans">${transHtml}</span>` : ''}</div>`;

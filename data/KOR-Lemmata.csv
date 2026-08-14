@@ -105,6 +105,7 @@
 366,건강하다,geon**ː**ganghada,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/40000/34000/295349/SND000304703.mp3
 371,건너가다,geon**ː**neogada,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/30000/22000/316559/SND000325913.mp3
 376,건너다,geon**ː**neoda,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/20000/13000/311097/SND000320451.mp3
+377,건너오다,geon**ː**neooda,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/30000/22000/311521/SND000320875.mp3
 381,건너편,geon**ː**neopyeon,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/10000/01000/308369/SND000317723.mp3
 386,건물,geon**ː**mul,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/40000/34000/300874/SND000310228.mp3
 391,건배,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120225/33193/SND000021896.mp3
@@ -113,7 +114,11 @@
 406,걸리다,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/30000/22000/339157/SND000348511.mp3
 411,걸어가다,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120225/33260/SND000021963.mp3
 416,걸어오다,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120225/33261/SND000021964.mp3
+417,걸음,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120308/40608/SND000029311.mp3
+418,검사,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/40000/34000/295323/SND000304677.mp3
+419,검사하다,geom**ː**sahada,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/40000/34000/299084/SND000308438.mp3
 421,검은색,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120225/33093/SND000021796.mp3
+422,검정,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120308/40529/SND000029232.mp3
 426,것,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120225/33295/SND000021998.mp3
 431,게,,
 441,게임,,
@@ -177,8 +182,8 @@
 756,공책,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120310/41635/SND000030338.mp3
 761,공항,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120310/41693/SND000030396.mp3
 766,공휴일,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/40000/38000/300332/SND000309686.mp3
-771,-과,,
 776,과,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120302/36622/SND000025325.mp3
+771,-과,,
 781,과거,gwa**ː**geo,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/40000/38000/300358/SND000309712.mp3
 786,과일,gwa**ː**il,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/30000/22000/295776/SND000305130.mp3
 791,과자,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120302/36666/SND000025369.mp3
@@ -212,6 +217,7 @@
 936,국적,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120301/36012/SND000024715.mp3
 941,국제,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120311/42071/SND000030774.mp3
 946,군인,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120311/42177/SND000030880.mp3
+947,굵다,gu**gː**tta,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/30000/22000/341557/SND000350911.mp3
 951,굽다,gub**ː**tta,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20160913/30000/22000/316566/SND000325920.mp3
 956,권,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120312/42633/SND000031336.mp3
 966,귀,,https://krdicmedia.korean.go.kr/multimedia/multimedia_files/convert/20120302/37132/SND000025835.mp3
@@ -1295,8 +1301,8 @@
 6371,의미,,
 6376,의사,,
 6381,의자,,
-6386,-이,,
 6387,이,,
+6386,-이,,
 6391,이거,,
 6396,이것,,
 6401,이곳,,

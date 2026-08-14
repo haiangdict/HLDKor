@@ -7,8 +7,12 @@
 6,가게,1700013,店,tiàm,tiàm,17000131,꽃 가게,,花店,hue-tiàm,hoe-tiàm
 6,가게,1700013,店,tiàm,tiàm,17000132,가게 주인,,店頭家,tiàm-thâu-ke,tiàm-thâu-ke
 6,가게,1700013,彼間賣菜的,hit king bē-tshài--ê,hit keng bē-chhài--ê,17000133,집 근처의 **야채 가게**는 야채가 좋고 값이 싸서 손님이 매우 많다.,,阮兜四箍圍仔彼間賣菜的，菜有鮮閣俗，所以人客蓋濟。,"Guán tau sì-khoo-uî-á hit king bē-tshài--ê, tshài ū tshinn koh sio̍k, sóo-í lâng-kheh kài tsē.","Goán tau sì-kho͘-ûi-á hit keng bē-chhài--ê, chhài ū chhiⁿ koh sio̍k, só͘-í lâng-kheh kài chē."
+7,가겟집,1700015,商店,siong-tiàm,siong-tiàm,17000151,오는 길에 동사무소 옆에 있는 가겟집에 들러 계란 좀 사 와.,,你來的時陣佇里民中心邊仔彼間商店，共我買一个卵咧。,"Lí lâi ê sî-tsūn tī lí-bîn-tiong-sim pinn-á hit king siong-tiàm, kā guá bé--tsi̍t-ê nn̄g--leh.","Lí lâi ê sî-chūn tī lí-bîn-tiong-sim piⁿ-á hit keng siong-tiàm, kā góa bé--chi̍t-ê nn̄g--leh."
 11,가격,1700017,價,kè,kè,17000171,오랜 장마 때문에 채소와 과일 가격이 올랐다.,,黃酸雨直直落，青菜佮果子煞起價。,"N̂g-sng-hōo ti̍t-ti̍t lo̍h, tshenn-tshài kah kué-tsí suah khí-kè.","N̂g-sng-hō͘ ti̍t-ti̍t lo̍h, chheⁿ-chhài kah kóe-chí soah khí-kè."
+12,가격표,1700014,價目牌,kè-bo̍k-pâi,kè-bo̍k-pâi,17000141,가격표를 붙이다,,貼價目牌,tah kè-bo̍k-pâi,tah kè-bo̍k-pâi
+12,가격표,1700018,標價,piau-kè,piau-kè,17000181,"이 가게의 경우, 가격표를 뗀 옷은 다른 옷으로 교환해 주지 않는다.",,這間店規定講：貼的標價若拆掉，衫就袂使閣換一領。,"Tsit king tiàm kui-tīng kóng: Tah ê pio-kè nā thiah-tiāu, sann tō bē-sái koh uānn tsi̍t niá.","Chit keng tiàm kui-tēng kóng: Tah ê pio-kè nā thiah-tiāu, saⁿ tō bē-sái koh ōaⁿ chi̍t niá."
 16,가구,1700021,家具,ka-kù,ka-kù,17000211,"선생님 집 거실에는 장식장, 소파 같은 가구가 많이 놓여 있었다.",,老師𪜶兜客廳，囥足濟玻璃門櫥仔抑是膨椅彼款的家具。,"Lāu-su in tau kheh-thiann, khǹg tsiok tsē po-lê-mn̂g-tû-á kah phòng-í hit khuán ê ka-kù.","Lāu-su in tau kheh-thiaⁿ, khǹg chiok chē po-lê-mn̂g-tû-á kah phòng-í hit khoán ê ka-kù."
+17,가구점,1700020,家具店,ka-kù-tiàm,ka-kù-tiàm,17000201,이 가구점의 가구들은 모두 손으로 직접 만든 것이다.,,這間家具店的物件攏手工做的。,Tsit king ka-kū-tiàm ê mi̍h-kiānn lóng tshiú-kang tsò--ê.,Chit keng ka-kū-tiàm ê mi̍h-kiāⁿ lóng chhiú-kang chò--ê.
 21,가깝다,1700025,近,kīn,kīn,17000251,집이 학교에서 **가까워요**.,,學校對阮厝裡過蓋近。,Ha̍k-hāu tuì guán tshù--lí kuè kài kīn.,Ha̍k-hāu tùi goán chhù--lí kòe kài kīn.
 21,가깝다,1700029,親,tshin,chhin,17000291,친형제처럼 가깝다,,像親兄弟仔遐**親**,tshiūnn tshin hiann-tī-á hiah **tshin**,chhiūⁿ chhin hiaⁿ-tī-á hiah **chhin**
 26,가꾸다,1700033,種,tsìng,chèng,17000331,화단을 가꾸다,,種花,tsìng hue,chèng hoe
@@ -373,7 +377,7 @@ B: Hó, góa sûi kòe--khì."
 1296,길,1701193,路,lōo,lō͘,17011933,아스팔트 길,,打馬膠路,tá-má-ka-lōo,tá-má-ka-lō͘
 1296,길,1701193,路,lōo,lō͘,17011934,굽은 길,,彎路,uan lōo,oan lō͘
 1301,긴,1701201,長,tn̂g,tn̂g,17012011,긴 터널,,長磅空,tn̂g pōng-khang,tn̂g pōng-khang
-1301,깁니다,1701205,長,tn̂g,tn̂g,17012051,소매가 너무 깁니다,,手䘼傷長,tshiú-ńg siunn tn̂g,chhiú-ńg siuⁿ tn̂g
+1301,깁니다,1701201,長,tn̂g,tn̂g,17012011,소매가 너무 깁니다,,手䘼傷長,tshiú-ńg siunn tn̂g,chhiú-ńg siuⁿ tn̂g
 1306,김,1701207,草,tsháu,chháu,17012071,김을 매다,,剷草,thuánn tsháu,thóaⁿ chháu
 1306,김,1701208,滸苔,hóo-thî,hó͘-thî,17012081,김을 굽다,,烘滸苔,hang hóo-thî,hang hó͘-thî
 1311,김밥,1701213,滸苔飯丸,hóo-thî,hó͘-thî,17012131,소고기 김밥,,滸苔飯丸包牛肉,hóo-thî pn̄g-uân pau gû-bah,hó͘-thî pn̄g-oân pau gû-bah

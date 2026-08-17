@@ -1917,7 +1917,7 @@ function renderSenseSection(lemmaId, dial) {
   // 附註跟語源一樣：若所有義項的附註完全相同，就移到義項1.上方(語源底下)顯示一次，
   // 不再各自依附在每個義項底下；只要有任一筆不同(含有些是空的)，就維持各自顯示。
   const senseNoteRaw = senses.map(s => (s['附註'] || '').trim());
-  const noteShared = senseNoteRaw.every(r => r && r === senseNoteRaw[0]);
+  const noteShared = multi && senseNoteRaw.every(r => r && r === senseNoteRaw[0]);
 
   // 搜尋模式下（且範圍包含例句）：只保留「本身翻譯符合」或「至少有一筆例句符合」的義項，
   // 該義項底下也只顯示符合關鍵字的例句。編號仍用原始索引(idx+1)，不會因為跳過而重新編號。

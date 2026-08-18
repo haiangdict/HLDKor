@@ -1697,6 +1697,27 @@ function textMatchesQuery(text, allowSegments) {
 
 // 把搜尋關鍵字在文字中的出現位置標記起來（搜尋結果專用，跟例句的詞形對照標記是分開的樣式）。
 // allowSegments 意義同上，只用於義項中文翻譯的精確搜尋標記。
+// 搜尋高亮疊加：在「已經處理過跨欄位詞目高亮/**粗體**」的HTML上，另外疊加一層搜尋字元的
+// 底色標示，兩者互不取代、可以同時出現(例如搜尋字剛好落在**粗體**範圍內)。
+// 只在HTML標籤「之間的純文字」部分找關鍵字，絕對不去動標籤本身，才不會破壞既有標記。
+function overlaySearchHighlight(html, term) {
+  if (!term) return html;
+  const re = new RegExp(escapeRegex(term), 'gi');
+  return html.split(/(<[^>]*>)/).map(part => {
+    if (!part || part.startsWith('<')) return part; // HTML標籤本身，原樣保留不處理
+    let result = '', lastIndex = 0, m;
+    re.lastIndex = 0;
+    while ((m = re.exec(part)) !== null) {
+      result += part.slice(lastIndex, m.index);
+      result += `<span class="search-hit">${m[0]}</span>`;
+      lastIndex = m.index + m[0].length;
+      if (m[0].length === 0) { re.lastIndex++; }
+    }
+    result += part.slice(lastIndex);
+    return result;
+  }).join('');
+}
+
 function highlightSearchTerm(text, term, allowSegments) {
   text = text || '';
   if (!term) return escapeHtml(text);
@@ -1757,7 +1778,7 @@ function audioUrl(e) {
 function renderLemmaCard(e) {
   const url = audioUrl(e);
   const hasAudio = !!url;
-  const wordHtml = searchQuery ? highlightSearchTerm(e.word, searchQuery) : renderWordWithAffix(e.word);
+  const wordHtml = searchQuery ? overlaySearchHighlight(renderWordWithAffix(e.word), searchQuery) : renderWordWithAffix(e.word);
   const homographHtml = e.homographIndex ? `<sub class="homograph-idx">${e.homographIndex}</sub>` : '';
   const cardId = `lemma-${e.id}-${e.dial}`;
   // 發音欄：有的話用[]包起來、跟詞語不同顏色、隔開一點距離；**...**的部分套用跟例句一樣的高亮
@@ -2068,22 +2089,25 @@ function exampleAudioUrl(ex) {
 function renderExampleBlock(ex, searchTerm) {
   const url = exampleAudioUrl(ex);
   const hasAudio = !!url;
-  const sentenceHtml = nl2br(searchTerm
-    ? highlightSearchTerm(ex['語句'] || '', searchTerm)
-    : highlightTerm(ex['語句'] || '', ex['詞語'] || ''));
+  let sentenceHtml = highlightTerm(ex['語句'] || '', ex['詞語'] || '');
+  if (searchTerm) sentenceHtml = overlaySearchHighlight(sentenceHtml, searchTerm);
+  sentenceHtml = nl2br(sentenceHtml);
 
   // 例句翻譯：跟義項不同，這裡是「一整句」翻譯配一整句羅馬字，句子本身的逗號、分號只是
   // 標點符號、不是多重意義的分隔，所以不能像義項那樣拆開比對配對，要整句當一個單位組合。
-  // 沒有搜尋時：中文部分比對該義項的中文關鍵字；羅馬字部分比對「同一套系統」自己的關鍵字
+  // 中文部分比對該義項的中文關鍵字；羅馬字部分比對「同一套系統」自己的關鍵字
   // （顯示TL就比對TL關鍵字、顯示POJ就比對POJ關鍵字），不是兩套都比對。
+  // 搜尋時：一律先做正常的跨欄位/**粗體**處理，再疊加搜尋字底色，兩者同時存在、互不取代。
   const romExampleField = romSystem === 'TL' ? '翻譯TL' : '翻譯POJ';
   const romSenseKeyword = ex[romSystem] || ''; // 該義項自己的 TL 或 POJ
-  const transRenderer = searchTerm
-    ? (piece => highlightSearchTerm(piece, searchTerm))
-    : (piece => highlightTerm(piece, ex['翻譯'] || ''));
-  const romRenderer = searchTerm
-    ? (piece => highlightSearchTerm(piece, searchTerm))
-    : (piece => highlightTerm(piece, romSenseKeyword));
+  const transRenderer = piece => {
+    let h = highlightTerm(piece, ex['翻譯'] || '');
+    return searchTerm ? overlaySearchHighlight(h, searchTerm) : h;
+  };
+  const romRenderer = piece => {
+    let h = highlightTerm(piece, romSenseKeyword);
+    return searchTerm ? overlaySearchHighlight(h, searchTerm) : h;
+  };
   const transHtml = nl2br(combineTransRomWhole(
     ex['語句翻譯'] || '', ex[romExampleField] || '', transOrder,
     transRenderer, romRenderer

@@ -312,6 +312,7 @@ input[type="text"]::placeholder { color: var(--muted); }
   letter-spacing: 0.01em;
 }
 .ne-tag { opacity: 0.25; font-weight: 400; }
+.homograph-idx { font-size: 0.5em; color: inherit; font-weight: inherit; margin-left: 1px; }
 .pron-tag { color: var(--muted); margin-left: 0.5em; font-size: 0.85em; font-weight: 400; }
 .pron-tag .term-highlight { margin: 0; }
 .affix-dash { opacity: 0.25; }
@@ -1222,6 +1223,17 @@ async function loadData() {
     // 排序：依編號
     entries.sort((a, b) => parseInt(a.id, 10) - parseInt(b.id, 10));
 
+    // 同形詞標號：字形完全相同、但編號不同的詞目，依編號順序(最先出現=編號最小)
+    // 標上 1,2,3... 的下標數字，用來讓使用者區分不同來源/詞義的同形詞目。
+    // 這個數字只用於顯示，不會併入 e.word，所以不會被搜尋比對誤判。
+    {
+      const wordGroups = {};
+      entries.forEach(e => { (wordGroups[e.word] = wordGroups[e.word] || []).push(e); });
+      Object.values(wordGroups).forEach(group => {
+        if (group.length > 1) group.forEach((e, i) => { e.homographIndex = i + 1; });
+      });
+    }
+
     // lemmataById 用「編號_方言別」組合鍵（方言別固定空字串，等同純編號）
     lemmataById = {};
     entries.forEach(e => { if (e.id) lemmataById[lemmaKey(e.id, e.dial)] = e; });
@@ -1720,8 +1732,9 @@ function matchesSearch(e) {
   if (useLemma) {
     if (textMatchesQuery(e.word)) return true;
     if (senses.some(s => textMatchesQuery(s['翻譯'], true))) return true;
-    // 精確搜尋時，動詞/形容詞的衍生變化形(如가요、가세요)也算命中原詞根
-    if (searchExact && conjugatedFormsIndex[searchQuery] && conjugatedFormsIndex[searchQuery].has(e.id)) {
+    // 動詞/形容詞的衍生變化形(如가요、가세요)也算命中原詞根——寬鬆搜尋的範圍本來就該
+    // 涵蓋精確搜尋能找到的所有結果，不能因為沒勾精確搜尋反而少了這一塊
+    if (conjugatedFormsIndex[searchQuery] && conjugatedFormsIndex[searchQuery].has(e.id)) {
       return true;
     }
   }
@@ -1745,6 +1758,7 @@ function renderLemmaCard(e) {
   const url = audioUrl(e);
   const hasAudio = !!url;
   const wordHtml = searchQuery ? highlightSearchTerm(e.word, searchQuery) : renderWordWithAffix(e.word);
+  const homographHtml = e.homographIndex ? `<sub class="homograph-idx">${e.homographIndex}</sub>` : '';
   const cardId = `lemma-${e.id}-${e.dial}`;
   // 發音欄：有的話用[]包起來、跟詞語不同顏色、隔開一點距離；**...**的部分套用跟例句一樣的高亮
   const pronHtml = e.pron ? `<span class="pron-tag">[${highlightTerm(e.pron, '')}]</span>` : '';
@@ -1754,7 +1768,7 @@ function renderLemmaCard(e) {
         <button class="share-btn" onclick="shareEntryCard(event, '${cardId}')" title="截圖分享"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V6a2 2 0 0 1 2-2h2"/><path d="M4 16v2a2 2 0 0 0 2 2h2"/><path d="M20 8V6a2 2 0 0 0-2-2h-2"/><path d="M20 16v2a2 2 0 0 1-2 2h-2"/><rect x="7" y="8.5" width="10" height="7" rx="1.3"/><circle cx="12" cy="12" r="1.6"/></svg></button>
       </div>
       <div class="word-row">
-        <div class="word-main">${wordHtml}${e.ne ? '<span class="ne-tag">ne</span>' : ''}${pronHtml}</div>
+        <div class="word-main">${wordHtml}${homographHtml}${e.ne ? '<span class="ne-tag">ne</span>' : ''}${pronHtml}</div>
         <button class="play-btn" ${hasAudio ? '' : 'disabled'}
           title="${hasAudio ? '播放音檔' : '無音檔'}"
           onclick="togglePlay('${url.replace(/'/g, "\\'")}', this)">${hasAudio ? '▶' : '—'}</button>
@@ -1927,8 +1941,11 @@ function renderSenseSection(lemmaId, dial) {
   const useExampleSearch = inSearch && (noScope || searchScope.example);
   // 如果是「詞目本身」符合關鍵字（不是特定義項的翻譯符合），代表整個詞目都跟搜尋有關，
   // 底下所有義項都該顯示，不能只因為個別義項翻譯對不上、又沒有符合的例句就被濾掉。
+  // 透過動詞變化衍生形反查連回來的詞目，也算「詞目本身符合」——詞目是最上層概念，
+  // 這種情況應該顯示完整詞條，不能因為義項/例句字面對不上就只剩詞目、義項全部消失。
   const lemmaWord = (lemmataById[lemmaKey(lemmaId, dial)] || {}).word || '';
-  const lemmaMatchesDirectly = useLemmaSearch && textMatchesQuery(lemmaWord);
+  const conjFormMatches = useLemmaSearch && !!(conjugatedFormsIndex[searchQuery] && conjugatedFormsIndex[searchQuery].has(lemmaId));
+  const lemmaMatchesDirectly = useLemmaSearch && (textMatchesQuery(lemmaWord) || conjFormMatches);
 
   let html = '';
   if (shared) {

@@ -553,9 +553,11 @@ B: Mh, góa í-keng kah pa̍t-lâng ū iok--ah--neh..."
 1656,내리다,1701565,落車,lo̍h-tshia,lo̍h-chhia,17015651,역에 내리다,,佇車站落車,tī tshia-tsām lo̍h-tshia piàn,tī chhia-chām lo̍h-chhia
 1656,내려요,1701569,落,lo̍h,lo̍h,17015691,비가 많이 **내려요**.,,落大雨,lo̍h tuā-hōo,lo̍h tōa-hō͘
 1846,눈,1701789,花莓,hue-m̂,hoe-m̂,17017891,겨울눈,,寒天的花莓,kuânn-thinn ê hue-m̂,kôaⁿ-thiⁿ ê hoe-m̂
-5761,엽서,1705993,光批,kng-phue,kng-phoe,17059931,그림엽서,,圖像光批,tôo-siōng kng-phue,tô͘-siōng kng-phoe
-6621,일기,1706929,日誌,ji̍t-tsì,ji̍t-chì,17069291,그림일기,,手畫圖日誌,tshiú-uē-tôo ji̍t-tsì,chhiú-ōe-tô͘ ji̍t-chì
 3976,사고,1704061,意外,ì-guā,ì-gōa,17040611,가스 폭발 사고가 일어나서 여러 사람이 다쳤다.,,發生gá-suh爆炸的意外，閣傷著幾若个人。,"Huat-sing gá-suh po̍k-tsà ê ì-guā, koh siong-tio̍h kuí-nā ê lâng.","Hoat-seng gá-suh po̍k-chà ê ì-gōa, koh siong-tio̍h kúi-nā ê lâng."
+3981,사과,1704065,蘋果,phông-kó,phông-kó,17040651,사과를 따다,,挽蘋果,bán phông-kó,bán phông-kó
+3981,사과,1704065,蘋果,phông-kó,phông-kó,17040652,사과를 깎다,,削蘋果,siah phông-kó,siah phông-kó
+3982,사과,1704069,失禮,sit-lé,sit-lé,17040691,사장은 종업원의 실수에 대해 고객에게 진심으로 사과를 했다.,,頭家為著員工做毋著，真心共人客會失禮。,"Thâu-ke uī-tio̍h uân-kang tsò m̄-tio̍h, tsin-sim kā lâng-kheh huē-sit-lé.","Thâu-ke ūi-tio̍h oân-kang chò m̄-tio̍h, chin-sim kā lâng-kheh hōe-sit-lé."
+3984,사귀다,1704071,交,kau,kau,17040711,지수는 대학에 들어가자마자 남자 친구를 사귀었다.,,智秀讀大學隨就交男朋友。,Tì-siù tha̍k tāi-ha̍k suî-tō kau lâm-pîng-iú.,Tì-siù tha̍k tāi-ha̍k sûi-tō kau lâm-pêng-iú.
 3986,샀다,1704073,買,bé,bé,17040731,어제 가족들과 백화점에서 옷과 신발을 샀다.,,昨昏我佮厝裡的人去百貨公司買衫佮鞋仔。,Tsa-hng guá kah tshù--lí ê lâng khì pah-huè-kong-si bé sann kah ê-á.,Cha-hng góa kah chhù--lí ê lâng khì pah-hòe-kong-si bé saⁿ kah ê-á.
 3991,사람,1704081,人,lâng,lâng,17040811,사람은 생각하는 동물이다.,,人是會曉思考的動物。,Lâng sī ē-hiáu su-khó ê tōng-bu̍t.,Lâng sī ē-hiáu su-khó ê tōng-bu̍t.
 3991,사람,1704081,人,lâng,lâng,17040812,한국 사람이라면 대부분 김치 담그는 것을 보았을 것이다.,,韓國人大部分攏捌看過菜豉是按怎做的。,Hân-kok-lâng tuā-pōo-hun lóng bat khuànn-kuè tshài-sīnn sī án-tsuánn tsò--ê.,Hân-kok-lâng tōa-pō͘-hun lóng bat khòaⁿ-kòe chhài-sīⁿ sī án-chóaⁿ chò--ê.
@@ -566,4 +568,25 @@ B: Mh, góa í-keng kah pa̍t-lâng ū iok--ah--neh..."
 4001,사랑하셨다,1704097,愛,ài,ài,17040971,돌아가신 교장 선생님은 평생 학생들을 자식처럼 사랑하셨다.,,已經過身的校長，一世人攏共學生仔當做是家己的囝咧愛。,"Í-king kuè-sin ê hāu-tiúnn, tsi̍t-sì-lâng lóng kā ha̍k-sing-á tòng-tsò sī ka-kī ê kiánn teh ài.","Í-keng kòe-sin ê hāu-tiúⁿ, chi̍t-sì-lâng lóng kā ha̍k-seng-á tòng-chò sī ka-kī ê kiáⁿ teh ài."
 4001,사랑했다,1704097,愛,ài,ài,17040971,지수는 그 가수의 음반을 모두 가지고 있을 정도로 그의 노래를 너무 사랑했다.,,智秀愛彼个歌手的歌，愛甲全部的唱片伊攏有買。,"Tì-siù ài hit ê kua-tshiú ê kua, ài kah tsuân-pōo ê tshiùnn-phìnn i lóng ū bé.","Tì-siù ài hit ê koa-chhiú ê koa, ài kah choân-pō͘ ê chhiùⁿ-phìⁿ i lóng ū bé."
 4006,사례,1704105,案例,àn-lē,àn-lē,17041051,성공한 사례,,成功案例,sîng-kong àn-lē,sêng-kong àn-lē
+4011,사무실,1704109,辦公室,pān-kong-sik,pān-kong-sek,17041091,서류를 내러 3층에 있는 사무실에 갔다.,,我去三樓的辦公室交資料。,Guá khì sann-lâu ê pān-kong-sik kau tsu-liāu.,Góa khì saⁿ-lâu ê pān-kong-sek kau chu-liāu.
+4091,사촌 언니,1704189,表姊,piáu-tsí,piáu-chí,17041891,나는 어렸을 때 큰아버지 댁에서 자라서 사촌 언니와 무척 가깝게 지낸다.,,我細漢時陣是佇大舅𪜶兜大漢的，所以佮表姊誠親。,"Guá sè-hàn sî-tsūn sī tī tuā-kū in tau tuā-hàn--ê, sóo-í kah piáu-tsí tsiânn tshin.","Góa sè-hàn sî-chūn sī tī tōa-kū in tau tōa-hàn--ê, só͘-í kah piáu-chí chiâⁿ chhin."
+4096,사탕,1704193,糖仔,thn̂g-á,thn̂g-á,17041931,막대 사탕,,糖枝,thn̂g-ki,thn̂g-ki
+4096,사탕,1704193,糖仔,thn̂g-á,thn̂g-á,17041932,유치원 선생님은 아이들이 답을 맞출 때마다 사탕을 주었다.,,幼稚園老師若囡仔回答正確，就會送𪜶糖仔。,"Iù-tī-hn̂g lāu-su nā gín-á huê-tap tsìng-khak, tō ē sàng in thn̂g-á.","Iù-tī-hn̂g lāu-su nā gín-á hôe-tap chèng-khak, tō ē sàng in thn̂g-á."
+4101,사흘,1704197,三工,sann kang,saⁿ kang,17041971,장맛비는 사흘 동안 계속 내렸다.,,黃酸雨落了有三工。,N̂g-sng-hōo lo̍h-liáu ū sann-kang.,N̂g-sng-hō͘ lo̍h-liáu ū saⁿ-kang.
+4101,사흘,1704198,初三,tshe-sann,chhe-saⁿ,17041981,지수는 오월 사흘에 태어났다.,,智秀是五月初三出世的。,Tì-siù sī gōo-gue̍h tshe-sann tshut-sì--ê.,Tì-siù sī gō͘-goe̍h chhe-saⁿ chhut-sì--ê.
 4106,산,1704201,山,suann,soaⁿ,17042011,천천히 산에 오르면서 맑은 공기도 마시고 새소리도 들으니 건강해지는 느낌이었다.,,寬寬仔𬦰山，那享受新鮮的空氣佮聽鳥仔唱歌，感覺有變甲較健康。,"Khuan-khuan á peh-suann, ná hiáng-siū sin-sian ê khong-khì kah thiann tsiáu-á tshiùnn-kua, kám-kak ū piàn kah khah kiān-khong.","Khoan-khoan á peh-soaⁿ, ná hiáng-siū sin-sian ê khong-khì kah thiaⁿ chiáu-á chhiùⁿ-koa, kám-kak ū piàn kah khah kiān-khong."
+4111,산책,1704213,散步,sàn-pōo,sàn-pō͘,17042131,우리 가족은 매일 저녁을 먹고 집 근처 공원으로 산책을 나간다.,,阮厝裡的人逐工暗頓食了，攏會去厝附近的公園散步。,"Guán tshù--lí ê lâng ta̍k-kang àm-tǹg tsia̍h-liáu, lóng-ē khì tshù hù-kīn ê kong-hn̂g sàn-pōo.","Goán chhù--lí ê lâng ta̍k-kang àm-tǹg chia̍h-liáu, lóng-ē khì chhù hù-kīn ê kong-hn̂g sàn-pō͘."
+4112,산책하다,1704214,散步，行跤花,sàn-pōo；kiânn-kha-hue,sàn-pō͘；kiâⁿ-kha-hoe,17042141,나는 매일 아침 강아지를 데리고 집 주변을 산책하곤 한다.,,我逐早起攏會𤆬狗仔去厝的四箍圍仔散步。,Guá ta̍k tsá-khí long-ē tshuā káu-á khì tshù ê sì-khoo-uî-á sàn-pōo.,Góa ta̍k chá-khí long-ē chhōa káu-á khì chhù ê sì-kho͘-ûi-á sàn-pō͘.
+4116,살,1704217,,,,17042171,살이 찌다,,變大箍,piàn tuā-khoo,piàn tōa-kho͘
+4116,살,1704218,歲,huè,hòe,17042181,언니는 나보다 세 살이 많았다.,,阮阿姊加我三歲。,Guán a-tsí ke guá sann huè.,Goán a-chí ke góa saⁿ hòe.
+4121,살다,1704221,活,ua̍h,oa̍h,17042211,백 살까지 살다,,活到百歲,ua̍h kàu pah huè,oa̍h kàu pah hòe
+4121,살았다,1704222,過,kuè,kòe,17042221,두 살 때 부모를 잃은 그는 소년 시절 아주 가난하게 살았다.,,兩歲爸母就無去，伊少年時陣過甲真散赤。,"Nn̄g huè pē-bú tō bô--khì, i siàu-liân sî-tsūn kuè kah tsin sàn-tshiah.","Nn̄g hòe pē-bú tō bô--khì, i siàu-liân sî-chūn kòe kah chin sàn-chhiah."
+4126,삼,1704229,三,sam,sam,17042291,방금 우리 팀이 득점을 해서 삼 대 영이 되었어.,,阮這隊才得分爾，這馬三比空矣。,"Guán tsit tuī tsiah tit-hun niā, tsit-má sam pí khòng--ah.","Goán chit tūi chiah tit-hun niā, chit-má sam pí khòng--ah."
+4126,삼,1704233,人參,jîn-sim,jîn-sim,17042331,어머니는 삼과 대추를 넣고 삼계탕을 끓여 주셨다.,,阿母用人參佮棗仔煮人參雞湯予我食。,A-bú iōng jîn-sim kah tsó-á tsú jîn-sim-ke-thng hōo guá tsia̍h.,A-bú iōng jîn-sim kah chó-á chú jîn-sim-ke-thng hō͘ góa chia̍h.
+4131,삼거리,1704237,三叉路,sann-tshe-lōo,saⁿ-chhe-lō͘,17042371,"십오 분 정도 직진하시면 삼거리가 나오는데요, 거기서 우회전 하시면 됩니다.",,直直行十五分鐘會到一條三叉路，遐正斡就會使矣。,"Ti̍t-ti̍t kiânn tsa̍p-gōo hun-tsing ē kàu tsi̍t tiâu sann-tshe-lōo, hia tsiànn-ua̍t tō ē-sái--ah.","Ti̍t-ti̍t kiâⁿ cha̍p-gō͘ hun-cheng ē kàu chi̍t tiâu saⁿ-chhe-lō͘, hia chiàⁿ-oa̍t tō ē-sái--ah."
+4132,삼겹살,1704238,三層肉,sam-tsân-bah,sam-chân-bah,17042381,삼겹살을 굽다,,烘三層肉,hang sam-tsân-bah,hang sam-chân-bah
+4136,삼십,1704241,三十,sann-tsa̍p,saⁿ-cha̍p,17042411,이제 나도 내일모레면 삼십이구나.,,我後日就滿三十歲矣。,Guá āu--ji̍t tō muá sann-tsa̍p huè--ah.,Góa āu--ji̍t tō móa saⁿ-cha̍p hòe--ah.
+4141,삼월,1704245,三月,sann--gue̍h,saⁿ--goe̍h,17042451,우리나라에서는 보통 삼월과 구월에 새 학기가 시작된다.,,阮韓國一般是三月佮九月開學。,Guán Hân-kok it-puann sī sann--gue̍h kah káu--gue̍h khai-ha̍k.,Goán Hân-kok it-poaⁿ sī saⁿ--goe̍h kah káu--goe̍h khai-ha̍k.
+4146,삼촌,1704249,阿叔,a-tsik,a-chek,17042491,삼촌을 닮다,,佮阿叔生做足成,kah a-tsik senn-tsò tsiok sîng,kah a-chek seⁿ-chò chiok sêng
+5761,엽서,1705993,光批,kng-phue,kng-phoe,17059931,그림엽서,,圖像光批,tôo-siōng kng-phue,tô͘-siōng kng-phoe
+6621,일기,1706929,日誌,ji̍t-tsì,ji̍t-chì,17069291,그림일기,,手畫圖日誌,tshiú-uē-tôo ji̍t-tsì,chhiú-ōe-tô͘ ji̍t-chì

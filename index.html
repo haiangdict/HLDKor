@@ -2261,10 +2261,11 @@ function renderNoteLine(raw, currentLemmaId) {
   escaped = escaped.replace(/(https?:\/\/\S+?\.(?:jpe?g|png|gif|webp))(?=[\s，。；！？]|$)/gi, (m, url) => {
     return `<img src="${url}" class="note-thumb" onclick="openImageModal('${url.replace(/'/g, "\\'")}')" alt="附註圖片">`;
   });
-  const linked = escaped.replace(/([\uAC00-\uD7A3]+)\{(\d+(?:\.\d+)?)\}/g, (m, word, id) => {
-    const resolved = resolveEtymologyToken(id, '');
+  const linked = escaped.replace(/([\uAC00-\uD7A3]+)\{(\d{1,7}(?:\.\d+)?(?:#\d+(?:\.\d+)?)?)\}/g, (m, word, token) => {
+    const resolved = resolveEtymologyToken(token, '');
     const transHtml = (resolved && resolved.trans) ? `「${resolved.trans}」` : '';
-    return `<a href="#lemma-${id}-" class="ety-word" onclick="event.preventDefault();jumpToLemma('${id}','')">${word}</a>${transHtml}`;
+    const lemmaIdOnly = token.split('#')[0];
+    return `<a href="#lemma-${lemmaIdOnly}-" class="ety-word" onclick="event.preventDefault();jumpToLemma('${lemmaIdOnly}','')">${word}</a>${transHtml}`;
   });
   return `<div class="ref-row"><span class="ref-label">附註</span>${linked}</div>`;
 }

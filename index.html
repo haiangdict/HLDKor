@@ -319,8 +319,15 @@ input[type="text"]::placeholder { color: var(--muted); }
 
 /* ── SENSES ── */
 .sense-list { margin: 6px 0 0 20px; }
-.sense-item { padding: 5px 0; }
-.sense-item + .sense-item { border-top: 1px solid var(--border); margin-top: 4px; padding-top: 8px; }
+.sense-item { padding: 8px 0 8px 14px; position: relative; }
+/* 多義項時左側加一條主色調色條，義項之間再拉開間距、分隔線加粗——
+   兩個線索一起用(色條+更明顯的間距)，比單純一條細線容易辨識，
+   又不會像整塊套色那樣跟例句本身的套色方塊互相打架 */
+.sense-list.multi .sense-item::before {
+  content: ''; position: absolute; left: 0; top: 4px; bottom: 4px;
+  width: 3px; border-radius: 2px; background: var(--accent); opacity: 0.55;
+}
+.sense-item + .sense-item { border-top: 2px solid var(--border); margin-top: 14px; padding-top: 18px; }
 .sense-head {
   /* 改用一般行內排版(非flex)：長翻譯超出時只在文字內部自然換行接續，
      不會像flex子項目那樣整段被推去下一行整行重排 */
@@ -2017,7 +2024,7 @@ function renderSenseSection(lemmaId, dial) {
     html += renderNoteLine(senseNoteRaw[0], lemmaId);
   }
 
-  html += '<div class="sense-list">';
+  html += `<div class="sense-list${multi ? ' multi' : ''}">`;
   senses.forEach((s, idx) => {
     let exList = examplesBySense[s['編號'] + '_' + s['義項']] || [];
     if (useExampleSearch) {

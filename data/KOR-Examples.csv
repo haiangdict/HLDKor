@@ -529,7 +529,7 @@ B: Mh, góa í-keng kah pa̍t-lâng ū iok--ah--neh..."
 1301,긴,1701201,長,tn̂g,tn̂g,17012011,긴 터널,,長磅空,tn̂g pōng-khang,tn̂g pōng-khang
 1301,깁니다,1701201,長,tn̂g,tn̂g,17012011,소매가 너무 깁니다,,手䘼傷長,tshiú-ńg siunn tn̂g,chhiú-ńg siuⁿ tn̂g
 1302,길어지다,1701202,愈久,jú kú,jú kú,17012021,자취 기간이 길어지니 엄마가 해 주신 밥이 그립네.,,家己煮食的時間愈久，就愈會數念阿母煮的菜呢。,"Ka-kī tsú-tsia̍h ê sî-kan jú kú, tō jú ē siàu-liām a-bú tsú ê tshài--neh.","Ka-kī chú-chia̍h ê sî-kan jú kú, tō jú ē siàu-liām a-bú chú ê chhài--neh."
-1303,길옆,1701203,路邊,lōo-pinn,lō͘-piⁿ,17012031,운전자는 급한 전화를 받기 위해 차를 길옆에 세웠다.,,司機共車停到路邊來接一通緊急的電話。,Su-ki kā tshia thîng-kàu lōo pinn lâi tsiap tsi̍t thong kín-kip ê tiān-uē.,Su-ki kā chhia thêng-kàu lō͘ piⁿ lâi chiap chi̍t thong kín-kip ê tiān-ōe.
+1303,길옆,1701203,路邊,lōo-pinn,lō͘-piⁿ,17012031,운전자는 급한 전화를 받기 위해 차를 길옆에 세웠다.,,司機共車停到路邊來接一通緊急的電話。,Su-ki kā tshia thîng-kàu lōo-pinn lâi tsiap tsi̍t thong kín-kip ê tiān-uē.,Su-ki kā chhia thêng-kàu lō͘-piⁿ lâi chiap chi̍t thong kín-kip ê tiān-ōe.
 1304,길이,1701204,長度,tn̂g-tōo,tn̂g-tō͘,17012041,길이를 재다,,量長度,niū tn̂g-tōo,niū tn̂g-tō͘
 1306,김,1701207,草,tsháu,chháu,17012071,김을 매다,,剷草,thuánn tsháu,thóaⁿ chháu
 1306,김,1701208,滸苔,hóo-thî,hó͘-thî,17012081,김을 굽다,,烘滸苔,hang hóo-thî,hang hó͘-thî
@@ -637,6 +637,45 @@ B:  Péng sû-tián m̄ tō hó--ah."
 4169,상추,1704269,萵仔菜,ue-á-tshài,oe-á-chhài,17042691,어머니는 매일 아침에 밭에 있는 상추에 물을 주신다.,,阿母逐早起共田裡的萵仔菜沃水。,A-bú ta̍k tsá-khí kā tshân--lí ê ue-á-tshài ak-tsuí.,A-bú ta̍k chá-khí kā chhân--lí ê oe-á-chhài ak-chúi.
 4171,상품,1704273,產品,sán-phín,sán-phín,17042731,간단하게 사용하실 수 있는 상품으로 추천해 주세요.,,麻煩共我推薦用起來較簡單的產品。,Mâ-huân kā guá thui-tsiàn iōng--khí-lâi khah kán-tan ê sán-phín.,Mâ-hoân kā góa thui-chiàn iōng--khí-lâi khah kán-tan ê sán-phín.
 4175,새,1704277,鳥仔,tsiáu-á,chiáu-á,17042771,새가 지저귀다,,鳥仔啼,tsiáu-á thî,chiáu-á thî
+4176,새,1704281,新,sin,sin,17042811,새 옷,,新衫,sin-sann,sin-saⁿ
+4176,새,1704281,新,sin,sin,17042812,새 집,,新厝,sin tshù,sin chhù
+4176,새,1704281,新,sin,sin,17042813,우리 집 가구는 늘 새 가구 같다.,,阮厝裡的家具看起來一直攏像新的仝款。,Guán tshù--lí ê ka-kū khuànn--khí-lâi it-ti̍t lóng tshiūnn sin--ê kāng-khuán.,Goán chhù--lí ê ka-kū khòaⁿ--khí-lâi it-ti̍t lóng chhiūⁿ sin--ê kāng-khoán.
+4181,새로,1704285,新,sin,sin,17042851,이거 한번 드셔 보세요. 우리 가게에서 새로 개발한 팥빙수예요.,,食看覓咧。這阮才新推出的紅豆礤冰。,Tsia̍h-khuànn-māi--leh. Tse guán tsiah sin thui-tshut ê âng-tāu-tshuah-ping.,Chia̍h-khòaⁿ-māi--leh. Che goán chiah sin thui-chhut ê âng-tāu-chhoah-peng.
+4181,새로,1704285,新,sin,sin,17042852,결혼을 하고 나니 인생을 새로 시작하는 기분이 들었다.,,結婚了後，感覺袂輸開始新的人生仝款。,"Kiat-hun liáu-āu, kám-kak bē-su khai-sí sin ê jîn-sing kāng-khuán.","Kiat-hun liáu-āu, kám-kak bē-su khai-sí sin ê jîn-seng kāng-khoán."
+4181,새로,1704286,半暝,puànn-mê,pòaⁿ-mê,17042861,나는 새로 두 시까지 잠을 이루지 못했다.,,我攏愛到半暝兩點才睏會去。,Guá lóng ài kàu puànn-mê nn̄g-tiám tsiah khùn ē khì.,Góa lóng ài kàu pòaⁿ-mê nn̄g-tiám chiah khùn ē khì.
+4183,새롭다,1704287,全新的,tsuân-sin--ê,choân-sin--ê,17042871,텔레비전에서 새로운 프로그램을 방송하기 시작했다.,,電視開始咧做全新的節目。,Tiān-sī khai-sí teh tsò tsuân-sin ê tsiat-bo̍k.,Tiān-sī khai-sí teh chò choân-sin ê chiat-bo̍k.
+4186,새벽,1704289,透早,thàu-tsá,thàu-chá,17042891,어머니는 이른 새벽부터 내 점심 도시락을 준비하셨다.,,阿母透早就開始咧替我攢便當。,A-bú thàu-tsá tō khai-sí teh thè guá tshuân piān-tong.,A-bú thàu-chá tō khai-sí teh thè góa chhoân piān-tong.
+4191,새우,1704293,蝦,hê,hê,17042931,마른 새우,,蝦米,hê-bí,hê-bí
+4191,새우,1704293,蝦仔,hê-á,hê-á,17042932,"아가씨, 요즘은 새우가 많이 나는 철이라 맛있어.",,小姐，蝦仔這馬拄咧著時，好食喔！,"Sió-tsiá, hê-á tsit-má tú teh tio̍h-sî, hó-tsia̍h--ooh!","Sió-chiá, hê-á chit-má tú teh tio̍h-sî, hó-chia̍h--o͘h!"
+4193,새해,1704295,新年,sin-nî,sin-nî,17042951,"오늘이 올해의 마지막 날이에요. 여러분, 새해 복 많이 받으세요.",,今仔日是今年上尾一工，祝逐家新年快樂。,"Kin-á-ji̍t sī kin-nî siōng-bué tsi̍t kang, tsiok ta̍k-ke sin-nî khuài-lo̍k.","Kin-á-ji̍t sī kin-nî siōng-bóe chi̍t kang, chiok ta̍k-ke sin-nî khoài-lo̍k."
+4196,색,1704297,色,sik,sek,17042971,손님한테는 어두운 색보다는 밝은 색 옷이 더 잘 어울리네요.,,比起深色的衫，淺色的衫佮人客你較四配。,"Pí-khí tshim-sik ê sann, tshián-sik ê sann kah lâng-kheh lí khah sù-phuè.","Pí-khí chhim-sek ê saⁿ, chhián-sek ê saⁿ kah lâng-kheh lí khah sù-phòe."
+4201,색깔,1704301,色水,sik-tsuí,sek-chúi,17043011,이 치마에 어떤 색깔의 재킷이 어울릴까?,,這領裙，佮佗一種色水的外套會較四配？,"Tsit niá kûn, kah tó tsi̍t tsióng sik-tsuí ê guā-thò ē khah sù-phuè?","Chit niá kûn, kah tó chi̍t chióng sek-chúi ê gōa-thò ē khah sù-phòe?"
+4201,색깔,1704301,,,,17043012,화려한 색깔,,花巴哩貓,hue-pa-li-niau,hoe-pa-li-niau
+4203,색소폰,1704303,,sak-su-hong,sak-su-hong,17043031,색소폰을 불다,,歕sak-su-hong,pûn sak-su-hong,pûn sak-su-hong
+4203,색소폰,1704303,,sak-su-hong,sak-su-hong,17043032,색소폰으로 연주하다,,歕sak-su-hong,pûn sak-su-hong,pûn sak-su-hong
+4206,샌드위치,1704305,俗麭𩛩,sio̍k-pháng-kauh,sio̍k-pháng-kauh,17043051,나는 야채와 계란이 들어간 샌드위치를 가장 좋아한다.,,我上愛食加青菜佮雞卵的俗麭𩛩。,Guá siōng ài tsia̍h ka tshenn-tshài kah ke-nn̄g ê sio̍k-pháng-kauh.,Góa siōng ài chia̍h ka chheⁿ-chhài kah ke-nn̄g ê sio̍k-pháng-kauh.
+4209,샐러드,1704306,沙拉,sa-la,sa-la,17043061,샐러드 소스,,沙拉醬,sa-la tsiùnn,sa-la chiùⁿ
+4211,생각,1704307,考慮,khó-lī,khó-lī,17043071,오랜 생각 끝에 이사하기로 결정했다,,考慮了真久，決定欲搬厝,"khó-lī liáu tsin kú, kuat-tīng beh puann-tshù","khó-lī liáu chin kú, koat-tēng beh poaⁿ-chhù"
+4211,생각,1704308,想法,siūnn-huat,siūⁿ-hoat,17043081,자기 생각이 없다,,無家己的想法,bô ka-kī ê siūnn-huat,bô ka-kī ê siūⁿ-hoat
+4211,생각,1704308,意見,ì-kiàn,ì-kiàn,17043082,저는 김 선생님과 생각이 좀 다릅니다.,,我佮金老師的意見小可仔無仝。,Guá kah Kim lāu-su ê ì-kiàn sió-kuá-á bô-kāng.,Góa kah Kim lāu-su ê ì-kiàn sió-kóa-á bô-kāng.
+4211,생각,1704309,想起,siūnn-khí,siūⁿ-khí,17043091,운동장에서 친구와 노래하던 생각이 난다,,想起當初時佮朋友佇運動埕咧唱歌,siūnn-khí tong-tshe-sî kah pîng-iú tī ūn-tōng-tiânn teh tshiùnn-kua,siūⁿ-khí tong-chhe-sî kah pêng-iú tī ūn-tōng-tiâⁿ teh chhiùⁿ-koa
+4211,생각,1704310,想欲,siūnn-beh,siūⁿ-beh,17043101,담배를 끊은 지 한참 됐지만 스트레스를 받자 다시 담배 생각이 났다.,,改薰已經一段時間矣，毋過壓力大就又閣會想欲食薰。,"Kái-hun í-king tsi̍t tuānn sî-kan--ah, m̄-koh ap-li̍k tuā tō iū-koh ē siūnn-beh tsia̍h-hun.","Kái-hun í-keng chi̍t tōaⁿ sî-kan--ah, m̄-koh ap-le̍k tōa tō iū-koh ē siūⁿ-beh chia̍h-hun."
+4211,생각,1704311,拍算,phah-sǹg,phah-sǹg,17043111,여자 친구에게 청혼할 생각,,拍算欲佮女朋友求婚,phah-sǹg beh kah lú-pîng-iú kiû-hun,phah-sǹg beh kah lú-pêng-iú kiû-hun
+4211,생각,1704312,料想,liāu-sióng,liāu-sióng,17043121,사무실은 생각 밖으로 아주 컸다,,辦公室比料想的閣較大間,pān-kong-sik pí liāu-sióng ê koh khah tuā king,pān-kong-sek pí liāu-sióng ê koh khah tōa keng
+4213,생각나다,1704314,想著,siūnn-tio̍h,siūⁿ-tio̍h,17043141,해결 방법이 생각나다,,想著一个解決的辦法,siūnn-tio̍h tsi̍t ê kái-kuat ê pān-huat,siūⁿ-tio̍h chi̍t ê kái-koat ê pān-hoat
+4213,생각나,1704316,,,,17043161,이름이 생각나지가 않다,,名**想**袂**起來**,miâ **siūnn**-bē--**khí-lâi**,miâ **siūⁿ**-bē--**khí-lâi**
+4213,생각났다,1704316,想起,siūnn-khí,siūⁿ-khí,17043162,어머니의 말씀이 생각났다,,想起阿母所講的話,siūnn-khí a-bú sóo kóng ê uē,siūⁿ-khí a-bú só͘ kóng ê ōe
+4216,다행스럽게 생각됩니다,1704317,好佳哉,hó-ka-tsài,hó-ka-chài,17043171,잃어버린 지갑을 다시 찾으셨다니 다행스럽게 생각됩니다.,,好佳哉你有揣著彼个拍毋見的錢袋仔。,Hó-ka-tsài lí ū tshuē--tio̍h hit ê phàng-kìnn ê tsînn-tē-á.,Hó-ka-chài lí ū chhōe--tio̍h hit ê phàng-kìⁿ ê chîⁿ-tē-á.
+4221,생각하다,1704319,思考,su-khó,su-khó,17043191,인생에 대해서 생각하다,,思考人生,su-khó jîn-sing,su-khó jîn-seng
+4222,생각하다,1704320,想起,siūnn-khí,siūⁿ-khí,17043201,첫사랑을 생각하다,,想起初戀,siūnn-khí tshoo-luân,siūⁿ-khí chho͘-loân
+4223,생각한다,1704321,想,siūnn,siūⁿ,17043211,늘 회사만 생각한다,,規工咧想公司的代誌,kui-kang teh siūnn kong-si ê tāi-tsì,kui-kang teh siūⁿ kong-si ê tāi-chì
+4224,생각한다,1704322,考慮,khó-lī,khó-lī,17043221,유학을 생각한다,,考慮去留學,khó-lī khì liû-ha̍k,khó-lī khì liû-ha̍k
+4226,생겨,1704323,發,huat,hoat,17043231,아침에 일어나보니 이마에 조그마한 뾰루지가 생겨 있었다.,,早起睏起來，頭額煞發細粒𤶃仔子。,"Tsái-khí khùn---khì-lâi, thâu-hia̍h suah-huat sè-lia̍p thiāu-á-tsí.","Chái-khí khùn---khì-lâi, thâu-hia̍h soah-hoat sè-lia̍p thiāu-á-chí."
+4226,생겼다,1704323,起,khí,khí,17043232,초등학교가 집 앞에 새로 생겼다.,,厝頭前起一棟新的國小。,Tshù thâu-tsîng khí tsi̍t tòng sin ê kok-sió.,Chhù thâu-chêng khí chi̍t tòng sin ê kok-sió.
+4226,생기다,1704324,趁著,thàn-tio̍h,thàn-tio̍h,17043241,돈이 생기다,,趁著錢,thàn-tio̍h tsînn,thàn-tio̍h chîⁿ
+4226,생기다,1704325,發生,huat-sing,hoat-seng,17043251,문제가 생기다,,發生問題,huat-sing būn-tê,hoat-seng būn-tê
+4226,생기다,1704326,生做,senn-tsò,seⁿ-chò,17043261,이국적으로 생기다,,生做成外國人,senn-tsò sîng guā-kok-lâng,seⁿ-chò sêng gōa-kok-lâng
+4231,생선,1704328,魚,hî,hî,17043281,우리 아이들은 생선 비린내가 싫다고 생선 요리는 입에도 대지 않는다.,,阮囝討厭彼臭臊味，才會無愛食魚。,"Guán kiánn thó-ià he tshàu-tsho-bī, tsiah ē bô ài tsia̍h hî.","Goán kiáⁿ thó-ià he chhàu-chho-bī, chiah ē bô ài chia̍h hî."
 5761,엽서,1705993,光批,kng-phue,kng-phoe,17059931,그림엽서,,圖像光批,tôo-siōng kng-phue,tô͘-siōng kng-phoe
 6621,일기,1706929,日誌,ji̍t-tsì,ji̍t-chì,17069291,그림일기,,手畫圖日誌,tshiú-uē-tôo ji̍t-tsì,chhiú-ōe-tô͘ ji̍t-chì
 7166,점심,1707512,中晝,tiong-tàu,tiong-tàu,17075121,아침 일찍 일을 시작한 덕분에 점심에는 일을 끝낼 수 있었다.,,佳哉透早就開始做工課，中晝進前就會當完成大部分矣。,"Ka-tsài thàu-tsá tō khai-sí tsò khang-khuè, tiong-tàu tsìn-tsîng tō ē-tàng uân-sîng tuā-pōo-hun--ah.","Ka-chài thàu-chá tō khai-sí chò khang-khòe, tiong-tàu chìn-chêng tō ē-tàng oân-sêng tōa-pō͘-hun--ah."

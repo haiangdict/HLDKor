@@ -597,7 +597,7 @@ B: Mh, góa í-keng kah pa̍t-lâng ū iok--ah--neh..."
 1436,끓이다,1701333,燃,hiânn,hiâⁿ,17013331,물을 끓이다,,燃茶,hiânn-tê,hiâⁿ-tê
 1441,끝,1701337,過,kuè,kòe,17013371,오월인데도 더워서 이제는 봄의 끝이 아닌가 싶네.,,五月就遮爾熱，予我感覺春天敢若過矣。,"Gōo--gue̍h tō tsiah-nī jua̍h, hōo guá kám-kak tshun-thinn kánn-ná kuè--ah.","Gō͘--goe̍h tō chiah-nī joa̍h, hō͘ góa kám-kak chhun-thiⁿ káⁿ-ná kòe--ah."
 1446,끝나다,1701341,結束,kiat-sok,kiat-sok,17013411,영화가 끝나자 극장의 불이 다시 환하게 켜졌다.,,電影結束，戲園的火就又閣著矣。,"Tiān-iánn kiat-sok, hì-hn̂g ê hué tō iū-koh to̍h--ah.","Tiān-iáⁿ kiat-sok, hì-hn̂g ê hóe tō iū-koh to̍h--ah."
-1451,끝내다,1701349,了,liáu,liáu,17013491,"가: 엄마, 텔레비전 좀 잠깐 봐도 돼요?
+1451,끝내,1701349,了,liáu,liáu,17013491,"가: 엄마, 텔레비전 좀 잠깐 봐도 돼요?
 나: 숙제부터 끝내고 봐야지.",,"A: 阿母，我敢會使看一下電影？
 B: 功課寫了才會使看。","A: A-bú, guá kám ē-sái khuànn tsi̍t-ē tiān-iánn? 
 B: Kong-khò siá-liáu tsiah ē-sái khuànn.","A: A-bú, góa kám ē-sái khòaⁿ chi̍t-ē tiān-iáⁿ? 
@@ -606,6 +606,56 @@ B: Kong-khò siá-liáu chiah ē-sái khòaⁿ."""
 1456,끼다,1701353,窒轉去,that-tńg-khì,that-tńg-khì,17013532,나는 와인을 따른 뒤 코르크 마개를 다시 병에 꼈다.,,我葡萄酒倒了，共草窒仔窒轉去矸仔。,"Guá phû-tô-tsiú tò liáu, kā tshó-that-á that-tńg-khì kan-á.","Góa phû-tô-chiú tò liáu, kā chhó-that-á that-tńg-khì kan-á."
 1456,끼다,1701354,囥入去,khǹg-ji̍p--khì,khǹg-ji̍p--khì,17013541,눈에 콘택트렌즈를 끼다,,共隱形目鏡囥入去目睭,kā ún-hîng-ba̍k-kiànn khǹg-ji̍p-khì ba̍k-tsiu,kā ún-hêng-ba̍k-kiàⁿ khǹg-ji̍p-khì ba̍k-chiu
 1456,끼다,1701354,掛,kuà,kòa,17013542,장갑을 끼다,,掛手橐仔,kuà tshiú-lok-á,kòa chhiú-lok-á
+1461,나,1701357,我,guá,góa,17013571,나의 이름,,我的名,guá ê miâ,góa ê miâ
+1461,나,1701357,我,guá,góa,17013572,나는 대한민국 서울에서 태어났다.,,我是佇韓國首爾出世的。,Guá sī tī Hân-kok Sóo-ut tshut-sì--ê.,Góa sī tī Hân-kok Só͘-ut chhut-sì--ê.
+1466,나가다,1701365,出,tshut,chhut,17013651,방을 나가다,,出房間,tshut pâng-king,chhut pâng-keng
+1466,나가다,1701365,出,tshut,chhut,17013652,나는 집을 나가다가 지갑을 두고 온 것이 생각났다.,,我出門才想著無紮錢袋仔。,Guá tshut-mn̂g tsiah siūnn--tio̍h bô tsah tsînn-tē-á.,Góa chhut-mn̂g chiah siūⁿ--tio̍h bô chah chîⁿ-tē-á.
+1466,나갔다,1701367,往頭前,óng thâu-tsîng,óng thâu-chêng,17013671,우리는 무대를 좀 더 잘 보기 위해 앞자리로 나갔다.,,阮往頭前的坐位行，按呢舞台才看甲較清楚。,"Guán óng thâu-tsîng ê tsē-uī kiânn, án-ne bú-tâi tsiah khuànn kah khah tshing-tshó.","Goán óng thâu-chêng ê chē-ūi kiâⁿ, án-ne bú-tâi chiah khòaⁿ kah khah chheng-chhó."
+1466,나가,1701369,咧賣,teh bē,teh bē,17013691,그의 책이 서점에 나가자 단번에 베스트셀러가 되었다.,,伊的冊才開始佇冊店開始咧賣，隨就入去到上食市的排名。,"I ê tsheh tsiah khai-sí tī tsheh-tiàm teh bē, suî tō ji̍p-khì kàu siōng tsia̍h-tshī ê pâi-miâ.","I ê chheh chiah khai-sí tī chheh-tiàm teh bē, sûi tō ji̍p-khì kàu siōng chia̍h-chhī ê pâi-miâ."
+1471,나누어 ,1701373,分,pun,pun,17013731,나는 케이크를 열 조각으로 나누어 사람들에게 한 조각씩 주었다.,,我共雞卵糕分做十塊，一人一塊。,"Guá kā ke-nn̄g-ko pun tsò tsa̍p tè, tsi̍t lâng tsi̍t tè.","Góa kā ke-nn̄g-ko pun chò cha̍p tè, chi̍t lâng chi̍t tè."
+1471,나누,1701374,除,tû,tû,17013741,12를 4으로 나누면 3라는 몫이 나온다.,,用三除十二得四。,Īng sann tû tsa̍p-jī tik sì.,Ēng saⁿ tû cha̍p-jī tek sì.
+1471,나누,1701375,分享,hun-hióng,hun-hióng,17013751,어머니는 동네 사람들과 나누려고 부침개를 많이 부치셨다.,,阿母做一堆韓國煎餅，欲佮厝邊隔壁分享。,"A-bú tsò tsi̍t tui Hhân-kok tsian-piánn, beh kah tshù-pinn-keh-piah hun-hióng.","A-bú chò chi̍t tui Hhan5-kok chian-piáⁿ, beh kah chhù-piⁿ-keh-piah hun-hióng."
+1476,났다,1701376,生,senn,seⁿ,17013761,사춘기가 된 아들의 얼굴에 여드름이 많이 났다.,,咧轉大人的後生，面生真濟𤶃仔子。,"Teh tsuán tuā-lâng ê hāu-senn, bīn senn tsin tsē thiāu-á-tsí.","Teh choán tōa-lâng ê hāu-seⁿ, bīn seⁿ chin chē thiāu-á-chí."
+1476,나,1701376,做,tsò,chò,17013762,새로 지은 건물에는 창문이 여러 개 나 있어서 내부가 밝았다.,,新起的大樓有做幾若个窗仔門，所以內底誠光。,"Sin khí ê tuā-lâu ū tsò kuí-nā ê thang-á-mn̂g, sóo-í lāi-té tsiânn-kng.","Sin khí ê tōa-lâu ū chò kúi-nā ê thang-á-mn̂g, só͘-í lāi-té chiâⁿ-kng."
+1476,났다,1701376,萎,ui,ui,17013763,신발을 오래 신어서 신발 바닥에 구멍이 났다.,,鞋仔穿足久矣，鞋底煞萎一空。,"Ê-á tshīng tsiok kú--ah, ê-té suah ui tsi̍t khang.","Ê-á chhēng chiok kú--ah, ê-té soah ui chi̍t khang."
+1476,나,1701376,留,lâu,lâu,17013764,집에는 도둑들의 발자국이 어지럽게 나 있었다.,,賊仔的跤跡，留甲規間厝四界攏是。,"Tsha̍t-á ê kha-jiah, lâu-kah kui king tshù sì-kè lóng sī.","Chha̍t-á ê kha-jiah, lâu-kah kui keng chhù sì-kè lóng sī."
+1476,났다,1701376,刊,khan,khan,17013765,내가 쓴 글이 잡지에 났다.,,我寫的文章刊佇雜誌頂頭。,Guá siá ê bûn-tsiong khan tī tsa̍p-tsì tíng-thâu.,Góa siá ê bûn-chiong khan tī cha̍p-chì téng-thâu.
+1476,났다,1701377,做,tsò,chò,17013771,남부 지방에 비가 많이 와서 홍수가 났다.,,下港摔大雨，結果做水災。,"Ē-káng siàng-tuā-hōo, kiat-kó tsò tsuí-tsai.","Ē-káng siàng-tōa-hō͘, kiat-kó chò chúi-chai."
+1476,난다,1701378,產,sán,sán,17013781,이 지역에서는 은이 많이 난다.,,這个地區產足濟銀仔。,Tsit ê tē-khu sán tsiok tsē gîn-á.,Chit ê tē-khu sán chiok chē gîn-á.
+1476,난다,1701379,出,tshut,chhut,17013791,이 마을에서는 천재가 많이 난다.,,這个庄頭出足濟天才。,Tsit ê tsng-thâu tshut tsiok tsē thian-tsâi.,Chit ê chng-thâu chhut chiok chē thian-châi.
+1476,나,1701380,,,,17013801,그는 부자라고 소문이 나 있지만 사실은 매우 가난했다.,,傳聞講伊真好額，其實真相是足散赤。,"Thuân-bûn kóng i tsin hó-gia̍h, kî-si̍t tsin-siòng sī tsiok sàn-tshiah.","Thoân-bûn kóng i chin hó-gia̍h, kî-si̍t chin-siòng sī chiok sàn-chhiah."
+1481,나라,1701381,國,kok,kok,17013811,이웃 나라,,鄰國,lîn-kok,lîn-kok
+1481,나라,1701381,國家,kok-ka,kok-ka,17013812,나라를 지키다,,保衛國家,pó-uī kok-ka,pó-ūi kok-ka
+1482,나머지,1701390,賰的,tshun--ê,chhun--ê,17013901,그는 복권에 당첨되어 받은 일억 원에서 천만 원을 쓰고 나머지를 모두 고아원에 기부했다.,,伊彩券贏著的一億韓票，一千萬家己開，賰的攏寄付予孤兒院。,"I tshái-kuàn iânn-tio̍h--ê tsi̍t-ik Hân-phiò, tsi̍t-tshing-bān ka-kī khai, tshun ê lóng kià-hù hōo koo-jî-īnn.","I chhái-koàn iâⁿ-tio̍h--ê chi̍t-ek Hân-phiò, chi̍t-chheng-bān ka-kī khai, chhun ê lóng kià-hù hō͘ ko͘-jî-īⁿ."
+1486,나무,1701393,樹仔,tshiū-á,chhiū-á,17013931,나무 세 그루,,三欉樹仔,sann tsâng tshiū-á,saⁿ châng chhiū-á
+1486,나무,1701393,樹,tshiū,chhiū,17013932,농부들은 나무 그늘 아래에서 낮잠을 청했다.,,作田人佇樹蔭睏了中晝。,Tsoh-tshân-lâng tī tshiū-ńg khùn liáu tiong-tàu.,Choh-chhân-lâng tī chhiū-ńg khùn liáu tiong-tàu.
+1486,나무,1701394,柴,tshâ,chhâ,17013941,나무 식탁,,柴做的食飯桌,tshâ tsò ê tsia̍h-pn̄g-toh,chhâ chò ê chia̍h-pn̄g-toh
+1486,나무,1701395,柴,tshâ,chhâ,17013951,나무를 한 짐 해서 가져오다,,抾一縛柴紮轉來,khioh tsi̍t pa̍k tshâ tsah--tńg-lâi,khioh chi̍t pa̍k chhâ chah--tńg-lâi
+1491,나비,1701405,蝶仔,ia̍h-á,ia̍h-á,17014051,번데기에서 갓 나온 노란색 나비 한 마리가,,對蝶仔豆孵出來的一隻黃蝶仔,Tuì ia̍h-á-tāu pū--tshut-lâi ê tsi̍t tsiah n̂g-ia̍h-á,Tùi ia̍h-á-tāu pū--chhut-lâi ê chi̍t chiah n̂g-ia̍h-á
+1491,나비,1701406,貓眯,niau-bî,niau-bî,17014061,"아이고, 우리 귀여운 나비는 말도 참 잘 듣지.",,哇，阮的古錐貓咪足聽話的。,"Ua, guán ê kóo-tsui niau-bí tsiok thiann-uē--ê.","Oa, goán ê kó͘-chui niau-bí chiok thiaⁿ-ōe--ê."
+1496,나빠지다,1701409,惡化,ok-huà,ok-hòa,17014091,건강이 나빠지다,,健康惡化,kiān-khong ok-huà,kiān-khong ok-hòa
+1501,나쁘다,1701413,䆀,bái,bái,17014131,이 공책은 종이 질이 나빠 조금만 지우개로 지워도 쉽게 찢어진다.,,這本簿仔紙的品質䆀甲，用拊仔拊拊咧，紙就足𠢕落落來。,"Tsit pún phōo-á-tsuá ê phín-tsit bái-kah, iōng hú-á hú-hú--leh, tsuá tō tsiok gâu lak--lo̍h-lâi.","Chit pún phō͘-á-chóa ê phín-chit bái-kah, iōng hú-á hú-hú--leh, chóa tō chiok gâu lak--lo̍h-lâi."
+1501,나쁘다,1701413,䆀,bái,bái,17014132,그는 화난 듯한 얼굴이어서 첫인상은 나빴지만 몇 번 만나 보니 아주 좋은 사람이었다.,,伊按呢臭面予人第一印象足䆀的，毋過見過幾擺就知影其實是好人。,"I án-ne tshàu-bīn hōo lâng tē-it ìn-siōng tsiok bái--ê, m̄-koh kìnn kuè kuí pái tō tsai-iánn kî-si̍t sī hó-lâng.","I án-ne chhàu-bīn hō͘ lâng tē-it ìn-siōng chiok bái--ê, m̄-koh kìⁿ kòe kúi pái tō chai-iáⁿ kî-si̍t sī hó-lâng."
+1501,나쁘다,1701413,䆀,bái,bái,17014133,나쁜 길,,歹路,phái-lōo,phái-lō͘
+1506,나오다,1701421,出來,tshut-lâi,chhut-lâi,17014211,모두들 이리로 나와 봐.,,全部的人攏出來。,Tsuân-pōo ê lâng lóng tshut-lâi.,Choân-pō͘ ê lâng lóng chhut-lâi.
+1511,나이,1701425,年歲,nî-huè,nî-hòe,17014251,비슷한 나이,,年歲差不多,nî-huè tsha-put-to,nî-hòe chha-put-to
+1511,나이,1701425,年歲,nî-huè,nî-hòe,17014252,네가 올해로 나이가 얼마지?,,你年歲偌大矣？,Lí nî-huè guā-tuā--ah?,Lí nî-hòe gōa-tōa--ah?
+1516,나중,1701429,後來,āu--lâi,āu--lâi,17014291,나는 버스를 잘못 탄 것을 나중에 알았다.,,後來我才發現講公車坐毋著幫。,Āu--lâi guá tsiah huat-hiān kóng kong-tshia tsē m̄-tio̍h pang.,Āu--lâi góa chiah hoat-hiān kóng kong-chhia chē m̄-tio̍h pang.
+1516,나중,1701429,了,liáu,liáu,17014291,는 배가 고파서 밥을 먹고 숙제는 나중에 했다.,,我腹肚枵，所以先食飯，功課食了才寫的。,"Guá pak-tóo-iau, sóo-í sing tsia̍h-pn̄g, kong-khò tsia̍h-liáu tsiah siá--ê.","Góa pak-tó͘-iau, só͘-í seng chia̍h-pn̄g, kong-khò chia̍h-liáu chiah siá--ê."
+1526,나타나다,1701437,出現,tshut-hiān,chhut-hiān,17014371,그토록 찾던 지갑이 엉뚱하게도 빨래 더미 속에서 나타났다.,,我揣甲欲無命的錢袋仔，想袂到出現佇欲洗的衫內底。,"Guá tshuē-kah beh bô-miā ê tsînn-tē-á, siūnn-bē-kàu tshut-hiān tī beh sé ê sann lāi-té.","Góa chhōe-kah beh bô-miā ê chîⁿ-tē-á, siūⁿ-bē-kàu chhut-hiān tī beh sé ê saⁿ lāi-té."
+1531,나흘,1701441,四工,sì kang,sì kang,17014411,지수는 시험 보기 나흘 전부터 본격적으로 공부를 시작했다.,,智秀佇考試前四工開始認真讀冊。,Tì-siù tī khó-tshì tsîng sì-kang khai-sí jīn-tsin tha̍k-tsheh.,Tì-siù tī khó-chhì chêng sì-kang khai-sí jīn-chin tha̍k-chheh.
+1531,나흘,1701442,初四,tshe-sì,chhe-sì,17014421,지난달 나흘에 받았던 검사 결과가 한 달 만에 나왔다.,,頂個月初四考的考試，分數才一個月就出來矣。,"Tíng kò gue̍h tshe-sì khó ê khó-tshì, hun-sòo tsiah tsi̍t kò gue̍h tō tshut-lâi--ah.","Téng kò goe̍h chhe-sì khó ê khó-chhì, hun-sò͘ chiah chi̍t kò goe̍h tō chhut-lâi--ah."
+1536,낚시,1701445,釣鉤,tiò-kau,tiò-kau,17014451,낚시에 걸린 물고기는 곧 어부에 손에 잡혔다.,,用釣鉤掠著的魚仔，隨就予漁民掠去刣。,"Iōng tiò-kau lia̍h--tio̍h--ê hî-á, suî tō hōo hî-bîn lia̍h-khì thâi.","Iōng tiò-kau lia̍h--tio̍h--ê hî-á, sûi tō hō͘ hî-bîn lia̍h-khì thâi."
+1536,낚시,1701446,釣魚,tiò-hî,tiò-hî,17014461,강에서 낚시를 하다,,佇溪邊釣魚,tī khe pinn tiò-hî,tī khe piⁿ tiò-hî
+1541,날,1701453,工,kang,kang,17014531,나와 내 가장 친한 친구인 영수는 같은 날에 태어났다.,,我佮我上好的朋友英洙是仝一工生的。,Guá kah guá siōng-hó ê pîng-iú Ing-sû sī kāng tsi̍t kang senn--ê.,Góa kah góa siōng-hó ê pêng-iú Eng-sû sī kāng chi̍t kang seⁿ--ê.
+1541,날,1701454,日時,ji̍t--sî,ji̍t--sî,17014541,여름이 되니까 날이 길어지고 밤이 짧아진다.,,欲熱天矣，日時變長，暗時變短。,"Beh jua̍h-thinn--ah, ji̍t--sî piàn-tn̂g, àm-sî piàn-té.","Beh joa̍h-thiⁿ--ah, ji̍t--sî piàn-tn̂g, àm-sî piàn-té."
+1546,날씨,1701457,天氣,thinn-khì,thiⁿ-khì,17014571,가을이 되자 날씨가 많이 선선해졌다.,,秋天到矣，天氣轉加足涼的。,"Tshiu-thinn kàu--ah, thinn-khì tsuán ke tsiok liâng--ê.","Chhiu-thiⁿ kàu--ah, thiⁿ-khì choán ke chiok liâng--ê."
+1551,날짜,1701469,日期,ji̍t-kî,ji̍t-kî,17014691,결혼 날짜,,喜酒的日期,hí-tsiú ê ji̍t-kî,hí-chiú ê ji̍t-kî
+1551,날짜,1701469,,,,17014691,공사를 이달 말까지 끝내기로 했는데 날짜가 좀 모자란다.,,工程月底就愛完成，毋過賰無幾工。,"Kang-tîng gue̍h-té tō ài uân-sîng, m̄-koh tshún bô kuí kang.","Kang-têng goe̍h-té tō ài oân-sêng, m̄-koh chhún bô kúi kang."
+1556,남,1701473,別人,pa̍t-lâng,pa̍t-lâng,17014731,나보다 남을 더 생각하는 지수는 봉사 활동을 열심히 한다.,,顧別人超過顧家己的智秀，足熱心咧做志工的。,"Kòo pa̍t-lâng tshiau-kuè kòo ka-kī ê Tì-siù, tsiok jia̍t-sim teh tsò tsì-kang--ê.","Kò͘ pa̍t-lâng chhiau-kòe kò͘ ka-kī ê Tì-siù, chiok jia̍t-sim teh chò chì-kang--ê."
+1556,남,1701474,生份人,senn-hūn-lâng,seⁿ-hūn-lâng,17014741,그들 부부는 이혼을 해 남이 됐다.,,彼對翁仔某離緣了，變做生份人。,"Hit tuì ang-á-bóo lī-iân-liáu, piàn-tsò senn-hūn-lâng.","Hit tùi ang-á-bó͘ lī-iân-liáu, piàn-chò seⁿ-hūn-lâng."
+1561,남기,1701477,賰,tshun,chhun,17014771,민준은 너무 배가 고파서 밥을 하나도 남기지 않고 다 먹었다.,,民俊傷枵，飯全部食了，一點仔攏無賰。,"Bîn-tsùn siunn iau, pn̄g tsuân-pōo tsia̍h-liáu, tsi̍t-tiám-á lóng bô tshun.","Bîn-chùn siuⁿ iau, pn̄g choân-pō͘ chia̍h-liáu, chi̍t-tiám-á lóng bô chhun."
+1566,남녀,1701481,男女,lâm-lí,lâm-lí,17014811,법에 따라 만 십구 세 이상의 성인 남녀라면 누구나 투표에 참여할 수 있다.,,根據法律，滿十九歲的成年男女攏會當投票。,"Kin-kì huat-lu̍t, muá tsa̍p-káu huè ê sîng-liân lâm-lí lóng ē-tàng tâu-phiò.","Kin-kì hoat-lu̍t, móa cha̍p-káu hòe ê sêng-liân lâm-lí lóng ē-tàng tâu-phiò."
 1576,남동생,1701489,小弟,sió-tī,sió-tī,17014891,누나는 어린 남동생만 집에 두고 놀러 가는 것이 마음에 걸렸다.,,阿姊無放心放小弟佇厝裡，家己出去𨑨迌。,"A-tsí bô hòng-sim pàng sió-tī tī tshù--lí, ka-ki tshu-khì tshit-thô.","A-chí bô hòng-sim pàng sió-tī tī chhù--lí, ka-ki chhu-khì chhit-thô."
 1591,남자,1701501,查埔,tsa-poo,cha-po͘,17015011,미혼 남자,,十一哥,tsa̍p-it-ko,cha̍p-it-ko
 1591,남자,1701501,查埔,tsa-poo,cha-po͘,17015012,교실에서 남자 학생들이 무거운 책상을 옮겼다.,,教室內底，查埔學生仔搬重的冊桌仔。,"Kàu-sik lāi-té, tsa-poo ha̍k-sing-á puann tāng ê tsheh-toh-á.","Kàu-sek lāi-té, cha-po͘ ha̍k-seng-á poaⁿ tāng ê chheh-toh-á."
@@ -777,5 +827,3 @@ B: Bô khòaⁿ--tio̍h. Sī-m̄-sī sé-liáu, lí tō khǹg tī he e̍k-keng-�
 7166,점심,1707512,中晝,tiong-tàu,tiong-tàu,17075121,아침 일찍 일을 시작한 덕분에 점심에는 일을 끝낼 수 있었다.,,佳哉透早就開始做工課，中晝進前就會當完成大部分矣。,"Ka-tsài thàu-tsá tō khai-sí tsò khang-khuè, tiong-tàu tsìn-tsîng tō ē-tàng uân-sîng tuā-pōo-hun--ah.","Ka-chài thàu-chá tō khai-sí chò khang-khòe, tiong-tàu chìn-chêng tō ē-tàng oân-sêng tōa-pō͘-hun--ah."
 7166,점심,1707513,中晝,tiong-tàu,tiong-tàu,17075131,점심을 거르다,,中晝無食,tiong-tàu bô tsia̍h,tiong-tàu bô chia̍h
 7166,점심,1707513,中晝,tiong-tàu,tiong-tàu,17075132,점심을 때우다,,中晝簡單食食咧,tiong-tàu kán-tan tsia̍h-tsia̍h--leh,tiong-tàu kán-tan chia̍h-chia̍h--leh
-1461,나,1701361,我,guá,góa,17013611,나의 이름,,我的名,guá ê miâ,góa ê miâ
-1461,나,1701361,我,guá,góa,17013612,나는 대한민국 서울에서 태어났다.,,我是佇韓國首爾出世的。,Guá sī tī Hân-kok Sóo-ut tshut-sì--ê.,Góa sī tī Hân-kok Só͘-ut chhut-sì--ê.

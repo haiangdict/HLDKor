@@ -784,8 +784,8 @@ B: Khòaⁿ--khí-lâi eng-kai sī iûⁿ-á-lo̍k, in-ūi khah sè-chiah."
 1845,눈,1701781,雪,seh,seh,17017811,하늘에서는 하얀 눈이 펑펑 내리고 있었다.,,天頂咧落白色的大雪。,Thinn-tíng teh lo̍h pe̍h-sik ê tuā-seh.,Thiⁿ-téng teh lo̍h pe̍h-sek ê tōa-seh.
 1846,눈,1701785,目睭,ba̍k-tsiu,ba̍k-chiu,17017851,눈이 부셨다,,目睭青盲,ba̍k-tsiu tshenn-mê,ba̍k-chiu chheⁿ-mê
 1846,눈,1701785,目睭,ba̍k-tsiu,ba̍k-chiu,17017852,눈에 안약을 넣다,,共目睭藥仔滴入去目睭,kā ba̍k-tsiu-io̍h-á tih-ji̍p-khì ba̍k-tsiu,kā ba̍k-chiu-io̍h-á tih-ji̍p-khì ba̍k-chiu
-1846,눈,1701789,花莓,hue-m̂,hoe-m̂,17017891,겨울눈,,寒天的花莓,kuânn-thinn ê hue-m̂,kôaⁿ-thiⁿ ê hoe-m̂
 1846,눈,1701789,芽,gê,gê,17017891,눈이 올라,,發芽,puh-gê,puh-gê
+1846,눈,1701789,花莓,hue-m̂,hoe-m̂,17017892,겨울눈,,寒天的花莓,kuânn-thinn ê hue-m̂,kôaⁿ-thiⁿ ê hoe-m̂
 1851,눈물,1701793,目屎,ba̍k-sái,ba̍k-sái,17017931,눈물이 나다,,流目屎,lâu-ba̍k-sái,lâu-ba̍k-sái
 1851,눈물,1701793,目屎,ba̍k-sái,ba̍k-sái,17017932,눈물을 닦다,,拭目屎,tshit-ba̍k-sái,chhit-ba̍k-sái
 1866,눕다,1701805,倒,tó,tó,17018051,풀밭에 눕다,,倒佇草埔,tò tī tsháu-poo,tò tī chháu-po͘
@@ -933,6 +933,22 @@ B:  Án-niâ-ôe, hoeh lâu chia chē. Kín-lâi boah io̍h-á."
 2213,던지다,1702167,擲,tàn,tàn,17021673,아이들은 시냇물에 돌을 던지며 놀았다.,,囡仔共石頭往溪水擲咧耍。,Gín-á kā tsio̍h-thâu óng khe-tsuí tàn teh sńg.,Gín-á kā chio̍h-thâu óng khe-chúi tàn teh sńg.
 2216,덥다,1702172,熱,jua̍h,joa̍h,17021721,방 안이 더우니 창문을 여는 게 어떨까요?,,房間內底會熱，開一下窗仔門好無？,"Pâng-king lāi-té ē jua̍h, khui tsi̍t-ê thang-á-mn̂g hó--bô?","Pâng-keng lāi-té ē joa̍h, khui chi̍t-ê thang-á-mn̂g hó--bô?"
 2216,덥다,1702173,燒,sio,sio,17021731,더운 물,,燒水,sio-tsuí,sio-chúi
+2219,덮다,1702177,崁,khàm,khàm,17021771,뚜껑을 덮다,,崁蓋,khàm-kuà,khàm-kòa
+2219,덮다,1702177,蓋,kah,kah,17021772,이불을 덮다,,蓋被,kah-phuē,kah-phōe
+2222,데려갔다,1702178,𤆬走,tshuā-tsáu,chhōa-cháu,17021781,교실 밖에서 기다리고 있던 학부모들이 수업이 끝나자 아이들을 데려갔다.,,佇教室外面咧等的家長，等下課就共囡仔𤆬走。,"Tī kàu-sik guā-bīn teh tán ê ka-tiúnn, tán hā-khò tō kā gín-á tshuā-tsáu.","Tī kàu-sek gōa-bīn teh tán ê ka-tiúⁿ, tán hā-khò tō kā gín-á chhōa-cháu."
+2225,데려와,1702179,𤆬來,tshuā-lâi,chhōa-lâi,17021791,내일 공연에 친구를 데려와도 돼?,,明仔載我敢會使𤆬一个朋友來看表演？,Bîn-á-tsài guá kám ē-sái tshuā tsi̍t ê pîng-iú lâi khuànn piáu-ián?,Bîn-á-chài góa kám ē-sái chhōa chi̍t ê pêng-iú lâi khòaⁿ piáu-ián?
+2226,데리다,1702181,接,tsiap,chiap,17021811,그는 아이를 데리러 유치원에 갔다.,,伊去幼稚園接囡仔。,I khì iù-tī-hn̂g tsiap gín-á.,I khì iù-tī-hn̂g chiap gín-á.
+2226,데리다,1702181,送,sàng,sàng,17021812,여자는 병원에 아픈 아이를 데리고 왔다.,,彼个查某共破病的囡仔送來病院。,Hit ê tsa-bóo kā phuà-pēnn ê gín-á sàng-lâi pēnn-īnn.,Hit ê cha-bó͘ kā phòa-pēⁿ ê gín-á sàng-lâi pēⁿ-īⁿ.
+2229,데스크톱 컴퓨터,1702183,桌頂的電腦,toh-tíng ê tiān-náu,toh-téng ê tiān-náu,17021831,나는 출근하면 가장 먼저 데스크톱 컴퓨터를 켜고 인터넷 기사를 훑어본다.,,我上班第一件代誌就是開桌頂的電腦，看網路文章。,"Guá siōng-pan tē-it kiānn tāi-tsì tō-sī khui toh-tíng ê tiān-náu, khuànn bāng-lōo bûn-tsiong.","Góa siōng-pan tē-it kiāⁿ tāi-chì tō-sī khui toh-téng ê tiān-náu, khòaⁿ bāng-lō͘ bûn-chiong."
+2231,데이트,1702185,約會,iok-huē,iok-hōe,17021851,아무도 나에게 데이트 신청을 안 하네.,,無人欲招我佮𪜶約會。,Bô lâng beh tsio guá kah in iok-huē.,Bô lâng beh chio góa kah in iok-hōe.
+2232,데이트하,1702187,約會,iok-huē,iok-hōe,17021871,공원에서는 많은 연인들이 산책을 하며 데이트하고 있었다.,,公園足濟少年的佇遐散步約會。,Kong-hn̂g tsiok tsē siàu-liân--ê tī hia sàn-pōo iok-huē.,Kong-hn̂g chiok chē siàu-liân--ê tī hia sàn-pō͘ iok-hōe.
+2234,도,1702189,嘛,mā,mā,17021891,그 가방이 예쁘긴 한데 나는 이 가방도 예쁘다고 생각해.,,你彼个皮包仔足媠的，我感覺遮這个嘛是。,"Lí hit ê phuê-pau-á tsiok suí--ê, guá kám-kak tsia tsit ê mā sī.","Lí hit ê phôe-pau-á chiok súi--ê, góa kám-kak chia chit ê mā sī."
+2234,도,1702189,嘛,mā,mā,17021892,할아버지께서는 농장에서 돼지도 키우고 소도 키우셨다.,,阿公佇農莊，有飼豬嘛有飼牛。,"A-kong tī lông-tsng, ū tshī ti mā ū tshī gû.","A-kong tī lông-chng, ū chhī ti mā ū chhī gû."
+2234,도,1702189,嘛,mā,mā,17021893,이번 주말에 시간이 안 나면 다음 주말도 괜찮아.,,你若這拜六禮拜袂使，後禮拜六禮拜嘛會用。,"Lí nā tsit pài-la̍k lé-pài bē-sái, āu lé-pài-la̍k lé-pài mā ē-īng.","Lí nā chit pài-la̍k lé-pài bē-sái, āu lé-pài-la̍k lé-pài mā ē-ēng."
+2234,도,1702189,嘛,mā,mā,17021894,이런 기본적인 계산도 못 한단 말인가?,,你講你連遮簡單的計算嘛袂曉？,Lí kóng lí liân tsiah kán-tan ê kè-sǹg mā bē-hiáu?,Lí kóng lí liân chiah kán-tan ê kè-sǹg mā bē-hiáu?
+2236,도,1702191,,,,17021911,도가 지나치다,,做甲傷超過,tsò kah siunn tshiau-kuè,chò kah siuⁿ chhiau-kòe
+2241,도로,1702193,路,lōo,lō͘,17021931,도로를 넓히다,,共路楦闊,kā lōo hùn-khuah,kā lō͘ hùn-khoah
+2246,도서관,1702197,圖書館,tôo-su-kuán,tô͘-su-koán,17021971,나는 도서관에서 빌린 책을 반납하는 것을 잊어버려 연체료를 지불했다.,,圖書館借的冊我袂記得還，去予罰錢。,"Tôo-su-kuán tsioh ê tsheh guá bē-kì-tit hîng, khì hōo hua̍t-tshînn.","Tô͘-su-koán chioh ê chheh góa bē-kì-tit hêng, khì hō͘ hoa̍t-chhîⁿ."
 3961,사,1704045,四,sì,sì,17040451,이의 두 배는 사이다.,,二的兩倍是四。,Jī ê nn̄g puē sī sì.,Jī ê nn̄g pōe sī sì.
 3966,사거리,1704053,十字路,si̍p-jī-lōo,si̍p-jī-lō͘,17040531,이 근처 사거리에는 유동 인구가 많아 장사가 잘된다.,,遮附近的十字路生理真交易，因為有真濟人經過。,"Tsia hù-kīn ê tsa̍p-jī-lōo sing-lí tsin ka-ia̍h, in-uī ū tsin tsē lâng king-kuè.","Chia hù-kīn ê cha̍p-jī-lō͘ seng-lí chin ka-ia̍h, in-ūi ū chin chē lâng keng-kòe."
 3971,사계절,1704057,四季,sù-kuì,sù-kùi,17040571,사계절 중에서 언제가 제일 좋아?,,四季當中，你上佮意佗一个？,"Sù-kuì tang-tiong, lí siōng kah-ì tó tsi̍t ê?","Sù-kùi tang-tiong, lí siōng kah-ì tó chi̍t ê?"

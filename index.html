@@ -681,6 +681,9 @@ const LEMMATA_URL = './data/KOR-Lemmata.csv';
 const SENSES_URL = './data/KOR-Senses.csv';
 const ETYMOLOGY_URL = './data/HLD-Etymology.csv';
 const EXAMPLES_URL = './data/KOR-Examples.csv';
+// 例句音檔：跟HLDDru/HLDPwn同樣放在Cloudflare R2，但韓語版無方言別、底下也沒有次分類資料夾，
+// 一律直接放在KOR這個母資料夾底下，檔名固定是「語句編號.mp3」
+const AUDIO_BASE = 'https://pub-44bec38ae2824f519a8519301efe3bd7.r2.dev/';
 
 let entries = [];          // Lemmata rows
 let lemmataById = {};       // "編號_語別" -> entry
@@ -2177,8 +2180,12 @@ function renderDerivedWordsLine(lemmaId, dial) {
   return `<div class="ref-row"><span class="ref-label">派生詞</span>${inner}</div>`;
 }
 
+// 例句音檔：跟詞目音檔(audioUrl，繼續沿用外部連結)不同，這裡改成放在Cloudflare R2，
+// 固定「KOR/語句編號.mp3」這個路徑，不像HLDDru/HLDPwn底下還有C/D/P/R/T/V/W次分類資料夾——
+// 韓語版沒有方言別，音檔全部平放在KOR這一個母資料夾，不需要判斷次分類。
 function exampleAudioUrl(ex) {
-  return ex['音檔'] || '';
+  if (!ex['語句編號']) return '';
+  return AUDIO_BASE + 'KOR/' + ex['語句編號'] + '.mp3';
 }
 
 function renderExampleBlock(ex, searchTerm) {
